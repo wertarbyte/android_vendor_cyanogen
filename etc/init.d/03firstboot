@@ -1,0 +1,9 @@
+#!/system/bin/sh
+# execute any postinstall script then kill it
+if [ -e /data/firstboot.sh ];
+then
+    echo "--- Executing firstboot.sh";
+    /system/bin/sh /data/firstboot.sh;
+    rm -f /data/firstboot.sh;
+fi;
+

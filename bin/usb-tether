@@ -1,0 +1,38 @@
+#!/system/bin/sh
+#
+# USB RNDIS tether setup
+# shade@chemlab.org (cyanogen)
+#
+
+IN=usb0
+OUT=rmnet0
+ADDR=192.168.77.254
+MASK=255.255.255.0
+TOGGLE=/sys/devices/virtual/net/usb0/enable
+FORWARD=/proc/sys/net/ipv4/ip_forward
+
+case "$1" in
+	start)
+		ifconfig $IN up $ADDR netmask $MASK	
+		echo 1 > $TOGGLE
+		echo 1 > $FORWARD
+		iptables -t nat -A POSTROUTING -o $OUT -j MASQUERADE
+		iptables -A FORWARD -i $OUT -o $IN -m state --state RELATED,ESTABLISHED -j ACCEPT
+		iptables -A FORWARD -i $IN -o $OUT -j ACCEPT
+		start dnsmasq
+		;;
+
+	stop)
+		stop dnsmasq
+		ifconfig $IN down
+		echo 0 > $TOGGLE
+		echo 0 > $FORWARD
+		iptables --flush
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+		exit 1
+esac
+
+exit 0
+

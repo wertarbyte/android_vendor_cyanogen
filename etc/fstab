@@ -1,0 +1,7 @@
+/dev/block/mtdblock3	/system	yaffs2	rw
+/dev/block/mtdblock4	/cache	yaffs2	rw
+/dev/block/mtdblock5	/data	yaffs2	rw
+/dev/block/mmcblk0p1	/sdcard	vfat	rw
+/dev/block/mmcblk0p2	/system/sd auto	rw
+/system/modules/modules.sqf	/system/modules	squashfs	ro,loop
+/system/xbin/xbin.sqf		/system/xbin	squashfs	ro,loop

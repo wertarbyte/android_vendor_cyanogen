@@ -1,0 +1,331 @@
+#! /system/bin/sh
+#
+# Warning: if you want to run this script in cm-recovery change the above to #!/sbin/sh
+#
+# fix_permissions - fixes permissions on Android data directories after upgrade
+# shade@chemlab.org
+#
+# thanks to: http://blog.elsdoerfer.name/2009/05/25/android-fix-package-uid-mismatches/
+#
+# v1.1  -  work with protected apps
+# v1.2  -  chown all the subfolders different than 'lib' and the single files [by ankn]
+# v1.3  -  support for the packages with userShareId; added parameter to support the remount 
+#          mechanism in images different than Cyanogen [by ankn]
+# v1.4  - fix the file and directory permissions as well [by smeat]
+# v1.5  - integrate code by thenefield for logging and only making changes if needed [by smeat and thenefield]
+# v1.6  - Don't mess with user's sdcard, log to it if present or to /data/data/ if  not present [by farmatito]
+# v1.7  - Simplify and improve readability of script a little, enforce safe default permissions where possible [by farmatito]
+# v1.8  - Make sure we choose busybox applets when system binaries with the same name are available [by farmatito]
+# v1.9  - reintegrated "chown all the subfolders different than 'lib' and the single files [by ankn]", fixed private app GID [by smeat]
+# v1.10 - chmod and chown /data/data/$PACKAGE/lib as well [by smeat]
+# v1.11 - logging of /data/data/$PACKAGE/lib, check if /data/data/$PACKAGE/lib needs be changed, fixed ls on chown [by smeat]
+# v1.12 - reduced the number of finds down to one, chown and chmod actions reduced to a single loop, bug fixes and code clean up [by smeat]
+# v1.13 - Minor Clean up [by farmatito]
+# v1.14 - remove additional file checks in the chmod loop [by smeat]
+# v1.15 - Apply correct ownership and permissions to the apks. [by farmatito]
+# v1.16 - very minor cleanups, changed all command subsitutions to be new style [by smeat]
+# v1.17 - Print version [by farmatito]
+# v1.18 - print what app fix_permissions is working on [by smeat]
+# v1.19 - Improve debug info [by farmatito]
+# v1.20 - print what app fix_permissions is working on to the log as well [by smeat]
+# v1.21 - Handle filenames with spaces correctly - fix version numbering - echo is a busybox applet [by farmatito]
+# v1.22 - [ is a busybox applet when android shell is used  [by farmatito]
+# v1.23 - chmod, cat, mount and umount are busybox applets as well, make sure drives are mounted
+#         run nearly unchanged in recovery/ROM [by smeat]
+# v1.24 - Minor cosmetic fix.
+# v1.25 - Remove debug switch (needs getopt) add switch to remove stale data dirs of uninstalled apk packages. [by farmatito]
+# v1.26 - Autodetect on which device /system is. [by farmatito]
+# v1.27 - Don't complain if we can't remount /system ro and other minor fixes
+# v1.28 - Fix mount rw /system and other minor fixes
+# v1.29 - Fix some broken tests
+# v1.30 - Check only non system directories switch (-u) initial idea by rikupw, reimplemented by farmatito
+#         Improve option parsing [by farmatito]
+#         Single package mode (-f) initial idea by rikupw, reimplemented by farmatito
+# v1.31 - Minor fix in option parsing
+
+VERSION="1.31"
+
+# Turn debug on by uncommenting it in this script,
+# by setting DEBUG=1 on the commandline, e.g.
+# DEBUG=1 ./fix_permissions
+# or by exporting DEBUG=1 before you run the script, e.g.
+# export DEBUG=1
+# ./fix_permissions
+
+#DEBUG="1"
+
+# Messages
+UID_MSG="Changing user ownership for:"
+GID_MSG="Changing group ownership for:"
+PERM_MSG="Changing permissions for:"
+# Programs needed
+ECHO="busybox echo"
+GREP="busybox grep"
+EGREP="busybox egrep"
+CAT="busybox cat"
+CHOWN="busybox chown"
+CHMOD="busybox chmod"
+MOUNT="busybox mount"
+UMOUNT="busybox umount"
+CUT="busybox cut"
+FIND="busybox find"
+LS="busybox ls"
+TR="busybox tr"
+TEE="busybox tee"
+TEST="busybox test"
+SED="busybox sed"
+RM="busybox rm"
+
+# Initialise vars
+CODEPATH=""
+UID=""
+GID=""
+PACKAGE=""
+REMOVE="0"
+NOSYSTEM="0"
+ONLY_ONE="x"
+
+# Parse options
+if $TEST $# -gt 0 ; then
+	case "$1" in
+		"-f")
+			if $TEST $# -lt 2 ; then
+				$ECHO "$0: missing argument for option $1"
+				exit 1
+			else
+				ONLY_ONE=$2
+			fi
+			;;
+		"-r")
+			REMOVE="1"
+			;;
+		"-u")
+			NOSYSTEM="1"
+			;;
+		"-V")
+			$ECHO "$0 $VERSION"
+			exit 0
+			;;
+		"-h" | "--help")
+			$ECHO "Usage $0 [OPTIONS] [APK_PATH]"
+			$ECHO "      -f         fix only package APK_PATH"	
+			$ECHO "      -r         remove stale data directories"
+			$ECHO "                 of uninstalled packages"
+			$ECHO "      -u         check only non-system directories"
+			$ECHO "      -V         print version"
+			$ECHO "      -h --help  this help"
+			exit 0
+			;;
+		*)
+			$ECHO "$0: unknown option $1"
+			exit 1
+		;;
+	esac
+fi
+if $TEST $( $GREP -c " /system " "/proc/mounts" ) -ne "0"; then
+	DEVICE=$( $GREP " /system " "/proc/mounts" | $CUT -d ' ' -f1 )
+	if $TEST "x$DEBUG" = "x1"; then
+		$ECHO "/system mounted on $DEVICE"
+	fi
+	if $TEST $( $GREP " /system " "/proc/mounts" | $GREP -c " ro " ) -ne "0"; then
+		$MOUNT -o remount,rw $DEVICE /system
+		SYSREMOUNT="1"
+	fi
+else
+	$MOUNT /system > /dev/null 2>&1
+	SYSMOUNT="1"
+fi
+
+if $TEST $( $GREP -c " /data " "/proc/mounts" ) -eq "0"; then
+	$MOUNT /data > /dev/null 2>&1
+	DATAMOUNT="1"
+fi
+
+if $TEST -e /dev/block/mmcblk0p2 && $TEST $( $GREP -c " /system/sd " "/proc/mounts" ) -eq "0"; then
+		$MOUNT /system/sd > /dev/null 2>&1
+	SYSSDMOUNT="1"
+fi
+
+if $TEST $( $MOUNT | $GREP -c /sdcard ) -eq "0"; then
+	LOG_FILE="/data/fix_permissions.log"
+else
+	LOG_FILE="/sdcard/fix_permissions.log"
+fi
+if $TEST ! -e "$LOG_FILE"; then
+	> $LOG_FILE
+fi
+
+$ECHO "Starting fix_permissions $VERSION $( date +"%m-%d-%Y %H:%M:%S" )" | $TEE -a $LOG_FILE
+
+$CAT /data/system/packages.xml | $GREP "^<package" | $GREP serId | $GREP -v framework-res.apk | while read line; do
+	for i in $( $ECHO $line | $TR " " "\n" ); do
+		if $TEST $i = "<package"; then
+			CODEPATH=""
+			PACKAGE=""
+			UID=""
+			GID=""
+		elif ( $ECHO $i | $GREP "^codePath" > /dev/null ); then
+			CODEPATH=$( $ECHO $i | $CUT -d '"' -f 2 )
+			APPDIR0=$( $ECHO "$CODEPATH" | $CUT -d '/' -f 2 )
+			APPDIR1=$( $ECHO "$CODEPATH" | $CUT -d '/' -f 3 )
+			APK=$( $ECHO "$CODEPATH" | $CUT -d '/' -f 4 )
+		elif ( $ECHO $i | $GREP "^name" > /dev/null ); then
+			PACKAGE=$( $ECHO $i | $CUT -d '"' -f 2 )
+		elif ( $ECHO $i | $GREP "^userId" > /dev/null ); then
+			UID=$( $ECHO $i | $CUT -d '"' -f 2 )
+			GID=$UID
+		elif ( $ECHO $i | $GREP "^sharedUserId" > /dev/null ); then
+			UID=$( $ECHO $i | $CUT -d '"' -f 2 );
+			GID=$UID
+		fi
+	done
+	if $TEST "x$ONLY_ONE" != "xx" -a "$ONLY_ONE" != "$CODEPATH" ; then
+		$ECHO "Single package mode, skipping $CODEPATH"  | $TEE -a $LOG_FILE
+		continue
+	fi
+	if $TEST "x$DEBUG" = "x1"; then
+		$ECHO "$CODEPATH $APPDIR0/$APPDIR1/$APK $UID:$GID" | $TEE -a $LOG_FILE
+	else
+		$ECHO "Checking permissions for: $PACKAGE" | $TEE -a $LOG_FILE
+	fi
+	if $TEST -e "$CODEPATH"; then
+		OLD_UID=$( $LS -ln "$CODEPATH" | $TR -s ' ' | $CUT -d ' ' -f3 )
+		OLD_GID=$( $LS -ln "$CODEPATH" | $TR -s ' ' | $CUT -d ' ' -f4 )
+		if $TEST "$APPDIR0" = "system"; then
+			if $TEST "$NOSYSTEM" = "1"; then
+				$ECHO "Skipping system app: $CODEPATH" | $TEE -a $LOG_FILE
+				continue
+			fi
+			if $TEST "$OLD_UID" -ne "0"; then
+				$ECHO "$UID_MSG $CODEPATH from '$OLD_UID' to '0'" | $TEE -a $LOG_FILE
+				$CHOWN 0 "$CODEPATH"
+			fi
+			if $TEST "$OLD_GID" -ne "0"; then
+				$ECHO "$GID_MSG $CODEPATH from '$OLD_GID' to '0'" | $TEE -a $LOG_FILE
+				$CHOWN :0 "$CODEPATH"
+			fi
+			chmod 644 "$CODEPATH"
+		elif $TEST "$APPDIR0" = "data"; then
+			if $TEST "$APPDIR1" = "app"; then
+				if $TEST "$OLD_UID" -ne "1000"; then
+					$ECHO "$UID_MSG $CODEPATH from '$OLD_UID' to '1000'" | $TEE -a $LOG_FILE
+					$CHOWN 1000 "$CODEPATH"
+				fi
+				if $TEST "$OLD_GID" -ne "1000"; then
+					$ECHO "$GID_MSG $CODEPATH from '$OLD_GID' to '1000'" | $TEE -a $LOG_FILE
+					$CHOWN :1000 "$CODEPATH"
+				fi
+				chmod 644 "$CODEPATH"
+			elif $TEST "$APPDIR1" = "app-private"; then
+				if $TEST "$OLD_UID" -ne "1000"; then
+					$ECHO "$UID_MSG $CODEPATH from '$OLD_UID' to '1000'" | $TEE -a $LOG_FILE
+					$CHOWN 1000 "$CODEPATH"
+				fi
+				if $TEST "$OLD_GID" -ne "$GID"; then
+					$ECHO "$GID_MSG $CODEPATH from '$OLD_GID' to '$GID'" | $TEE -a $LOG_FILE
+					$CHOWN :$GID "$CODEPATH"
+				fi
+				chmod 640 "$CODEPATH"
+			fi
+		fi
+		if $TEST -d "/data/data/$PACKAGE"; then
+			OLD_UID=$( $LS -ldn "/data/data/$PACKAGE" | $TR -s ' ' | $CUT -d ' ' -f3 )
+			OLD_GID=$( $LS -ldn "/data/data/$PACKAGE" | $TR -s ' ' | $CUT -d ' ' -f4 )
+			if $TEST "$OLD_UID" -ne "$UID"; then
+				$ECHO "$UID_MSG /data/data/$PACKAGE from '$OLD_UID' to '$UID'" | $TEE -a $LOG_FILE
+				$CHOWN $UID "/data/data/$PACKAGE"
+			fi
+			if $TEST "$OLD_GID" -ne "$GID"; then
+				$ECHO "$GID_MSG /data/data/$PACKAGE from '$OLD_GID' to '$GID'" | $TEE -a $LOG_FILE
+				$CHOWN :$GID "/data/data/$PACKAGE"
+			fi
+			chmod 755 "/data/data/$PACKAGE"
+		fi
+		if $TEST -d "/data/data/$PACKAGE/lib"; then
+			OLD_UID=$( $LS -ldn "/data/data/$PACKAGE/lib" | $TR -s ' ' | $CUT -d ' ' -f3 )
+			OLD_GID=$( $LS -ldn "/data/data/$PACKAGE/lib" | $TR -s ' ' | $CUT -d ' ' -f4 )
+			if $TEST "$OLD_UID" -ne "1000"; then
+				$ECHO "$UID_MSG /data/data/$PACKAGE/lib from '$OLD_UID' to '1000'" | $TEE -a $LOG_FILE
+				$CHOWN 1000 "/data/data/$PACKAGE/lib"
+			fi
+			if $TEST "$OLD_GID" -ne "1000"; then
+				$ECHO "$GID_MSG /data/data/$PACKAGE/lib from '$OLD_GID' to '1000'" | $TEE -a $LOG_FILE
+				$CHOWN :1000 "/data/data/$PACKAGE/lib"
+			fi
+			chmod 755 "/data/data/$PACKAGE/lib"
+		fi
+		for package_dir in $( $LS "/data/data/$PACKAGE" ); do
+			if $TEST -d "/data/data/$PACKAGE/$package_dir"; then
+				$FIND "/data/data/$PACKAGE/$package_dir" ! -name lib\* | while read entry; do
+					if $TEST "x$DEBUG" = "x1"; then
+						$ECHO "'$entry'"  | $TEE -a $LOG_FILE
+					fi
+					if $TEST -d "$entry"; then
+						LS_OUT=$( $LS -ldn "$entry" | $TR -s ' ' | $CUT -d ' ' -f 1-4 )
+						OLD_UID=$( $ECHO $LS_OUT | $CUT -d ' ' -f 3 )
+						OLD_GID=$( $ECHO $LS_OUT | $CUT -d ' ' -f 4 )
+						OLD_PERM=$( $ECHO $LS_OUT | $CUT -c2-10 )
+						IS_DIRECTORY="1"
+					else
+						LS_OUT=$( $LS -ln "$entry" | $TR -s ' ' | $CUT -d ' ' -f 1-4 )
+						OLD_UID=$( $ECHO $LS_OUT | $CUT -d ' ' -f 3 )
+						OLD_GID=$( $ECHO $LS_OUT | $CUT -d ' ' -f 4 )
+						OLD_PERM=$( $ECHO $LS_OUT | $CUT -c2-10 )
+						IS_DIRECTORY="0"
+					fi
+					if $TEST "$OLD_UID" -ne "$UID"; then
+						$ECHO "$UID_MSG $entry from '$OLD_UID' to '$UID'" | $TEE -a $LOG_FILE
+						$CHOWN $UID "$entry"
+					fi
+					if $TEST "$OLD_GID" -ne "$GID"; then
+						$ECHO "$GID_MSG $entry from '$OLD_GID' to '$GID'" | $TEE -a $LOG_FILE
+						$CHOWN :$GID "$entry"
+					fi
+					if $TEST "$IS_DIRECTORY" -eq "0"; then
+						if $TEST $( $ECHO "$entry" | $EGREP -c "/shared_prefs|/databases" ) != 0   \
+							&& $TEST "$OLD_PERM" != "rw-rw----"; then
+							$ECHO "$PERM_MSG $entry from $OLD_PERM to rw-rw---- (660)" | $TEE -a $LOG_FILE
+							chmod 660 "$entry"
+						elif $TEST $( $ECHO "$entry" | $EGREP -c "/cache/" ) != 0   \
+							&& $TEST "$OLD_PERM" != "rw-------"; then
+							$ECHO "$PERM_MSG $entry from $OLD_PERM to rw------- (600)" | $TEE -a $LOG_FILE
+							chmod 600 "$entry"
+						fi
+					fi
+					if $TEST "$IS_DIRECTORY" -eq "1"; then
+						if $TEST $( $ECHO "$entry" | $EGREP -c "/shared_prefs|/databases|/cache" ) != 0   \
+							&& $TEST "$OLD_PERM" != "rwxrwx--x"; then
+							$ECHO "$PERM_MSG $entry from $OLD_PERM to rwxrwx--x (771)" | $TEE -a $LOG_FILE
+							chmod 771 "$entry"
+						fi
+					fi
+				done
+			fi
+		done
+	else
+		$ECHO "$CODEPATH does not exist.  Reinstall." | $TEE -a $LOG_FILE
+		if $TEST $REMOVE -eq "1" ; then
+			if $TEST -d /data/data/$PACKAGE ; then
+				$ECHO "Removing stale dir /data/data/$PACKAGE" | $TEE -a $LOG_FILE
+				$RM -R /data/data/$PACKAGE
+			fi
+		fi
+	fi
+done
+if $TEST "x$SYSREMOUNT" = "x1"; then
+	$MOUNT -o remount,ro $DEVICE /system > /dev/null 2>&1
+fi
+
+if $TEST "x$SYSSDMOUNT" = "x1"; then
+		$UMOUNT /system/sd > /dev/null 2>&1
+fi
+
+if $TEST "x$SYSMOUNT" = "x1"; then
+	$UMOUNT /system > /dev/null 2>&1
+fi
+
+if $TEST "x$DATAMOUNT" = "x1"; then
+	$UMOUNT /data > /dev/null 2>&1
+fi
+
+$ECHO "fix_permissions $VERSION has completed $( date +"%m-%d-%Y %H:%M:%S" )" | $TEE -a $LOG_FILE
