@@ -1,0 +1,20 @@
+#!/system/bin/sh
+
+stop;
+stop dhcpcd;
+
+sleep 1;
+
+for i in `cat /proc/mounts | cut -f 2 -d " "`;
+do
+	busybox mount -o remount,ro $i 2>&1 > /dev/null;
+done
+
+sync;
+
+if [ "$1" = "-r" ]; 
+then
+	toolbox reboot -f;
+else
+	toolbox reboot -fp;
+fi
