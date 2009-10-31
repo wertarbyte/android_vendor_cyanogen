@@ -20,6 +20,7 @@ case "$1" in
 		iptables -A FORWARD -i $OUT -o $IN -m state --state RELATED,ESTABLISHED -j ACCEPT
 		iptables -A FORWARD -i $IN -o $OUT -j ACCEPT
 		start dnsmasq
+        setprop tethering.enabled 1
 		;;
 
 	stop)
@@ -28,6 +29,7 @@ case "$1" in
 		echo 0 > $TOGGLE
 		echo 0 > $FORWARD
 		iptables --flush
+        setprop tethering.enabled 0
 		;;
 	*)
 		echo "Usage: $0 {start|stop}"
