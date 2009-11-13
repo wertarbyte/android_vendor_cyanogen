@@ -6,6 +6,7 @@
 
 IN=usb0
 OUT=rmnet0
+OUT2=tiwlan0
 ADDR=192.168.77.254
 MASK=255.255.255.0
 TOGGLE=/sys/devices/virtual/net/usb0/enable
@@ -19,6 +20,11 @@ case "$1" in
 		iptables -t nat -A POSTROUTING -o $OUT -j MASQUERADE
 		iptables -A FORWARD -i $OUT -o $IN -m state --state RELATED,ESTABLISHED -j ACCEPT
 		iptables -A FORWARD -i $IN -o $OUT -j ACCEPT
+
+		iptables -t nat -A POSTROUTING -o $OUT2 -j MASQUERADE
+		iptables -A FORWARD -i $OUT2 -o $IN -m state --state RELATED,ESTABLISHED -j ACCEPT
+		iptables -A FORWARD -i $IN -o $OUT2 -j ACCEPT
+
 		start dnsmasq
         setprop tethering.enabled 1
 		;;
