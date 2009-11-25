@@ -37,3 +37,4 @@ PRODUCT_COPY_FILES += vendor/cyanogen/etc/apns-conf.xml:system/etc/apns-conf.xml
 					  vendor/cyanogen/bin/shutdown:system/bin/shutdown \
 					  vendor/cyanogen/bin/compcache:system/bin/compcache
 
+PRODUCT_LOCALES :=
