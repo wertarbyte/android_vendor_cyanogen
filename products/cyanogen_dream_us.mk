@@ -22,6 +22,8 @@ PRODUCT_NAME := cyanogen_dream_us
 
 PRODUCT_PACKAGES += Superuser
 
+PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
+
 PRODUCT_COPY_FILES += vendor/cyanogen/etc/apns-conf.xml:system/etc/apns-conf.xml \
                       vendor/cyanogen/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
                       vendor/cyanogen/etc/fstab:system/etc/fstab \
