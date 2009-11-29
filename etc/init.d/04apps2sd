@@ -92,8 +92,9 @@ then
     fi
 fi
 
-active=`getprop cm.a2sd.active`
-if [ "$active" != 1 ];
+A2SD_ACTIVE=`getprop cm.a2sd.active`
+
+if [ "$A2SD_ACTIVE" != 1 ];
 then
     # replace symlinks with directories so we can boot without sd
     for i in app app-private;
