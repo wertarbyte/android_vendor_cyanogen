@@ -1,3 +1,3 @@
 #!/system/bin/sh
-echo "+++ \"This is your world, these are your people. You can live for yourself today, or help build tomorrow for everyone.\""
+echo "+++ \"In a world of deceit, open your eyes.  Don't be afraid and you realize......\""
 echo "+++ Welcome to Android `getprop ro.build.version.release` / `getprop ro.modversion`";
