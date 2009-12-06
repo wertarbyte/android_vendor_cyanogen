@@ -16,8 +16,8 @@ case "$1" in
 		;;
 
 	stop)
-        swapoff $DEV
-        rmmod $MODULE
+        swapoff $DEV >/dev/null 2>&1
+        rmmod $MODULE >/dev/null 2>&1
 		;;
     stats)
         rzscontrol $DEV --stats
