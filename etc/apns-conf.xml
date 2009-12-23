@@ -87,8 +87,8 @@
   <apn carrier="OneCall MMS" apn="mms" user="" pass="" mmsc="http://mms.nwn.no" mmsproxy="89.254.65.20" port="80" mcc="242" mnc="05" type="mms"/>
   <apn carrier="Optus Internet" apn="yesinternet" user="*" password="*" server="*" mmsc="" mcc="505" mnc="02" type=""/>
   <apn carrier="Optus MMS" apn="mms" proxy="202.139.83.152" port="8070" user="*" password="*" server="*" mmsc="http://mmsc.optus.com.au:8002/" mmsproxy="61.88.190.10" mmsport="8070" mcc="505" mnc="02" type="mms"/>
-  <apn carrier="Optimus Internet" mcc="268" mnc="03" apn="Internet" user="*" password="*" server="*" type="" />
-  <apn carrier="Optimus MMS" mcc="268" mnc="03" apn="mms" user="*" password="*" server="*" mmsc="http://mmsc:10021/mmsc" mmsproxy="62.169.66.1" mmsport="8799" type="mms" />
+  <apn carrier="Optimus Internet" apn="umts" server="*" mcc="268" mnc="03" user="" password="" type="" />
+  <apn carrier="Optimus MMS" mcc="268" mnc="03" apn="mms" server="*" mmsc="http://mmsc:10021/mmsc" mmsproxy="62.169.66.1" mmsport="8799" type="mms" />
   <apn carrier="Orange AT" mcc="232" mnc="05" apn="web.one.at" user="web" password="web" server="*" mmsc="http://mmsc.one.at/mms/wapenc" mmsproxy="194.024.128.118" mmsport="8080" type=""/>
   <apn carrier="Orange AT-MMS" mcc="232" mnc="05" apn="mms.one.at" user="mms" password="mms" server="*" mmsc="http://mmsc.one.at/mms/wapenc" mmsproxy="194.024.128.118" mmsport="8080" type="mms"/>
   <apn carrier="Orange World FR" mcc="208" mnc="01" apn="orange" user="orange" password="orange" server="*" type=""/>
@@ -131,8 +131,8 @@
   <apn carrier="Three" apn="3netaccess" mcc="505" mnc="06" type=""/>
   <apn carrier="Three MMS" apn="3services" mmsc="http://mmsc.three.net.au:10021/mmsc" mmsproxy="mmsprox.three.net.au" mmsport="8799" mcc="505" mnc="06" type="mms"/>
   <apn carrier="TIM" apn="ibox.tim.it" user="*" password="*" server="*" type=""/>
-  <apn carrier="TMN Internet" apn="net2.vodafone.pt" user="" password="" server="*" mcc="268" mnc="01" type=""/>
-  <apn carrier="TMN MMS" apn="mmsc.tmn.pt" user="tmn" password="tmnet" server="*" mmsc="http://mmsc" mmsproxy="010.111.002.016" mmsport="8080" mcc="268" mnc="06" type="mms"/>
+  <apn carrier="TMN Internet" apn="internet" user="" password="" server="*" mcc="268" mnc="06" type=""/>
+  <apn carrier="TMN MMS" apn="mmsc.tmn.pt" user="tmn" password="tmnnet" server="*" mmsc="http://mmsc" mmsproxy="010.111.002.016" mmsport="8080" mcc="268" mnc="06" type="mms"/>
   <apn carrier="T-Mobile AT" mcc="232" mnc="03" apn="gprsinternet" user="t-mobile" password="tm" server="*" mmsproxy="010.012.000.020" mmsport="80" mmsc="http://mmsc.t-mobile.at/servlets/mms" type=""/>
   <apn carrier="T-Mobile AT-MMS" mcc="232" mnc="03" apn="gprsmms" user="t-mobile" password="tm" server="*" mmsproxy="010.012.000.020" mmsport="80" mmsc="http://mmsc.t-mobile.at/servlets/mms" type="mms"/>
   <apn carrier="T-Mobile CZ" mcc="230" mnc="01" apn="internet.t-mobile.cz" user="wap" password="wap" server="*" mmsproxy="010.000.000.010" mmsport="80" mmsc="http://mms" type=""/>
@@ -187,8 +187,8 @@
   <apn carrier="Vodafone NL" apn="live.vodafone.com" proxy="" port="" user="vodafone" password="vodafone" server="" mmsc="http://mmsc.mms.vodafone.nl" mmsproxy="192.168.251.150" mmsport="8799" mcc="204" mnc="04" type="" />
   <apn carrier="Vodafone NZ" apn="www.vodafone.net.nz" user="" password="" server="" mmsc="" mcc="530" mnc="01" type=""/>
   <apn carrier="Vodafone NZ-MMS" apn="live.vodafone.com" user="" password="" server="" mmsc="http://pxt.vodafone.net.nz/pxtsend" mmsproxy="172.030.038.003" mmsport="8080" mcc="530" mnc="01" type="mms"/>
-  <apn carrier="Vodafone PT" mcc="268" mnc="01" apn="net2.vodafone.pt" user="vodafone" password="vodafone" server="" mmsc="" type="" />
-  <apn carrier="Vodafone PT-MMS" apn="mms.vodafone.net" proxy="" port="" user="vas" password="vas" server="" mmsc="http://mms/servlets/mms" mmsproxy="213.30.27.63" mmsport="8799" mcc="268" mnc="01" type="mms" /> 
+  <apn carrier="Vodafone PT" apn="net2.vodafone.pt" server="*" mcc="268" mnc="01" type="" />
+  <apn carrier="Vodafone PT-MMS" apn="vas.vodafone.net" proxy="" port="" user="vas" password="vas" server="*" mmsc="http://mms/servlets/mms" mmsproxy="213.030.27.63" mmsport="8799" mcc="268" mnc="01" type="mms" /> 
   <apn carrier="Vodafone UK-Contract" mcc="234" mnc="15" apn="wap.vodafone.co.uk" user="wap" server="*" password="wap" mmsc="http://mms.vodafone.co.uk/servlets/mms" mmsproxy="212.183.137.12" mmsport="8799"/>
   <apn carrier="Wind MMS" mcc="222" mnc="88" apn="mms.wind.it" user="none" password="none" server="*" mmsproxy="212.245.244.011" mmsport="8080" mmsc="http://mms.wind.it" type="mms"/>
   <apn carrier="Wind WEB" mcc="222" mnc="10" apn="internet.wind" user="none" password="none" server="*" mmsproxy="" mmsport="" mmsc=""/>
