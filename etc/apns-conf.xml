@@ -36,7 +36,7 @@
   <apn carrier="Chess Internet" mcc="242" mnc="02" apn="netcom" user="chess" server="" password="chess" mmsproxy="" mmsport="" mmsc="" type="" proxy="10.254.254.10" port="8080"/>
   <apn carrier="Chess MMS" mcc="242" mnc="02" apn="mms.netcom.no" user="chess" server="" password="chess" mmsproxy="193.209.134.133" mmsport="8080" mmsc="http://mms/" type="mms" proxy="" port=""/>
   <apn carrier="China mobile" APN = "cmnet" Server ="" user="" password="" MCC = "460" MNC = "00" APN Type = "" />
-  <apn carrier="cmcc mms" apn="cmwap" proxy="010.000.000.172" port="80" mmsc="http://mmsc.monternet.com" mmsproxy="010.000.000.172' mmsport="80" mcc="460" mnc="00" type="mms" />
+  <apn carrier="cmcc mms" apn="cmwap" proxy="010.000.000.172" port="80" mmsc="http://mmsc.monternet.com" mmsproxy="010.000.000.172" mmsport="80" mcc="460" mnc="00" type="mms" />
   <apn carrier="China Unicom 3G" apn="3gnet" port="80" mcc="460" mnc="01" type="" />
   <apn carrier="China Unicom MMS" apn="uniwap" mmsc="http://mmsc.myuni.com.cn" mmsproxy="10.0.0.172" mmsport="80" mcc="460" mnc="01" type="mms" /> 
   <apn carrier="cmnet" apn="cmnet" mcc="460" mnc="00"/>
