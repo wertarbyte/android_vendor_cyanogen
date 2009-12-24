@@ -123,6 +123,7 @@
   <apn carrier="STC" apn="jawalnet.com.sa" user="" password="" server="" mmsc="" mcc="420" mnc="01" type=""/>
   <apn carrier="STC MMS" apn="mms.net.sa" user="" password="" server="" mmsc="http://mms.net.sa" mmsproxy="10.1.1.1" mmsport="8080" mcc="420" mnc="01" type="mms"/>
   <apn carrier="Simyo DE" apn="internet.eplus.de" type="" user="simyo" pass="simyo"/>
+  <apn carrier="Simyo ES" apn="gprs-service.com" mcc="214" mnc="19" type=""/>
   <apn carrier="Simyo ES-MMS" apn="gprs-service.com" password="1234" mmsc="http://mms-services.eu" mmsproxy="217.12.32.180" mmsport="8080" mcc="214" mnc="19" type="mms"/>
   <apn carrier="Sunsurf Internet" numeric="52503" mcc="525" mnc="03" apn="sunsurf" user="" server="" password="" proxy="" port="" mmsproxy="" mmsport="" mmsprotocol="null" mmsc="" type=""/>
   <apn carrier="Swisscom" mcc="228" mnc="01" apn="gprs.swisscom.ch" user="" password="" server="" mmsc="" type=""/>
