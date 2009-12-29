@@ -37,7 +37,10 @@ PRODUCT_COPY_FILES += vendor/cyanogen/etc/apns-conf.xml:system/etc/apns-conf.xml
                       vendor/cyanogen/bin/fix_permissions:system/bin/fix_permissions \
                       vendor/cyanogen/bin/usb-tether:system/bin/usb-tether \
 					  vendor/cyanogen/bin/shutdown:system/bin/shutdown \
-					  vendor/cyanogen/bin/compcache:system/bin/compcache
+					  vendor/cyanogen/bin/compcache:system/bin/compcache \
+                      vendor/cyanogen/xbin/busybox:system/xbin/busybox \
+                      vendor/cyanogen/lib/egl/egl.cfg:system/xbin/egl.cfg \
+                      vendor/cyanogen/lib/egl/libGLES_qcom.so 
 
 PRODUCT_LOCALES := \
 	ar_EG \
