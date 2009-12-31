@@ -34,6 +34,7 @@ PRODUCT_COPY_FILES += vendor/cyanogen/etc/apns-conf.xml:system/etc/apns-conf.xml
                       vendor/cyanogen/etc/init.d/04apps2sd:system/etc/init.d/04apps2sd \
                       vendor/cyanogen/etc/init.d/05userinit:system/etc/init.d/05userinit \
                       vendor/cyanogen/etc/init.d/99complete:system/etc/init.d/99complete \
+					  vendor/cyanogen/etc/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml \
                       vendor/cyanogen/bin/fix_permissions:system/bin/fix_permissions \
                       vendor/cyanogen/bin/usb-tether:system/bin/usb-tether \
 					  vendor/cyanogen/bin/shutdown:system/bin/shutdown \
