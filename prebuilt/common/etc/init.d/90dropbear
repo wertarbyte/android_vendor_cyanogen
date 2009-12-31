@@ -1,0 +1,24 @@
+#!/system/bin/sh
+#
+# Activate dropbear SSH server
+
+DBDIR="/data/dropbear/"
+
+DROPBEARKEY="/system/xbin/dropbearkey"
+DROPBEAR="/system/xbin/dropbear"
+
+if ! [ -x $DROPBEAR ]; then
+    exit 0
+fi
+
+# only activate the server if /data/dropbear/ exists
+if [ -d $DBDIR ]; then
+    # generate keys
+    for KEY in rsa dss; do
+        if [ ! -e $DBDIR/dropbear_${KEY}_hostkey ]; then
+            $DROPBEARKEY -t $KEY -f /data/dropbear/dropbear_${KEY}_hostkey
+        fi
+    done
+
+    $DROPBEAR -v -s -g
+fi;
