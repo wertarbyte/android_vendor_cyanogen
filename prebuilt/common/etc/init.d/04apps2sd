@@ -2,18 +2,23 @@
 #
 # Enable Apps2SD
 
-if [ -e /dev/block/mmcblk0p2 ];
+# find first linux partition on SD card
+MMC=/dev/block/mmcblk0
+FDISK="busybox fdisk"
+PARTITION=`$FDISK -l $MMC | awk '/^\// && $5 == 83 {print $1;exit;}'`
+
+if [ -b "$PARTITION" ];
 then
     echo "--- Checking filesystems";
 
     # fsck the sdcard filesystem first
-    e2fsck -y /dev/block/mmcblk0p2;
+    e2fsck -y $PARTITION;
 
     # set property with exit code in case an error occurs
     setprop cm.e2fsck.errors $?;
 
     # mount and set perms
-    busybox mount -o noatime,nodiratime -t auto /dev/block/mmcblk0p2 /system/sd;
+    busybox mount -o noatime,nodiratime -t auto $PARTITION /system/sd;
     if [ "$?" = 0 ];
     then
         busybox chown 1000:1000 /system/sd;
