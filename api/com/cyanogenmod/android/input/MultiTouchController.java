@@ -11,7 +11,6 @@ package com.cyanogenmod.android.input;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 
 /**
@@ -36,8 +35,8 @@ public class MultiTouchController<T> {
 	// multitouch events (larger-jump events are ignored) -- helps eliminate jumping on finger 2 up/down
 	private static final float MAX_MULTITOUCH_DIM_JUMP_SIZE = 40.0f;
 
-	// The smallest possible distance between multitouch points (used to avoid div-by-zero errors)
-	private static final float MIN_MULTITOUCH_SEPARATION = 10.0f;
+	// The smallest possible distance between multitouch points (used to avoid div-by-zero errors and display glitches)
+	private static final float MIN_MULTITOUCH_SEPARATION = 150.0f;
 
 	// --
 
@@ -174,22 +173,20 @@ public class MultiTouchController<T> {
 			diam = 1.0f;
 		} else {
 			diam = currPt.getMultiTouchDiameter();
-			if (diam < MIN_MULTITOUCH_SEPARATION)
-				diam = MIN_MULTITOUCH_SEPARATION;
-		}
-		float newScale = diam * objStartScale;
+			if (diam > MIN_MULTITOUCH_SEPARATION) {
+				
+				float newScale = diam * objStartScale;
 
-		// Get the new obj coords and scale, and set them (notifying the subclass of the change)
-		objPosAndScale.set(newObjPosX, newObjPosY, newScale);
-		boolean success = objectCanvas.setPositionAndScale(draggedObject, objPosAndScale, currPt);
-		if (!success)
-			; // If we could't set those params, do nothing currently
+				// Get the new obj coords and scale, and set them (notifying the subclass of the change)
+				objPosAndScale.set(newObjPosX, newObjPosY, newScale);
+				objectCanvas.setPositionAndScale(draggedObject, objPosAndScale, currPt);
+
+			}
+		}
 	}
 
 	/** The main single-touch and multi-touch logic */
 	private void multiTouchController() {
-
-		Log.i("Multitouch", "dragMode: " + dragMode);
 		
 		switch (dragMode) {
 		case MODE_NOTHING:
@@ -333,8 +330,8 @@ public class MultiTouchController<T> {
 
 		private void set(float x, float y, int pointerCount, float x2, float y2, int action, boolean down, long eventTime) {
 					
-			Log.i("Multitouch", "x: " + x + " y: " + y + " pointerCount: " + pointerCount +
-					" x2: " + x2 + " y2: " + y2 + " action: " + action + " down: " + down);
+		//	Log.i("Multitouch", "x: " + x + " y: " + y + " pointerCount: " + pointerCount +
+		//			" x2: " + x2 + " y2: " + y2 + " action: " + action + " down: " + down);
 			
 			this.eventTime = eventTime;
 			this.action = action;
