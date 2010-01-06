@@ -20,7 +20,8 @@ $(call inherit-product, vendor/aosp/products/aosp_dream_us.mk)
 
 PRODUCT_NAME := cyanogen_dream_us
 
-PRODUCT_PACKAGES += Superuser
+PRODUCT_PACKAGES += Superuser \
+					AccountAndSyncSettings
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
