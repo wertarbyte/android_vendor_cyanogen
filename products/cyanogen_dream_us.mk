@@ -24,17 +24,23 @@ PRODUCT_PACKAGES += Superuser
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
-PRODUCT_COPY_FILES += vendor/cyanogen/etc/apns-conf.xml:system/etc/apns-conf.xml \
-                      vendor/cyanogen/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
-                      vendor/cyanogen/etc/fstab:system/etc/fstab \
-                      vendor/cyanogen/etc/sysctl.conf:system/etc/sysctl.conf \
-					  vendor/cyanogen/etc/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml \
-                      vendor/cyanogen/bin/fix_permissions:system/bin/fix_permissions \
-                      vendor/cyanogen/bin/usb-tether:system/bin/usb-tether \
-					  vendor/cyanogen/bin/shutdown:system/bin/shutdown \
-					  vendor/cyanogen/bin/compcache:system/bin/compcache \
-                      vendor/cyanogen/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
-					  vendor/cyanogen/lib/egl/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
+PRODUCT_COPY_FILES += vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
+                      vendor/cyanogen/prebuilt/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
+                      vendor/cyanogen/prebuilt/etc/fstab:system/etc/fstab \
+                      vendor/cyanogen/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
+					  vendor/cyanogen/prebuilt/etc/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml \
+					  vendor/cyanogen/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
+					  vendor/cyanogen/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+					  vendor/cyanogen/prebuilt/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
+					  vendor/cyanogen/prebuilt/etc/init.d/04apps2sd:system/etc/init.d/04apps2sd \
+					  vendor/cyanogen/prebuilt/etc/init.d/05userinit:system/etc/init.d/05userinit \
+					  vendor/cyanogen/prebuilt/etc/init.d/99complete:system/etc/init.d/99complete \
+                      vendor/cyanogen/prebuilt/bin/fix_permissions:system/bin/fix_permissions \
+                      vendor/cyanogen/prebuilt/bin/usb-tether:system/bin/usb-tether \
+					  vendor/cyanogen/prebuilt/bin/shutdown:system/bin/shutdown \
+					  vendor/cyanogen/prebuilt/bin/compcache:system/bin/compcache \
+                      vendor/cyanogen/prebuilt/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
+					  vendor/cyanogen/prebuilt/lib/egl/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
 					  vendor/cyanogen/root/init.trout.rc:$(TARGET_ROOT_OUT)/root/init.trout.rc \
 				      vendor/cyanogen/root/init.sapphire.rc:$(TARGET_ROOT_OUT)/root/init.sapphire.rc	  
 
