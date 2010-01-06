@@ -1,0 +1,68 @@
+on early-init
+    device mtd@misc 0460 radio diag
+
+# Set timeout value for rmnet stats.
+    write /sys/devices/virtual/net/rmnet0/timeout_suspend 5000000
+    write /sys/devices/virtual/net/rmnet0/timeout 18000000
+
+on boot
+# unmap left alt to avoid console switch
+    setkey 0x0 0x38 0x0
+# dream reset SEND+MENU+END
+    setkey 0x0 0xe7 0x706
+    setkey 0x0 0x8b 0x707
+
+    setkey 0x40 0xe7 0x706
+    setkey 0x40 0x8b 0x707
+
+    setkey 0x80 0xe7 0x706
+    setkey 0x80 0x8b 0x707
+
+    setkey 0xc0 0xe7 0x706
+    setkey 0xc0 0x8b 0x707
+    setkey 0xc0 0x6b 0x20c
+
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+    # bluetooth power up/down interface
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0660                /sys/class/rfkill/rfkill0/state
+
+# compass/accelerometer daemon
+service akmd /system/bin/akmd
+    user compass
+    group compass misc input
+
+service wlan_loader /system/bin/wlan_loader \
+    -f /system/etc/wifi/Fw1251r1c.bin -e /proc/calibration \
+    -i /system/etc/wifi/tiwlan.ini
+    disabled
+    oneshot
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -Dtiwlan0 -itiwlan0 -c/data/misc/wifi/wpa_supplicant.conf -q
+    user wifi
+    group wifi inet keystore
+    socket wpa_tiwlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service dhcpcd /system/bin/dhcpcd -BKL tiwlan0
+    disabled
+    oneshot
+
+service hciattach /system/bin/hciattach \
+    -n -s 115200 /dev/ttyHS0 texasalt 4000000 flow
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+
+# bugreport is triggered by the KEY_LEFTSHIFT and KEY_MENU keycodes
+service bugreport /system/bin/bugreport -d -v -o /sdcard/bugreports/bugreport
+    disabled
+    oneshot
+    keycodes 42 139
