@@ -29,8 +29,25 @@ then
         busybox rm -rf $SDDIR/data;
     fi;
 
+    # are there any specific instructions on the sd card whether apps and/or dalvik cache
+    # should be moved there? If there are no special instructions, we simply move everything
+    # there.
+    #
+    # To specify which data should be moved to the sd card, create a directory ".cm/apps2sd"
+    # on the card filesystem and touch the files "apps" and/or "cache"
+    CACHEDIR="dalvik-cache"
+    APPDIRS="app app-private"
+    if [ -d $SDDIR/.cm/apps2sd ];
+    then
+        CACHEDIR=""
+        APPDIRS=""
+        [ -e $SDDIR/.cm/apps2sd/apps  ] && APPDIRS="app app-private"
+        [ -e $SDDIR/.cm/apps2sd/cache ] && CACHEDIR="dalvik-cache"
+    fi
+
+
     # move apps and dalvik cache from internal memory to sdcard
-    for i in app app-private dalvik-cache;
+    for i in $APPDIRS $CACHEDIR
     do
         if [ ! -d $SDDIR/$i ];
         then
@@ -48,7 +65,7 @@ then
     done;
 
     # symlink app dirs - they must be on the same filesystem
-    for i in app app-private;
+    for i in $APPDIRS;
     do
         if [ -d /data/$i ] && [ ! -h /data/$i ];
         then
@@ -58,9 +75,13 @@ then
     done;
 
     # bind mount dalvik-cache so we can still boot without the sdcard
-    busybox mount -o bind $SDDIR/dalvik-cache /data/dalvik-cache;
-    busybox chown 1000:1000 /data/dalvik-cache;
-    busybox chmod 771 /data/dalvik-cache;
+    # but only if we moved the cache to the sd card!
+    if [ -n "$CACHEDIR" ];
+    then
+        busybox mount -o bind $SDDIR/dalvik-cache /data/dalvik-cache;
+        busybox chown 1000:1000 /data/dalvik-cache;
+        busybox chmod 771 /data/dalvik-cache;
+    fi
 
     # clean up old whiteouts
     for i in local misc property system tombstones data;
