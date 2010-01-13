@@ -18,6 +18,8 @@
 
 $(call inherit-product, vendor/aosp/products/aosp_dream_us.mk)
 
+USE_CAMERA_STUB := false
+
 PRODUCT_NAME := cyanogen_dream_us
 
 PRODUCT_PACKAGES += Superuser \
