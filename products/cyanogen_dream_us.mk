@@ -32,6 +32,9 @@ PRODUCT_COPY_FILES += vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns
                       vendor/cyanogen/prebuilt/etc/fstab:system/etc/fstab \
                       vendor/cyanogen/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
 					  vendor/cyanogen/prebuilt/etc/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml \
+					  vendor/cyanogen/prebuilt/etc/permissions/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+					  vendor/cyanogen/prebuilt/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+					  vendor/cyanogen/prebuilt/etc/android.system.root.xml:system/etc/permissions/android.system.root.xml \
 					  vendor/cyanogen/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
 					  vendor/cyanogen/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
 					  vendor/cyanogen/prebuilt/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
