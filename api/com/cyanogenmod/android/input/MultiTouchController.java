@@ -1,3 +1,5 @@
+package com.cyanogenmod.android.input;
+
 /**
  * MultiTouchController.java
  * 
@@ -7,7 +9,6 @@
  * 
  * Released under the Apache License v2.
  */
-package com.cyanogenmod.android.input;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
@@ -36,7 +37,7 @@ public class MultiTouchController<T> {
 	private static final float MAX_MULTITOUCH_DIM_JUMP_SIZE = 40.0f;
 
 	// The smallest possible distance between multitouch points (used to avoid div-by-zero errors and display glitches)
-	private static final float MIN_MULTITOUCH_SEPARATION = 150.0f;
+	private static final float MIN_MULTITOUCH_SEPARATION = 30.0f;
 
 	// --
 
@@ -113,24 +114,41 @@ public class MultiTouchController<T> {
 
 		// Handle history first, if any (we sometimes get history with ACTION_MOVE events)
 		int histLen = event.getHistorySize() / event.getPointerCount();
+
+		// Don't try to fetch second touchpoint if only one exists
 		int secondPointerIndex = event.findPointerIndex(1);
-		
+
 		for (int i = 0; i < histLen; i++) {
-			decodeTouchEvent(event.getHistoricalX(i), event.getHistoricalY(i), event.getPointerCount(),
-					event.getHistoricalX(secondPointerIndex, i), event.getHistoricalY(secondPointerIndex, i), MotionEvent.ACTION_MOVE, true, event.getHistoricalEventTime(i));
+			if (secondPointerIndex >= 0)
+				decodeTouchEvent(event.getHistoricalX(i), event.getHistoricalY(i), event.getPressure(i), event.getPointerCount(),
+						event.getHistoricalX(secondPointerIndex, i), event.getHistoricalY(secondPointerIndex, i), event
+								.getHistoricalPressure(secondPointerIndex, i), MotionEvent.ACTION_MOVE, true, event
+								.getHistoricalEventTime(i));
+			else
+				// Can't read from invalid pointer index
+				decodeTouchEvent(event.getHistoricalX(i), event.getHistoricalY(i), event.getPressure(i), event.getPointerCount(),
+						0, 0, 0.0f, MotionEvent.ACTION_MOVE, true, event.getHistoricalEventTime(i));
 		}
-		
+
 		// Handle actual event at end of history
-		decodeTouchEvent(event.getX(), event.getY(), event.getPointerCount(), event.getX(1), event.getY(1), event.getAction(), 
-				event.getAction() != MotionEvent.ACTION_UP && event.getAction() != MotionEvent.ACTION_CANCEL,
-				event.getEventTime());
+		if (secondPointerIndex >= 0)
+			decodeTouchEvent(event.getX(), event.getY(), event.getPressure(), event.getPointerCount(), event
+					.getX(secondPointerIndex), event.getY(secondPointerIndex), event.getPressure(secondPointerIndex), event
+					.getAction(), event.getAction() != MotionEvent.ACTION_UP && event.getAction() != MotionEvent.ACTION_CANCEL,
+					event.getEventTime());
+		else
+			// Can't read from invalid pointer index
+			decodeTouchEvent(event.getX(), event.getY(), event.getPressure(), event.getPointerCount(), 0, 0, 0.0f, event
+					.getAction(), event.getAction() != MotionEvent.ACTION_UP && event.getAction() != MotionEvent.ACTION_CANCEL,
+					event.getEventTime());
 		return true;
 	}
 
-	private void decodeTouchEvent(float x, float y, int pointerCount, float x2, float y2, int action, boolean down, long eventTime) {
+	private void decodeTouchEvent(float x, float y, float pressure, int pointerCount, float x2, float y2, float pressure2,
+			int action, boolean down, long eventTime) {
 
 		prevPt.set(currPt);
-		currPt.set(x, y, pointerCount, x2, y2, action, down, eventTime);
+		currPt.set(x, y, pressure, pointerCount, x2, y2, pressure2, action, down, eventTime);
 		multiTouchController();
 	}
 
@@ -173,21 +191,21 @@ public class MultiTouchController<T> {
 			diam = 1.0f;
 		} else {
 			diam = currPt.getMultiTouchDiameter();
-			if (diam > MIN_MULTITOUCH_SEPARATION) {
-				
-				float newScale = diam * objStartScale;
-
-				// Get the new obj coords and scale, and set them (notifying the subclass of the change)
-				objPosAndScale.set(newObjPosX, newObjPosY, newScale);
-				objectCanvas.setPositionAndScale(draggedObject, objPosAndScale, currPt);
-
-			}
+			if (diam < MIN_MULTITOUCH_SEPARATION)
+				diam = MIN_MULTITOUCH_SEPARATION;
 		}
+		float newScale = diam * objStartScale;
+
+		// Get the new obj coords and scale, and set them (notifying the subclass of the change)
+		objPosAndScale.set(newObjPosX, newObjPosY, newScale);
+		boolean success = objectCanvas.setPositionAndScale(draggedObject, objPosAndScale, currPt);
+		if (!success)
+			; // If we could't set those params, do nothing currently
 	}
 
 	/** The main single-touch and multi-touch logic */
 	private void multiTouchController() {
-		
+
 		switch (dragMode) {
 		case MODE_NOTHING:
 			// Not doing anything currently
@@ -281,7 +299,7 @@ public class MultiTouchController<T> {
 
 	/** A class that packages up all MotionEvent information with all derived multitouch information (if available) */
 	public static class PointInfo {
-		private float x, y, dx, dy, size, diameter, diameterSq, angle;
+		private float x, y, dx, dy, size, diameter, diameterSq, angle, pressure, pressure2;
 
 		private boolean down, isMultiTouch, diameterSqIsCalculated, diameterIsCalculated, angleIsCalculated;
 
@@ -319,6 +337,8 @@ public class MultiTouchController<T> {
 			this.diameter = other.diameter;
 			this.diameterSq = other.diameterSq;
 			this.angle = other.angle;
+			this.pressure = other.pressure;
+			this.pressure2 = other.pressure2;
 			this.down = other.down;
 			this.action = other.action;
 			this.isMultiTouch = other.isMultiTouch;
@@ -328,27 +348,29 @@ public class MultiTouchController<T> {
 			this.eventTime = other.eventTime;
 		}
 
-		private void set(float x, float y, int pointerCount, float x2, float y2, int action, boolean down, long eventTime) {
-					
-		//	Log.i("Multitouch", "x: " + x + " y: " + y + " pointerCount: " + pointerCount +
-		//			" x2: " + x2 + " y2: " + y2 + " action: " + action + " down: " + down);
-			
+		private void set(float x, float y, float pressure, int pointerCount, float x2, float y2, float pressure2, int action,
+				boolean down, long eventTime) {
+
+			//	Log.i("Multitouch", "x: " + x + " y: " + y + " pointerCount: " + pointerCount +
+			//			" x2: " + x2 + " y2: " + y2 + " action: " + action + " down: " + down);
+
 			this.eventTime = eventTime;
 			this.action = action;
 			this.x = x;
 			this.y = y;
+			this.pressure = pressure;
+			this.pressure2 = pressure2;
 			this.down = down;
+			this.isMultiTouch = pointerCount == 2;
 			
-			if (pointerCount == 2) {
-				
-				this.isMultiTouch = true;
+			if (isMultiTouch) {
 				float xMid = (x2 + x) * .5f;
 				float yMid = (y2 + y) * .5f;
 				dx = Math.abs(x2 - x);
 				dy = Math.abs(y2 - y);
 				this.x = xMid;
 				this.y = yMid;
-			
+
 			} else {
 				// Single-touch event
 				dx = dy = 0.0f;
@@ -422,6 +444,14 @@ public class MultiTouchController<T> {
 
 		public float getMultiTouchHeight() {
 			return dy;
+		}
+
+		public float getPressure() {
+			return pressure;
+		}
+
+		public float getPressure2() {
+			return pressure2;
 		}
 
 		public boolean isDown() {
