@@ -23,7 +23,16 @@ USE_CAMERA_STUB := false
 PRODUCT_NAME := cyanogen_dream_us
 
 PRODUCT_PACKAGES += Superuser \
-					AccountAndSyncSettings
+	AccountAndSyncSettings \
+	Bluetooth \
+	CertInstaller \
+	DeskClock \
+	Gallery \
+	Gallery3D \
+	android.software.live_wallpaper.xml \
+	LiveWallpapersPicker \
+	MagicSmokeWallpapers \
+	VisualizationWallpapers
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
@@ -51,6 +60,7 @@ PRODUCT_COPY_FILES += vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns
 				      vendor/cyanogen/root/init.sapphire.rc:$(TARGET_ROOT_OUT)/root/init.sapphire.rc	  
 
 PRODUCT_LOCALES := \
+	hdpi \
 	ar_EG \
 	ar_IL \
 	bg_BG \
