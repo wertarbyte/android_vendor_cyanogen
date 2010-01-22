@@ -27,7 +27,6 @@ PRODUCT_PACKAGES += Superuser \
 	Bluetooth \
 	CertInstaller \
 	DeskClock \
-	Gallery \
 	Gallery3D \
 	android.software.live_wallpaper.xml \
 	LiveWallpapersPicker \
@@ -60,7 +59,6 @@ PRODUCT_COPY_FILES += vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns
 				      vendor/cyanogen/root/init.sapphire.rc:$(TARGET_ROOT_OUT)/root/init.sapphire.rc	  
 
 PRODUCT_LOCALES := \
-	hdpi \
 	ar_EG \
 	ar_IL \
 	bg_BG \
