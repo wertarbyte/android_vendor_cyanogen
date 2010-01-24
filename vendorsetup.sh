@@ -22,3 +22,5 @@
 
 add_lunch_combo cyanogen_dream_us-userdebug
 add_lunch_combo cyanogen_dream_us-eng
+add_lunch_combo cyanogen_passion-userdebug
+add_lunch_combo cyanogen_passion-eng
