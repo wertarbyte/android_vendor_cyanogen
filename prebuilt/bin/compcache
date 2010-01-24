@@ -10,7 +10,7 @@ MODULES_DIR=/system/modules/lib/modules/`uname -r`
 
 case "$1" in
 	start)
-        insmod $MODULES_DIR/compcache/$MODULE.ko
+        modprobe $MODULE
         rzscontrol $DEV --init
         swapon $DEV 
 		;;
