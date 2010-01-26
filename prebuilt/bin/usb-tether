@@ -9,7 +9,7 @@ OUT=rmnet0
 OUT2=tiwlan0
 ADDR=192.168.77.254
 MASK=255.255.255.0
-TOGGLE=/sys/devices/virtual/net/usb0/enable
+TOGGLE=/sys/devices/virtual/net/${IN}/enable
 FORWARD=/proc/sys/net/ipv4/ip_forward
 
 case "$1" in
