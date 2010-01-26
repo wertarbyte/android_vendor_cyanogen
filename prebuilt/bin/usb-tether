@@ -4,17 +4,18 @@
 # shade@chemlab.org (cyanogen)
 #
 
-IN=usb0
-OUT=rmnet0
-OUT2=tiwlan0
+# the device the notebook is connected to
+TETHER=usb0
+# a list of devices through which to get internet connectivity
+OUT="rmnet0 tiwlan0"
 ADDR=192.168.77.254
 MASK=255.255.255.0
-TOGGLE=/sys/devices/virtual/net/${IN}/enable
+TOGGLE=/sys/devices/virtual/net/${TETHER}/enable
 FORWARD=/proc/sys/net/ipv4/ip_forward
 
 case "$1" in
 	start)
-		ifconfig $IN up $ADDR netmask $MASK	
+		ifconfig $TETHER up $ADDR netmask $MASK	
 		echo 1 > $TOGGLE
 		echo 1 > $FORWARD
                 
@@ -24,16 +25,18 @@ case "$1" in
                 # we let packets pass belonging to connections that are already established
 		iptables -A usbtether -m state --state RELATED,ESTABLISHED -j ACCEPT
                 # other packets originating from the inner device are also allowed to pass
-                iptables -A usbtether -i $IN -j ACCEPT
+                iptables -A usbtether -i $TETHER -j ACCEPT
 
                 # hook the usbtether rules into the FORWARDING chain
                 # send all packets that are send or received by the USB network
                 # through the filter chain
-                iptables -A FORWARD -i $IN -j usbtether
-                iptables -A FORWARD -o $IN -j usbtether
-
-		iptables -t nat -A POSTROUTING -o $OUT  -j MASQUERADE
-		iptables -t nat -A POSTROUTING -o $OUT2 -j MASQUERADE
+                iptables -A FORWARD -i $TETHER -j usbtether
+                iptables -A FORWARD -o $TETHER -j usbtether
+                
+                # enable masquerading for all outgoing devices
+                for DEV in $OUT; do
+                    iptables -t nat -A POSTROUTING -o $DEV -j MASQUERADE
+                done
 
 		start dnsmasq
         setprop tethering.enabled 1
@@ -41,17 +44,18 @@ case "$1" in
 
 	stop)
 		stop dnsmasq
-		ifconfig $IN down
+		ifconfig $TETHER down
 		echo 0 > $TOGGLE
 		echo 0 > $FORWARD
                 
                 # disable masquerading
-                iptables -t nat -D POSTROUTING -o $OUT  -j MASQUERADE
-                iptables -t nat -D POSTROUTING -o $OUT2 -j MASQUERADE
+                for DEV in $OUT; do
+                    iptables -t nat -D POSTROUTING -o $DEV -j MASQUERADE
+                done
 
                 # remove references to the usbtether chain
-                iptables -D FORWARD -i $IN -j usbtether
-                iptables -D FORWARD -o $IN -j usbtether
+                iptables -D FORWARD -i $TETHER -j usbtether
+                iptables -D FORWARD -o $TETHER -j usbtether
 
                 # destroy the usbtether chain
                 iptables -F usbtether
