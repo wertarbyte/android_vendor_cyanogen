@@ -11,13 +11,13 @@ OUT="rmnet0 tiwlan0"
 ADDR=192.168.77.254
 MASK=255.255.255.0
 TOGGLE=/sys/devices/virtual/net/${TETHER}/enable
-FORWARD=/proc/sys/net/ipv4/ip_forward
+SYSCTL_FWD=net.ipv4.ip_forward
 
 case "$1" in
 	start)
 		ifconfig $TETHER up $ADDR netmask $MASK	
 		echo 1 > $TOGGLE
-		echo 1 > $FORWARD
+                sysctl -w ${SYSCTL_FWD}=1
                 
                 # create (or at least empty) chain for forwarded packets
                 iptables -N usbtether
@@ -46,7 +46,7 @@ case "$1" in
 		stop dnsmasq
 		ifconfig $TETHER down
 		echo 0 > $TOGGLE
-		echo 0 > $FORWARD
+                sysctl -w ${SYSCTL_FWD}=0
                 
                 # disable masquerading
                 for DEV in $OUT; do
