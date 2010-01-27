@@ -20,6 +20,10 @@ $(call inherit-product, vendor/aosp/products/aosp_dream_us.mk)
 
 USE_CAMERA_STUB := false
 
+# Build the JIT, but disable it for right now because of stability issues
+WITH_JIT := true
+PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.execution-mode=int:fast
+
 PRODUCT_NAME := cyanogen_dream_us
 
 PRODUCT_PACKAGES += Superuser \
