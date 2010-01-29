@@ -24,6 +24,9 @@ USE_CAMERA_STUB := false
 WITH_JIT := true
 PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.execution-mode=int:fast
 
+# Used by BusyBox
+KERNEL_MODULES_DIR:=/system/lib/modules
+
 PRODUCT_NAME := cyanogen_passion
 
 PRODUCT_PACKAGES += Superuser 
