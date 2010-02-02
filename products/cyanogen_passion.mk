@@ -20,9 +20,8 @@ $(call inherit-product, vendor/google/passion/device_passion.mk)
 
 USE_CAMERA_STUB := false
 
-# Build the JIT, but disable it for right now because of stability issues
-WITH_JIT := true
-PRODUCT_PROPERTY_OVERRIDES += dalvik.vm.execution-mode=int:fast
+# Build WebKit with V8
+JS_ENGINE=v8
 
 # Used by BusyBox
 KERNEL_MODULES_DIR:=/system/lib/modules
