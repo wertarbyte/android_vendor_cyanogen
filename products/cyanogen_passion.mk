@@ -26,17 +26,6 @@ JS_ENGINE=v8
 # Used by BusyBox
 KERNEL_MODULES_DIR:=/system/lib/modules
 
-# Try to auto-vectorize since we are on a NEON-capable device
-TARGET_arm_CFLAGS += \
-    -mvectorize-with-neon-quad \
-    -ftree-vectorize \
-    -ffast-math
-
-TARGET_thumb_CFLAGS += \
-    -mvectorize-with-neon-quad \
-    -ftree-vectorize \
-    -ffast-math
-
 PRODUCT_NAME := cyanogen_passion
 
 PRODUCT_PACKAGES += Superuser 
