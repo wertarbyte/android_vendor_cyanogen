@@ -18,6 +18,56 @@
 $(call inherit-product, build/target/product/generic.mk)
 $(call inherit-product, vendor/motorola/sholes-open/device_sholes.mk)
 
+# These products are pasted from the vendor/google/passion config. The PRODUCT_PACKAGES
+# should be defined by the product, not by the device/product template.
+PRODUCT_PACKAGES := \
+    AccountAndSyncSettings \
+    ApplicationsProvider \
+    Bluetooth \
+    Browser \
+    BugReport \
+    Calculator \
+    Calendar \
+    CalendarProvider \
+    Camera \
+    CertInstaller \
+    Contacts \
+    ContactsProvider \
+    DeskClock \
+    DownloadProvider \
+    DrmProvider \
+    Email \
+    Gallery3D \
+    GlobalSearch \
+    GoogleSearch \
+    HTMLViewer \
+    LatinIME \
+    Launcher2 \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    MagicSmokeWallpapers \
+    MediaProvider \
+    Mms \
+    Music \
+    PackageInstaller \
+    Phone \
+    PicoTts \
+    Provision \
+    Settings \
+    SettingsProvider \
+    SoundRecorder \
+    SubscribedFeedsProvider \
+    SyncProvider \
+    TelephonyProvider \
+    TtsService \
+    UserDictionaryProvider \
+    VisualizationWallpers \
+    VoiceDialer \
+    VpnServices \
+    framework-res \
+	libRS \
+	librs_jni
+	
 USE_CAMERA_STUB := false
 
 # Build WebKit with V8
