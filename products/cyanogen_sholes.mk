@@ -81,6 +81,7 @@ PRODUCT_NAME := cyanogen_sholes
 # Which actual hardware this is based on (this is a path under vendor/)
 PRODUCT_BRAND := motorola
 PRODUCT_DEVICE := sholes-open
+PRODUCT_BUILD_FINGERPRINT_OVERRIDE := verizon/voles/sholes/sholes:2.0.1/ESD56/20996:user/release-keys
 
 # The user-visible product name
 PRODUCT_MODEL := Droid
@@ -89,7 +90,10 @@ PRODUCT_MANUFACTURER := Motorola
 PRODUCT_PACKAGES += Superuser 
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
-    
+
+# Pick up some sounds
+include frameworks/base/data/sounds/AudioPackage4.mk
+
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
     vendor/cyanogen/prebuilt/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
