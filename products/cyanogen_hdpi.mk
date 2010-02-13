@@ -19,9 +19,9 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     VisualizationWallpers \
     VoiceDialer \
-		libRS \
-		librs_jni
-        
+    libRS \
+    librs_jni
+
 PRODUCT_PACKAGES += Superuser 
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
