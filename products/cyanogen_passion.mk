@@ -16,94 +16,74 @@
 
 # This is the top-level configuration for a US-configured CyanogenMod build
 
-$(call inherit-product, vendor/google/passion/device_passion.mk)
-
-USE_CAMERA_STUB := false
-
-# Build WebKit with V8
-JS_ENGINE=v8
-
-# Used by BusyBox
-KERNEL_MODULES_DIR:=/system/lib/modules
+$(call inherit-product, vendor/cyanogen/products/cyanogen_hdpi.mk)
 
 PRODUCT_NAME := cyanogen_passion
+PRODUCT_BRAND := google
+PRODUCT_DEVICE := passion
+PRODUCT_MODEL := Nexus One
+PRODUCT_MANUFACTURER := HTC
 
-PRODUCT_PACKAGES += Superuser 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.ringtone=Ring_Synth_04.ogg \
+    ro.config.notification_sound=pixiedust.ogg \
+    ro.config.alarm_alert=Alarm_Classic.ogg \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.config.ringtone=CaribbeanIce.ogg \
+    ro.com.google.clientidbase=android-google \
+    keyguard.no_require_sim=true \
+    ro.setupwizard.mode=OPTIONAL \
+    ro.media.enc.hprof.file.format=mp4 \
+    ro.media.enc.hprof.codec.vid=m4v \
+    ro.media.enc.hprof.codec.aud=amrnb \
+    ro.media.enc.hprof.vid.width=720 \
+    ro.media.enc.hprof.vid.height=480 \
+    ro.media.enc.hprof.vid.fps=24 \
+    ro.media.enc.hprof.vid.bps=2000000 \
+    ro.media.enc.hprof.aud.bps=12200 \
+    ro.media.enc.hprof.aud.hz=8000 \
+    ro.media.enc.hprof.aud.ch=1 \
+    ro.media.enc.hprof.duration=60 \
+    ro.media.enc.lprof.file.format=3gp \
+    ro.media.enc.lprof.codec.vid=m4v \
+    ro.media.enc.lprof.codec.aud=amrnb \
+    ro.media.enc.lprof.vid.width=176 \
+    ro.media.enc.lprof.vid.height=144 \
+    ro.media.enc.lprof.vid.fps=15 \
+    ro.media.enc.lprof.vid.bps=256000 \
+    ro.media.enc.lprof.aud.bps=12200 \
+    ro.media.enc.lprof.aud.hz=8000 \
+    ro.media.enc.lprof.aud.ch=1 \
+    ro.media.enc.lprof.duration=30 \
+    ro.media.enc.file.format=3gp,mp4 \
+    ro.media.enc.vid.codec=m4v,h263 \
+    ro.media.enc.aud.codec=amrnb \
+    ro.media.enc.vid.h263.width=176,800 \
+    ro.media.enc.vid.h263.height=144,480 \
+    ro.media.enc.vid.h263.bps=64000,1000000 \
+    ro.media.enc.vid.h263.fps=1,24 \
+    ro.media.enc.vid.m4v.width=176,800 \
+    ro.media.enc.vid.m4v.height=144,480 \
+    ro.media.enc.vid.m4v.bps=64000,2000000 \
+    ro.media.enc.vid.m4v.fps=1,24 \
+    ro.media.enc.aud.amrnb.bps=5525,12200 \
+    ro.media.enc.aud.amrnb.hz=8000,8000 \
+    ro.media.enc.aud.amrnb.ch=1,1 \
+    ro.media.dec.aud.wma.enabled=0 \
+    ro.media.dec.vid.wmv.enabled=0 \
+    ro.media.cam.preview.fps=0 \
+    ro.media.dec.jpeg.memcap=20000000 \
+    ro.media.enc.jpeg.quality=90,80,70 \
+    media.a1026.nsForVoiceRec=0 \
+    media.a1026.enableA1026=1 \
+    dalvik.vm.dexopt-flags=m=y \
+    net.bt.name=Android \
+    ro.config.sync=yes \
+    dalvik.vm.stack-trace-file=/data/anr/traces.txt
 
-PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
-    
-PRODUCT_COPY_FILES += \
-    vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
-    vendor/cyanogen/prebuilt/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
-    vendor/cyanogen/prebuilt/etc/fstab:system/etc/fstab \
-    vendor/cyanogen/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
-    vendor/cyanogen/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/cyanogen/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-    vendor/cyanogen/prebuilt/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
-    vendor/cyanogen/prebuilt/etc/init.d/05userinit:system/etc/init.d/05userinit \
-    vendor/cyanogen/prebuilt/etc/init.d/99complete:system/etc/init.d/99complete \
-    vendor/cyanogen/prebuilt/bin/fix_permissions:system/bin/fix_permissions \
-    vendor/cyanogen/prebuilt/bin/usb-tether:system/bin/usb-tether \
-    vendor/cyanogen/prebuilt/bin/shutdown:system/bin/shutdown \
-    vendor/cyanogen/prebuilt/bin/compcache:system/bin/compcache 
-
-PRODUCT_LOCALES := \
-    en_US \
-    ar_EG \
-    ar_IL \
-    bg_BG \
-    ca_ES \
-    cs_CZ \
-    da_DK \
-    de_AT \
-    de_CH \
-    de_DE \
-    de_LI \
-    el_GR \
-    en_AU \
-    en_CA \
-    en_GB \
-    en_IE \
-    en_IN \
-    en_NZ \
-    en_SG \
-    en_ZA \
-    es_ES \
-    es_US \
-    fi_FI \
-    fr_BE \
-    fr_CA \
-    fr_CH \
-    fr_FR \
-    he_IL \
-    hi_IN \
-    hr_HR \
-    hu_HU \
-    id_ID \
-    it_CH \
-    it_IT \
-    iw_IL \
-    ja_JP \
-    ko_KR \
-    lt_LT \
-    lv_LV \
-    nb_NO \
-    nl_BE \
-    nl_NL \
-    pl_PL \
-    pt_BR \
-    pt_PT \
-    ro_RO \
-    ru_RU \
-    sk_SK \
-    sl_SI \
-    sr_RS \
-    sv_SE \
-    th_TH \
-    tl_PH \
-    tr_TR \
-    uk_UA \
-    vi_VN \
-    zh_CN \
-    zh_TW \
-    hdpi
+include vendor/google/passion/device_passion.mk

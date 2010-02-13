@@ -15,157 +15,80 @@
 #
 
 # This is the top-level configuration for a US-configured CyanogenMod build
-$(call inherit-product, build/target/product/generic.mk)
-$(call inherit-product, vendor/motorola/sholes-open/device_sholes.mk)
-
-# These products are pasted from the vendor/google/passion config. The PRODUCT_PACKAGES
-# should be defined by the product, not by the device/product template.
-PRODUCT_PACKAGES := \
-    AccountAndSyncSettings \
-    ApplicationsProvider \
-    Bluetooth \
-    Browser \
-    BugReport \
-    Calculator \
-    Calendar \
-    CalendarProvider \
-    Camera \
-    CertInstaller \
-    Contacts \
-    ContactsProvider \
-    DeskClock \
-    DownloadProvider \
-    DrmProvider \
-    Email \
-    Gallery3D \
-    GlobalSearch \
-    GoogleSearch \
-    HTMLViewer \
-    LatinIME \
-    Launcher2 \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    MagicSmokeWallpapers \
-    MediaProvider \
-    Mms \
-    Music \
-    PackageInstaller \
-    Phone \
-    PicoTts \
-    Provision \
-    Settings \
-    SettingsProvider \
-    SoundRecorder \
-    SubscribedFeedsProvider \
-    SyncProvider \
-    TelephonyProvider \
-    TtsService \
-    UserDictionaryProvider \
-    VisualizationWallpers \
-    VoiceDialer \
-    VpnServices \
-    framework-res \
-	libRS \
-	librs_jni
-	
-USE_CAMERA_STUB := false
-
-# Build WebKit with V8
-JS_ENGINE=v8
-
-# Used by BusyBox
-KERNEL_MODULES_DIR:=/system/lib/modules
-
+$(call inherit-product, vendor/cyanogen/products/cyanogen_hdpi.mk)
+    
 PRODUCT_NAME := cyanogen_sholes
+PRODUCT_MODEL := Droid
+PRODUCT_MANUFACTURER := Motorola
 
 # Which actual hardware this is based on (this is a path under vendor/)
 PRODUCT_BRAND := motorola
 PRODUCT_DEVICE := sholes-open
 PRODUCT_BUILD_FINGERPRINT_OVERRIDE := verizon/voles/sholes/sholes:2.0.1/ESD56/20996:user/release-keys
 
-# The user-visible product name
-PRODUCT_MODEL := Droid
-PRODUCT_MANUFACTURER := Motorola
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.ringtone=Ring_Synth_04.ogg \
+    ro.config.notification_sound=pixiedust.ogg \
+    ro.config.alarm_alert=Alarm_Classic.ogg \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.config.ringtone=CaribbeanIce.ogg \
+    ro.com.google.clientidbase=android-google \
+    keyguard.no_require_sim=true \
+    ro.setupwizard.mode=OPTIONAL \
+    ro.media.enc.hprof.file.format=mp4 \
+    ro.media.enc.hprof.codec.vid=h264 \
+    ro.media.enc.hprof.codec.aud=aac \
+    ro.media.enc.hprof.vid.width=720 \
+    ro.media.enc.hprof.vid.height=480 \
+    ro.media.enc.hprof.vid.fps=25 \
+    ro.media.enc.hprof.vid.bps=3000000 \
+    ro.media.enc.hprof.aud.bps=96000 \
+    ro.media.enc.hprof.aud.hz=16000 \
+    ro.media.enc.hprof.aud.ch=1 \
+    ro.media.enc.hprof.duration=60 \
+    ro.media.enc.lprof.file.format=mp4 \
+    ro.media.enc.lprof.codec.vid=m4v \
+    ro.media.enc.lprof.codec.aud=amrnb \
+    ro.media.enc.lprof.vid.width=320 \
+    ro.media.enc.lprof.vid.height=240 \
+    ro.media.enc.lprof.vid.fps=15 \
+    ro.media.enc.lprof.vid.bps=200000 \
+    ro.media.enc.lprof.aud.bps=12200 \
+    ro.media.enc.lprof.aud.hz=8000 \
+    ro.media.enc.lprof.aud.ch=1 \
+    ro.media.enc.lprof.duration=30 \
+    ro.media.enc.file.format=3gp,mp4 \
+		ro.media.enc.vid.codec=h264,m4v,h263 \
+    ro.media.enc.aud.codec=aac,amrnb \
+    ro.media.enc.vid.h264.width=176,720 \
+    ro.media.enc.vid.h264.height=144,480 \
+    ro.media.enc.vid.h264.bps=64000,8000000 \
+    ro.media.enc.vid.h264.fps=1,30 \
+    ro.media.enc.vid.h263.width=176,720 \
+    ro.media.enc.vid.h263.height=144,480 \
+    ro.media.enc.vid.h263.bps=64000,8000000 \
+    ro.media.enc.vid.h263.fps=1,30 \
+    ro.media.enc.vid.m4v.width=176,720 \
+    ro.media.enc.vid.m4v.height=144,480 \
+    ro.media.enc.vid.m4v.bps=64000,8000000 \
+    ro.media.enc.vid.m4v.fps=1,30 \
+    ro.media.enc.aud.amrnb.bps=5525,12200 \
+    ro.media.enc.aud.amrnb.hz=8000,8000 \
+    ro.media.enc.aud.amrnb.ch=1,1 \
+    ro.media.enc.aud.aac.bps=8192,96000 \
+    ro.media.enc.aud.aac.hz=16000,16000 \
+    ro.media.enc.aud.aac.ch=1,1 \
+    ro.media.dec.aud.wma.enabled=1 \
+    ro.media.dec.vid.wmv.enabled=1 \
+    ro.media.cam.preview.fps=0 \
+    dalvik.vm.dexopt-flags=m=y \
+    net.bt.name=Android \
+    ro.config.sync=yes \
+    dalvik.vm.stack-trace-file=/data/anr/traces.txt
 
-PRODUCT_PACKAGES += Superuser 
-
-PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
-
-# Pick up some sounds
-include frameworks/base/data/sounds/AudioPackage4.mk
-
-PRODUCT_COPY_FILES += \
-    vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
-    vendor/cyanogen/prebuilt/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
-    vendor/cyanogen/prebuilt/etc/fstab:system/etc/fstab \
-    vendor/cyanogen/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
-    vendor/cyanogen/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/cyanogen/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-    vendor/cyanogen/prebuilt/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
-    vendor/cyanogen/prebuilt/etc/init.d/05userinit:system/etc/init.d/05userinit \
-    vendor/cyanogen/prebuilt/etc/init.d/99complete:system/etc/init.d/99complete \
-    vendor/cyanogen/prebuilt/bin/fix_permissions:system/bin/fix_permissions \
-    vendor/cyanogen/prebuilt/bin/usb-tether:system/bin/usb-tether \
-    vendor/cyanogen/prebuilt/bin/shutdown:system/bin/shutdown \
-    vendor/cyanogen/prebuilt/bin/compcache:system/bin/compcache 
-
-PRODUCT_LOCALES := \
-    en_US \
-    ar_EG \
-    ar_IL \
-    bg_BG \
-    ca_ES \
-    cs_CZ \
-    da_DK \
-    de_AT \
-    de_CH \
-    de_DE \
-    de_LI \
-    el_GR \
-    en_AU \
-    en_CA \
-    en_GB \
-    en_IE \
-    en_IN \
-    en_NZ \
-    en_SG \
-    en_ZA \
-    es_ES \
-    es_US \
-    fi_FI \
-    fr_BE \
-    fr_CA \
-    fr_CH \
-    fr_FR \
-    he_IL \
-    hi_IN \
-    hr_HR \
-    hu_HU \
-    id_ID \
-    it_CH \
-    it_IT \
-    iw_IL \
-    ja_JP \
-    ko_KR \
-    lt_LT \
-    lv_LV \
-    nb_NO \
-    nl_BE \
-    nl_NL \
-    pl_PL \
-    pt_BR \
-    pt_PT \
-    ro_RO \
-    ru_RU \
-    sk_SK \
-    sl_SI \
-    sr_RS \
-    sv_SE \
-    th_TH \
-    tl_PH \
-    tr_TR \
-    uk_UA \
-    vi_VN \
-    zh_CN \
-    zh_TW \
-    hdpi
+include vendor/motorola/sholes-open/device_sholes.mk
