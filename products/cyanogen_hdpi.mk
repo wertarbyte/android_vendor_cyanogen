@@ -35,7 +35,6 @@ KERNEL_MODULES_DIR:=/system/lib/modules
 # Pick up some sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
 
-
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
     vendor/cyanogen/prebuilt/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
@@ -49,7 +48,9 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/bin/fix_permissions:system/bin/fix_permissions \
     vendor/cyanogen/prebuilt/bin/usb-tether:system/bin/usb-tether \
     vendor/cyanogen/prebuilt/bin/shutdown:system/bin/shutdown \
-    vendor/cyanogen/prebuilt/bin/compcache:system/bin/compcache 
+    vendor/cyanogen/prebuilt/bin/compcache:system/bin/compcache \
+    vendor/cyanogen/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip	
+
 
 PRODUCT_LOCALES := \
     en_US \
