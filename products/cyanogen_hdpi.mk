@@ -36,20 +36,19 @@ KERNEL_MODULES_DIR:=/system/lib/modules
 include frameworks/base/data/sounds/AudioPackage4.mk
 
 PRODUCT_COPY_FILES += \
-    vendor/cyanogen/prebuilt/etc/apns-conf.xml:system/etc/apns-conf.xml \
-    vendor/cyanogen/prebuilt/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
-    vendor/cyanogen/prebuilt/etc/fstab:system/etc/fstab \
-    vendor/cyanogen/prebuilt/etc/sysctl.conf:system/etc/sysctl.conf \
-    vendor/cyanogen/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/cyanogen/prebuilt/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-    vendor/cyanogen/prebuilt/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
-    vendor/cyanogen/prebuilt/etc/init.d/05userinit:system/etc/init.d/05userinit \
-    vendor/cyanogen/prebuilt/etc/init.d/99complete:system/etc/init.d/99complete \
-    vendor/cyanogen/prebuilt/bin/fix_permissions:system/bin/fix_permissions \
-    vendor/cyanogen/prebuilt/bin/usb-tether:system/bin/usb-tether \
-    vendor/cyanogen/prebuilt/bin/shutdown:system/bin/shutdown \
-    vendor/cyanogen/prebuilt/bin/compcache:system/bin/compcache \
-    vendor/cyanogen/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip	
+    vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml \
+    vendor/cyanogen/prebuilt/common/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
+    vendor/cyanogen/prebuilt/common/etc/fstab:system/etc/fstab \
+    vendor/cyanogen/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
+    vendor/cyanogen/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/cyanogen/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+    vendor/cyanogen/prebuilt/common/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
+    vendor/cyanogen/prebuilt/common/etc/init.d/05userinit:system/etc/init.d/05userinit \
+    vendor/cyanogen/prebuilt/common/etc/init.d/99complete:system/etc/init.d/99complete \
+    vendor/cyanogen/prebuilt/common/bin/fix_permissions:system/bin/fix_permissions \
+    vendor/cyanogen/prebuilt/common/bin/usb-tether:system/bin/usb-tether \
+    vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
+    vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache
 
 
 PRODUCT_LOCALES := \

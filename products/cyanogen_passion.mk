@@ -24,4 +24,7 @@ PRODUCT_DEVICE := passion
 PRODUCT_MODEL := Nexus One
 PRODUCT_MANUFACTURER := HTC
 
+PRODUCT_COPY_FILES +=  \
+    vendor/cyanogen/prebuilt/passion/media/bootanimation.zip:system/media/bootanimation.zip
+
 include vendor/google/passion/device_passion.mk

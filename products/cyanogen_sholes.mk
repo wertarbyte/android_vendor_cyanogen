@@ -26,4 +26,7 @@ PRODUCT_BRAND := motorola
 PRODUCT_DEVICE := sholes-open
 PRODUCT_BUILD_FINGERPRINT_OVERRIDE := verizon/voles/sholes/sholes:2.0.1/ESD56/20996:user/release-keys
 
+PRODUCT_COPY_FILES +=  \
+    vendor/cyanogen/prebuilt/sholes-open/media/bootanimation.zip:system/media/bootanimation.zip
+
 include vendor/motorola/sholes-open/device_sholes.mk
