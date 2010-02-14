@@ -17,7 +17,7 @@ PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     MagicSmokeWallpapers \
     SoundRecorder \
-    VisualizationWallpers \
+    VisualizationWallpapers \
     VoiceDialer \
     libRS \
     librs_jni
