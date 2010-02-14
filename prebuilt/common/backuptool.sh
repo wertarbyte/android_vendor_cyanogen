@@ -6,6 +6,48 @@
 C=/cache
 S=/system
 
+get_files() {
+    cat <<EOF
+app/BugReport.apk
+app/CarDock.apk
+app/com.amazon.mp3.apk
+app/EnhancedGoogleSearchProvider.apk app/GoogleSearch.apk
+app/Facebook.apk
+app/GenieWidget.apk
+app/Gmail.apk
+app/GmailProvider.apk
+app/GoogleApps.apk
+app/GoogleBackupTransport.apk
+app/GoogleCheckin.apk
+app/GoogleContactsSyncAdapter.apk
+app/GooglePartnerSetup.apk
+app/GoogleSettingsProvider.apk
+app/GoogleSubscribedFeedsProvider.apk
+app/googlevoice.apk
+app/gtalkservice.apk
+app/HtcCopyright.apk
+app/LatinImeTutorial.apk
+app/Maps.apk
+app/MarketUpdater.apk
+app/MediaUploader.apk
+app/NetworkLocation.apk
+app/PassionQuickOffice.apk
+app/SetupWizard.apk app/Provision.apk
+app/Street.apk
+app/Talk.apk
+app/TalkProvider.apk
+app/Vending.apk
+app/VoiceSearchWithKeyboard.apk app/LatinIME.apk
+app/YouTube.apk
+etc/permissions/com.google.android.datamessaging.xml
+etc/permissions/com.google.android.gtalkservice.xml
+etc/permissions/com.google.android.maps.xml
+framework/com.google.android.gtalkservice.jar
+framework/com.google.android.maps.jar
+lib/libgtalk_jni.so
+EOF
+}
+
 backup_file() {
     if [ -e "$1" ];
     then
@@ -52,82 +94,16 @@ case "$1" in
     backup)
         mount $S
         mount $C
-        backup_file $S/app/BugReport.apk
-        backup_file $S/app/CarDock.apk
-        backup_file $S/app/com.amazon.mp3.apk
-        backup_file $S/app/EnhancedGoogleSearchProvider.apk
-        backup_file $S/app/Facebook.apk
-        backup_file $S/app/GenieWidget.apk
-        backup_file $S/app/Gmail.apk
-        backup_file $S/app/GmailProvider.apk
-        backup_file $S/app/GoogleApps.apk
-        backup_file $S/app/GoogleBackupTransport.apk
-        backup_file $S/app/GoogleCheckin.apk
-        backup_file $S/app/GoogleContactsSyncAdapter.apk
-        backup_file $S/app/GooglePartnerSetup.apk
-        backup_file $S/app/GoogleSettingsProvider.apk
-        backup_file $S/app/GoogleSubscribedFeedsProvider.apk
-        backup_file $S/app/googlevoice.apk
-        backup_file $S/app/gtalkservice.apk
-        backup_file $S/app/HtcCopyright.apk
-        backup_file $S/app/LatinImeTutorial.apk
-        backup_file $S/app/Maps.apk
-        backup_file $S/app/MarketUpdater.apk
-        backup_file $S/app/MediaUploader.apk
-        backup_file $S/app/NetworkLocation.apk
-        backup_file $S/app/PassionQuickOffice.apk
-        backup_file $S/app/SetupWizard.apk
-        backup_file $S/app/Street.apk
-        backup_file $S/app/Talk.apk
-        backup_file $S/app/TalkProvider.apk
-        backup_file $S/app/Vending.apk
-        backup_file $S/app/VoiceSearchWithKeyboard.apk
-        backup_file $S/app/YouTube.apk
-        backup_file $S/etc/permissions/com.google.android.datamessaging.xml
-        backup_file $S/etc/permissions/com.google.android.gtalkservice.xml
-        backup_file $S/etc/permissions/com.google.android.maps.xml
-        backup_file $S/framework/com.google.android.gtalkservice.jar
-        backup_file $S/framework/com.google.android.maps.jar
-        backup_file $S/lib/libgtalk_jni.so
+        get_files | while read FILE REPLACEMENT; do
+            backup_file $S/$FILE
+        done
         ;;
     restore)
-        restore_file $S/app/BugReport.apk
-        restore_file $S/app/CarDock.apk
-        restore_file $S/app/com.amazon.mp3.apk
-        restore_file $S/app/EnhancedGoogleSearchProvider.apk $S/app/GoogleSearch.apk
-        restore_file $S/app/Facebook.apk
-        restore_file $S/app/GenieWidget.apk
-        restore_file $S/app/Gmail.apk
-        restore_file $S/app/GmailProvider.apk
-        restore_file $S/app/GoogleApps.apk
-        restore_file $S/app/GoogleBackupTransport.apk
-        restore_file $S/app/GoogleCheckin.apk
-        restore_file $S/app/GoogleContactsSyncAdapter.apk
-        restore_file $S/app/GooglePartnerSetup.apk
-        restore_file $S/app/GoogleSettingsProvider.apk
-        restore_file $S/app/GoogleSubscribedFeedsProvider.apk
-        restore_file $S/app/googlevoice.apk
-        restore_file $S/app/gtalkservice.apk
-        restore_file $S/app/HtcCopyright.apk
-        restore_file $S/app/LatinImeTutorial.apk
-        restore_file $S/app/Maps.apk
-        restore_file $S/app/MarketUpdater.apk
-        restore_file $S/app/MediaUploader.apk
-        restore_file $S/app/NetworkLocation.apk
-        restore_file $S/app/PassionQuickOffice.apk
-        restore_file $S/app/SetupWizard.apk $S/app/Provision.apk
-        restore_file $S/app/Street.apk
-        restore_file $S/app/Talk.apk
-        restore_file $S/app/TalkProvider.apk
-        restore_file $S/app/Vending.apk
-        restore_file $S/app/VoiceSearchWithKeyboard.apk $S/app/LatinIME.apk
-        restore_file $S/app/YouTube.apk
-        restore_file $S/etc/permissions/com.google.android.datamessaging.xml
-        restore_file $S/etc/permissions/com.google.android.gtalkservice.xml
-        restore_file $S/etc/permissions/com.google.android.maps.xml
-        restore_file $S/framework/com.google.android.gtalkservice.jar
-        restore_file $S/framework/com.google.android.maps.jar
-        restore_file $S/lib/libgtalk_jni.so
+        get_files | while read FILE REPLACEMENT; do
+            R=""
+            [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
+            restore_file $S/$FILE $R
+        done
         ;;
     *) 
         echo "Usage: $0 {backup|restore}"
