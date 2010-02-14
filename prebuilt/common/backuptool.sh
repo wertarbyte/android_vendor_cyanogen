@@ -51,7 +51,7 @@ EOF
 backup_file() {
     if [ -e "$1" ];
     then
-        if [ "$2" != "" ];
+        if [ -n "$2" ];
         then
             echo "$2  $1" | md5sum -c -
             if [ $? -ne 0 ];
@@ -61,10 +61,10 @@ backup_file() {
             fi
         fi
 
-        F=`basename $1`
+        local F=`basename $1`
 
         # dont backup any apps that have odex files, they are useless
-        if ( echo $F | grep "\.apk$" > /dev/null ) && [ -e `echo $1 | sed -e "s/\.apk$/\.odex/g"` ];
+        if ( echo $F | grep -q "\.apk$" ) && [ -e `echo $1 | sed -e 's/\.apk$/\.odex/'` ];
         then
             echo "Skipping odexed apk $1";
         else    
@@ -74,8 +74,8 @@ backup_file() {
 }
 
 restore_file() {
-    FILE=`basename $1`
-    DIR=`dirname $1`
+    local FILE=`basename $1`
+    local DIR=`dirname $1`
     if [ -e "$C/$FILE" ];
     then
         if [ ! -d "$DIR" ];
@@ -83,7 +83,7 @@ restore_file() {
             mkdir -p $DIR;
         fi
         cp -p $C/$FILE $1;
-        if [ "$2" != "" ];
+        if [ -n "$2" ];
         then
             rm $2;
         fi
