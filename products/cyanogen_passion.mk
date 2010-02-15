@@ -27,6 +27,6 @@ PRODUCT_MANUFACTURER := HTC
 PRODUCT_COPY_FILES +=  \
     vendor/cyanogen/prebuilt/passion/media/bootanimation.zip:system/media/bootanimation.zip
 
-PRODUCT_BUILD_FINGERPRINT_OVERRIDE := google/passion/passion/mahimahi:2.1-update1/ERE36B/24827:user/release-keys
+PRODUCT_BUILD_FINGERPRINT_OVERRIDE := google/passion/passion/mahimahi:2.1-update1/ERE27/24178:user/release-keys
 
 include vendor/google/passion/device_passion.mk
