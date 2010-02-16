@@ -18,13 +18,13 @@
 $(call inherit-product, vendor/cyanogen/products/cyanogen_hdpi.mk)
     
 PRODUCT_NAME := cyanogen_sholes
-PRODUCT_MODEL := Droid
-PRODUCT_MANUFACTURER := Motorola
-
-# Which actual hardware this is based on (this is a path under vendor/)
 PRODUCT_BRAND := motorola
 PRODUCT_DEVICE := sholes-open
-PRODUCT_BUILD_FINGERPRINT_OVERRIDE := verizon/voles/sholes/sholes:2.0.1/ESD56/20996:user/release-keys
+PRODUCT_MODEL := Droid
+PRODUCT_MANUFACTURER := Motorola
+PRODUCT_BUILD_PROP_BUILD_DISPLAY_ID := ESD56
+PRODUCT_BUILD_PROP_PRODUCT_NAME := voles
+PRODUCT_BUILD_PROP_BUILD_FINGERPRINT := verizon/voles/sholes/sholes:2.0.1/ESD56/20996:user/release-keys
 
 PRODUCT_COPY_FILES +=  \
     vendor/cyanogen/prebuilt/sholes-open/media/bootanimation.zip:system/media/bootanimation.zip
