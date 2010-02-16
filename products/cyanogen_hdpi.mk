@@ -1,3 +1,5 @@
+#$(call inherit-product, build/target/product/generic.mk)
+
 # Manually set the policy and PRODUCT_PACKAGES so we can tweak them 
 # depending on whether or not we build with Google. There is no way
 # to override PRODUCT_PACKAGES from an inheriting product yet.
@@ -31,7 +33,7 @@ PRODUCT_PACKAGES += \
 # end core.mk
 
 # build/target/product/generic.mk
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     AccountAndSyncSettings \
     AlarmClock \
     AlarmProvider \
