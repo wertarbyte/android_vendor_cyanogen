@@ -23,9 +23,7 @@ PRODUCT_BRAND := google
 PRODUCT_DEVICE := passion
 PRODUCT_MODEL := Nexus One
 PRODUCT_MANUFACTURER := HTC
-PRODUCT_BUILD_PROP_BUILD_DISPLAY_ID := ERE27
-PRODUCT_BUILD_PROP_PRODUCT_NAME := passion
-PRODUCT_BUILD_PROP_BUILD_FINGERPRINT := google/passion/passion/mahimahi:2.1-update1/ERE27/24178:user/release-keys
+PRODUCT_BUILD_PROP_OVERRIDES := BUILD_ID=ERE27 PRODUCT_NAME=passion BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.1-update1/ERE27/24178:user/release-keys
 
 PRODUCT_COPY_FILES +=  \
     vendor/cyanogen/prebuilt/passion/media/bootanimation.zip:system/media/bootanimation.zip
