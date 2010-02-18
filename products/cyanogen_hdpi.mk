@@ -104,6 +104,11 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
     vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache
 
+ifdef CYANOGEN_WITH_HTC_KEYBOARD
+    PRODUCT_COPY_FILES += \
+        vendor/cyanogen/proprietary/HTC_IME.apk:system/app/HTC_IME.apk \
+	vendor/cyanogen/proprietary/libt9.so:system/lib/libt9.so
+endif
 
 ifdef CYANOGEN_WITH_GOOGLE
     PRODUCT_COPY_FILES += \
