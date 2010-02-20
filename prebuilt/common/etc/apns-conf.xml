@@ -181,6 +181,7 @@
   <apn carrier="Velcom MMS" apn="mms.velcom.by" mcc="257" mnc="01" user="mms" password="mms" server="mms.velcom.by" mmsc="http://mms.velcom.by/servlets/mms" mmsproxy="10.200.15.15" mmsport="8080" type="mms"/>
   <apn carrier="Ventelo Internet" mcc="242" mnc="01" apn="internet.ventelo.no" user="" server="" password="" mmsproxy="" mmsport="" mmsc="" type="default,supl" proxy="" port=""/>
   <apn carrier="Ventelo MMS" mcc="242" mnc="01" apn="mms.ventelo.no" user="ventelo" server="" password="1111" mmsproxy="10.10.10.11" mmsport="8080" mmsc="http://mmsc/" type="mms" proxy="" port=""/>
+  <apn carrier="Verizon" mcc="310" mnc="004" apn="internet" user="*" server="*" password="*" mmsc="http://mms.vtext.com/servlets/mms" />
   <apn carrier="Virgin Internet" apn="virgininternet" user="*" password="*" server="*" mmsc="" mcc="505" mnc="02" type="default,supl"/>
   <apn carrier="Virgin MMS" apn="virginmms" proxy="202.139.083.152" port="8070" user="*" password="*" server="*" mmsc="http://mms.virginvibe.com.au:8002/" mmsproxy="202.139.083.152" mmsport="8070" mcc="505" mnc="02" type="mms"/>
   <apn carrier="Vivatel" apn="internet.vivatel.bg" user="vivatel" pass="vivatel" mmsc="http://mmsc.vivatel.bg" mmsproxy="192.168.123.123" mmsport="8080" mcc="284" mnc="03"/>

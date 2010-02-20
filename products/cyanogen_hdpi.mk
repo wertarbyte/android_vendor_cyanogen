@@ -1,4 +1,58 @@
-$(call inherit-product, build/target/product/generic.mk)
+#$(call inherit-product, build/target/product/generic.mk)
+
+# Manually set the policy and PRODUCT_PACKAGES so we can tweak them 
+# depending on whether or not we build with Google. There is no way
+# to override PRODUCT_PACKAGES from an inheriting product yet.
+
+# build/target/product.core.mk
+PRODUCT_POLICY := android.policy_phone
+PRODUCT_PROPERTY_OVERRIDES := \
+    ro.config.notification_sound=OnTheHunt.ogg \
+    ro.config.alarm_alert=Alarm_Classic.ogg
+
+PRODUCT_PACKAGES += \
+    framework-res \
+    Browser \
+    Contacts \
+    Launcher \
+    HTMLViewer \
+    Phone \
+    ApplicationsProvider \
+    ContactsProvider \
+    DownloadProvider \
+    MediaProvider \
+    PicoTts \
+    SettingsProvider \
+    TelephonyProvider \
+    TtsService \
+    VpnServices \
+    UserDictionaryProvider \
+    PackageInstaller \
+    Bugreport
+
+# end core.mk
+
+# build/target/product/generic.mk
+PRODUCT_PACKAGES += \
+    AccountAndSyncSettings \
+    AlarmClock \
+    AlarmProvider \
+    Bluetooth \
+    Calculator \
+    Calendar \
+    Camera \
+    CertInstaller \
+    DrmProvider \
+    Email \
+    Gallery \
+    Mms \
+    Music \
+    Settings \
+    Sync \
+    Updater \
+    CalendarProvider \
+    SyncProvider
+# end generic.mk
 
 PRODUCT_NAME := cyanogen_hdpi
 PRODUCT_BRAND := cyanogen
@@ -49,6 +103,60 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/usb-tether:system/bin/usb-tether \
     vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
     vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache
+
+ifdef CYANOGEN_WITH_HTC_KEYBOARD
+    PRODUCT_COPY_FILES += \
+        vendor/cyanogen/proprietary/HTC_IME.apk:system/app/HTC_IME.apk \
+	vendor/cyanogen/proprietary/libt9.so:system/lib/libt9.so
+endif
+
+ifdef CYANOGEN_WITH_GOOGLE
+    PRODUCT_COPY_FILES += \
+        vendor/cyanogen/proprietary/BugReport.apk:system/app/BugReport.apk \
+        vendor/cyanogen/proprietary/CarDock.apk:system/app/CarDock.apk \
+        vendor/cyanogen/proprietary/com.amazon.mp3.apk:system/app/com.amazon.mp3.apk \
+        vendor/cyanogen/proprietary/EnhancedGoogleSearchProvider.apk:system/app/EnhancedGoogleSearchProvider.apk \
+        vendor/cyanogen/proprietary/Facebook.apk:system/app/Facebook.apk \
+        vendor/cyanogen/proprietary/GenieWidget.apk:system/app/GenieWidget.apk \
+        vendor/cyanogen/proprietary/Gmail.apk:system/app/Gmail.apk \
+        vendor/cyanogen/proprietary/GmailProvider.apk:system/app/GmailProvider.apk \
+        vendor/cyanogen/proprietary/GoogleApps.apk:system/app/GoogleApps.apk \
+        vendor/cyanogen/proprietary/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
+        vendor/cyanogen/proprietary/GoogleCheckin.apk:system/app/GoogleCheckin.apk \
+        vendor/cyanogen/proprietary/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
+        vendor/cyanogen/proprietary/GoogleGoggles.apk:system/app/GoogleGoggles.apk \
+        vendor/cyanogen/proprietary/GooglePartnerSetup.apk:system/app/GooglePartnerSetup.apk \
+        vendor/cyanogen/proprietary/GoogleSettingsProvider.apk:system/app/GoogleSettingsProvider.apk \
+        vendor/cyanogen/proprietary/GoogleSubscribedFeedsProvider.apk:system/app/GoogleSubscribedFeedsProvider.apk \
+        vendor/cyanogen/proprietary/googlevoice.apk:system/app/googlevoice.apk \
+        vendor/cyanogen/proprietary/gtalkservice.apk:system/app/gtalkservice.apk \
+        vendor/cyanogen/proprietary/HtcCopyright.apk:system/app/HtcCopyright.apk \
+        vendor/cyanogen/proprietary/LatinImeTutorial.apk:system/app/LatinImeTutorial.apk \
+        vendor/cyanogen/proprietary/Maps.apk:system/app/Maps.apk \
+        vendor/cyanogen/proprietary/MarketUpdater.apk:system/app/MarketUpdater.apk \
+        vendor/cyanogen/proprietary/MediaUploader.apk:system/app/MediaUploader.apk \
+        vendor/cyanogen/proprietary/NetworkLocation.apk:system/app/NetworkLocation.apk \
+        vendor/cyanogen/proprietary/PassionQuickOffice.apk:system/app/PassionQuickOffice.apk \
+        vendor/cyanogen/proprietary/SetupWizard.apk:system/app/SetupWizard.apk \
+        vendor/cyanogen/proprietary/Street.apk:system/app/Street.apk \
+        vendor/cyanogen/proprietary/Talk.apk:system/app/Talk.apk \
+        vendor/cyanogen/proprietary/TalkProvider.apk:system/app/TalkProvider.apk \
+        vendor/cyanogen/proprietary/Vending.apk:system/app/Vending.apk \
+        vendor/cyanogen/proprietary/VoiceSearchWithKeyboard.apk:system/app/VoiceSearchWithKeyboard.apk \
+        vendor/cyanogen/proprietary/YouTube.apk:system/app/YouTube.apk \
+        vendor/cyanogen/proprietary/com.google.android.datamessaging.xml:system/etc/permissions/com.google.android.datamessaging.xml \
+        vendor/cyanogen/proprietary/com.google.android.gtalkservice.xml:system/etc/permissions/com.google.android.gtalkservice.xml \
+        vendor/cyanogen/proprietary/com.google.android.maps.xml:system/etc/permissions/com.google.android.maps.xml \
+        vendor/cyanogen/proprietary/com.google.android.gtalkservice.jar:system/framework/com.google.android.gtalkservice.jar \
+        vendor/cyanogen/proprietary/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
+        vendor/cyanogen/proprietary/libgtalk_jni.so:system/lib/libgtalk_jni.so \
+        vendor/cyanogen/proprietary/libinterstitial.so:system/lib/libinterstitial.so
+else    
+    PRODUCT_PACKAGES += \
+        Provision \
+        GoogleSearch \
+        LatinIME
+endif
 
 
 ifdef CYANOGEN_WITH_GOOGLE
