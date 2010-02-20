@@ -64,6 +64,7 @@ case "$1" in
         backup_file $S/app/GoogleBackupTransport.apk
         backup_file $S/app/GoogleCheckin.apk
         backup_file $S/app/GoogleContactsSyncAdapter.apk
+        backup_file $S/app/GoogleGoggles.apk
         backup_file $S/app/GooglePartnerSetup.apk
         backup_file $S/app/GoogleSettingsProvider.apk
         backup_file $S/app/GoogleSubscribedFeedsProvider.apk
@@ -89,6 +90,7 @@ case "$1" in
         backup_file $S/framework/com.google.android.gtalkservice.jar
         backup_file $S/framework/com.google.android.maps.jar
         backup_file $S/lib/libgtalk_jni.so
+        backup_file $S/lib/libinterstitial.so
         ;;
     restore)
         restore_file $S/app/BugReport.apk
@@ -103,6 +105,7 @@ case "$1" in
         restore_file $S/app/GoogleBackupTransport.apk
         restore_file $S/app/GoogleCheckin.apk
         restore_file $S/app/GoogleContactsSyncAdapter.apk
+        restore_file $S/app/GoogleGoggles.apk
         restore_file $S/app/GooglePartnerSetup.apk
         restore_file $S/app/GoogleSettingsProvider.apk
         restore_file $S/app/GoogleSubscribedFeedsProvider.apk
@@ -128,6 +131,7 @@ case "$1" in
         restore_file $S/framework/com.google.android.gtalkservice.jar
         restore_file $S/framework/com.google.android.maps.jar
         restore_file $S/lib/libgtalk_jni.so
+        restore_file $S/lib/libinterstitial.so
         ;;
     *) 
         echo "Usage: $0 {backup|restore}"
