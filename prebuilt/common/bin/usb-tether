@@ -10,7 +10,8 @@ TETHER=usb0
 OUT="rmnet0 eth0 tiwlan0"
 ADDR=192.168.77.254
 MASK=255.255.255.0
-TOGGLE=/sys/devices/virtual/net/${TETHER}/enable
+TOGGLE=/sys/devices/virtual/usb_composite/rndis/enable
+#TOGGLE=/sys/devices/virtual/net/${TETHER}/enable
 SYSCTL_FWD=net.ipv4.ip_forward
 
 case "$1" in
