@@ -1,0 +1,30 @@
+#!/system/bin/sh
+#
+# mount ext[234] partition from sd card
+
+# find first linux partition on SD card
+MMC=/dev/block/mmcblk0
+FDISK="busybox fdisk"
+PARTITION=`$FDISK -l $MMC | awk '/^\// && $5 == 83 {print $1;exit;}'`
+
+if [ -b "$PARTITION" ];
+then
+    echo "--- Checking filesystems";
+
+    # fsck the sdcard filesystem first
+    e2fsck -y $PARTITION;
+
+    # set property with exit code in case an error occurs
+    setprop cm.e2fsck.errors $?;
+
+    # mount and set perms
+    busybox mount -o noatime,nodiratime -t auto $PARTITION /system/sd;
+    if [ "$?" = 0 ];
+    then
+        busybox chown 1000:1000 /system/sd;
+        busybox chmod 771 /system/sd;
+        echo "+++ /system/sd successfully mounted";
+    else
+        echo "*** Unable to mount filesystem for /system/sd!";
+    fi
+fi

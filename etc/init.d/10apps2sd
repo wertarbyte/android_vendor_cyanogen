@@ -1,0 +1,95 @@
+#!/system/bin/sh
+#
+# Enable Apps2SD
+
+# check whether an SD card partition is mounted at /system/sd
+if ! awk '$2 == "/system/sd" { exit 1; }' /proc/mounts ;
+then
+    # clean up any old symlinks, create data directories
+    for i in dalvik-cache data;
+    do
+        if [ -h /data/$i ];
+        then
+            rm /data/$i;
+        fi;
+        if [ ! -d /data/$i ];
+        then
+            mkdir /data/$i;
+            busybox chown 1000:1000 /data/$i;
+            busybox chmod 771 /data/$i;
+        fi;
+    done;
+
+    # don't allow /data/data on sd because of upgrade issues - move it if possible
+    if [ -d /system/sd/data ];
+    then
+        busybox cp -a /system/sd/data/* /data/data/;
+        busybox rm -rf /system/sd/data;
+    fi;
+
+    # move apps and dalvik cache from internal memory to sdcard
+    for i in app app-private dalvik-cache;
+    do
+        if [ ! -d /system/sd/$i ];
+        then
+            mkdir /system/sd/$i;
+        fi
+
+        busybox chown 1000:1000 /system/sd/$i;
+        busybox chmod 771 /system/sd/$i
+
+        if [ -d /data/$i ] && [ ! -h /data/$i ];
+        then
+            busybox cp -a /data/$i/* /system/sd/$i/;
+            busybox rm -f /data/$i/*;
+        fi;
+    done;
+
+    # symlink app dirs - they must be on the same filesystem
+    for i in app app-private;
+    do
+        if [ -d /data/$i ] && [ ! -h /data/$i ];
+        then
+            busybox rm -rf /data/$i;
+            busybox ln -s /system/sd/$i /data/$i;
+        fi;
+    done;
+
+    # bind mount dalvik-cache so we can still boot without the sdcard
+    busybox mount -o bind /system/sd/dalvik-cache /data/dalvik-cache;
+    busybox chown 1000:1000 /data/dalvik-cache;
+    busybox chmod 771 /data/dalvik-cache;
+
+    # clean up old whiteouts
+    for i in local misc property system tombstones data;
+    do
+        if [ -h /system/sd/$i ]; then rm -f /system/sd/$i; fi
+    done;
+
+    # please don't put odex files in the app directory people!
+    # it causes dexopt to crash when switching builds!
+    busybox rm -f /system/sd/app/*.odex
+
+    setprop cm.a2sd.active 1;
+
+    echo "+++ Apps-to-SD successfully enabled";
+else
+    echo "*** No filesystem mount for apps2sd detected!";
+fi
+
+A2SD_ACTIVE=`getprop cm.a2sd.active`
+
+if [ "$A2SD_ACTIVE" != 1 ];
+then
+    # replace symlinks with directories so we can boot without sd
+    for i in app app-private;
+    do
+       if [ -h /data/$i ];
+       then
+            rm -f /data/$i;
+            mkdir /data/$i;
+            busybox chown 1000:1000 /data/$i;
+            busybox chmod 771 /data/$i;
+        fi;
+    done;
+fi;
