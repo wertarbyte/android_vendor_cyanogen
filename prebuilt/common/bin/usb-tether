@@ -24,7 +24,7 @@ case "$1" in
                 iptables -N usbtether
                 iptables -F usbtether
                 # we let packets pass belonging to connections that are already established
-		iptables -A usbtether -m state --state RELATED,ESTABLISHED -j ACCEPT
+                iptables -A usbtether -m state --state RELATED,ESTABLISHED -j ACCEPT
                 # other packets originating from the inner device are also allowed to pass
                 iptables -A usbtether -i $TETHER -j ACCEPT
 
