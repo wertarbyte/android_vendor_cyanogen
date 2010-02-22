@@ -7,14 +7,14 @@ sleep 1;
 
 for i in `cat /proc/mounts | cut -f 2 -d " "`;
 do
-	busybox mount -o remount,ro $i 2>&1 > /dev/null;
+   busybox mount -o remount,ro $i 2>&1 > /dev/null;
 done
 
 sync;
 
-if [ "$1" = "-r" ]; 
+if [ "$1" = "-r" ];
 then
-	toolbox reboot -f;
+   toolbox reboot -f;
 else
-	toolbox reboot -fp;
+   toolbox reboot -fp;
 fi

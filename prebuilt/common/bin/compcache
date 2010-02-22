@@ -9,22 +9,22 @@ MODULE=ramzswap
 MODULES_DIR=/system/modules/lib/modules/`uname -r`
 
 case "$1" in
-	start)
-        modprobe $MODULE
-        rzscontrol $DEV --init
-        swapon $DEV 
-		;;
-
-	stop)
-        swapoff $DEV >/dev/null 2>&1
-        rmmod $MODULE >/dev/null 2>&1
-		;;
-    stats)
-        rzscontrol $DEV --stats
-        ;;
-	*)
-		echo "Usage: $0 {start|stop|stats}"
-		exit 1
+   start)
+      modprobe $MODULE
+      rzscontrol $DEV --init
+      swapon $DEV
+   ;;
+   
+   stop)
+      swapoff $DEV >/dev/null 2>&1
+      rmmod $MODULE >/dev/null 2>&1
+   ;;
+   stats)
+      rzscontrol $DEV --stats
+   ;;
+   *)
+      echo "Usage: $0 {start|stop|stats}"
+      exit 1
 esac
 
 exit 0
