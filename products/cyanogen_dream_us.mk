@@ -23,15 +23,19 @@ USE_CAMERA_STUB := false
 PRODUCT_NAME := cyanogen_dream_us
 
 PRODUCT_PACKAGES += Superuser \
-	AccountAndSyncSettings \
-	Bluetooth \
-	CertInstaller \
-	DeskClock \
-	Gallery3D \
-	android.software.live_wallpaper.xml \
-	LiveWallpapersPicker \
-	MagicSmokeWallpapers \
-	VisualizationWallpapers
+    DeskClock \
+    DownloadProvider \
+    Gallery3D \
+    GlobalSearch \
+    Launcher \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    MagicSmokeWallpapers \
+    SoundRecorder \
+    VisualizationWallpapers \
+    VoiceDialer \
+    libRS \
+    librs_jni
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
