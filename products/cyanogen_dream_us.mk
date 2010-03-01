@@ -56,8 +56,8 @@ PRODUCT_COPY_FILES += vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/e
                       vendor/cyanogen/prebuilt/common/bin/usb-tether:system/bin/usb-tether \
 					  vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
 					  vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache \
-                      vendor/cyanogen/prebuilt/common/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
-					  vendor/cyanogen/prebuilt/common/lib/egl/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
+                      vendor/cyanogen/prebuilt/dream/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
+					  vendor/cyanogen/prebuilt/dream/lib/egl/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \
 					  vendor/cyanogen/root/init.trout.rc:$(TARGET_ROOT_OUT)/root/init.trout.rc \
 				      vendor/cyanogen/root/init.sapphire.rc:$(TARGET_ROOT_OUT)/root/init.sapphire.rc	  
 
