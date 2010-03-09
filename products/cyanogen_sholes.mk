@@ -29,4 +29,7 @@ PRODUCT_COPY_FILES +=  \
     
 PRODUCT_COPY_FILES += out/target/product/sholes-open/obj/APPS/Launcher_intermediates/package.apk:/system/app/Launcher.apk
 
+PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CyanogenMod-5.0.4-Droid
+        
 include vendor/motorola/sholes-open/device_sholes.mk
