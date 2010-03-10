@@ -76,7 +76,8 @@ PRODUCT_PACKAGES += \
     libRS \
     librs_jni
 
-PRODUCT_PACKAGES += Superuser 
+PRODUCT_PACKAGES += Superuser \
+    Stk 
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
