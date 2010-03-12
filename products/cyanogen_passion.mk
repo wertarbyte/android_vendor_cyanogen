@@ -28,7 +28,10 @@ PRODUCT_BUILD_PROP_OVERRIDES := BUILD_ID=ERE27 PRODUCT_NAME=passion BUILD_FINGER
 PRODUCT_COPY_FILES +=  \
     vendor/cyanogen/prebuilt/passion/media/bootanimation.zip:system/media/bootanimation.zip
 
+PRODUCT_PACKAGES += \
+    Stk
+
 PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-5.0.4-N1-test2
+    ro.modversion=CyanogenMod-5.0.4-N1-test2
 
 include vendor/google/passion/device_passion.mk
