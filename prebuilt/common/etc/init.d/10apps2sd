@@ -1,118 +1,19 @@
 #!/system/bin/sh
-#
-# Enable Apps2SD
+# Make sure the Apps2SD structure exists.
 
-SDDIR="/system/sd"
-
-# check whether an SD card partition is mounted at $SDDIR (/system/sd)
-if ! awk -vDIR="$SDDIR" '$2 == DIR { exit 1; }' /proc/mounts ;
+SDEXT="/sd-ext"
+if ! awk -vDIR="$SDEXT" '$2 == DIR { exit 1; }' /proc/mounts ;
 then
-   # clean up any old symlinks, create data directories
-   for i in dalvik-cache data;
-   do
-      if [ -h /data/$i ];
-      then
-         rm /data/$i;
-      fi;
-      if [ ! -d /data/$i ];
-      then
-         mkdir /data/$i;
-         busybox chown 1000:1000 /data/$i;
-         busybox chmod 771 /data/$i;
-      fi;
-   done;
-   
-   # don't allow /data/data on sd because of upgrade issues - move it if possible
-   if [ -d $SDDIR/data ];
-   then
-      busybox cp -a $SDDIR/data/* /data/data/;
-      busybox rm -rf $SDDIR/data;
-   fi;
-   
-   # are there any specific instructions on the sd card whether apps and/or dalvik cache
-   # should be moved there? If there are no special instructions, we simply move everything
-   # there.
-   #
-   # To specify which data should be moved to the sd card, create a directory ".cm/apps2sd"
-   # on the card filesystem and touch the files "apps" and/or "cache"
-   CACHEDIR="dalvik-cache"
-   APPDIRS="app app-private"
-   if [ -d $SDDIR/.cm/apps2sd ];
-   then
-      CACHEDIR=""
-      APPDIRS=""
-      [ -e $SDDIR/.cm/apps2sd/apps  ] && APPDIRS="app app-private"
-      [ -e $SDDIR/.cm/apps2sd/cache ] && CACHEDIR="dalvik-cache"
-   fi
-   
-   
-   # move apps and dalvik cache from internal memory to sdcard
-   for i in $APPDIRS $CACHEDIR
-   do
-      if [ ! -d $SDDIR/$i ];
-      then
-         mkdir $SDDIR/$i;
-      fi
-      
-      busybox chown 1000:1000 $SDDIR/$i;
-      busybox chmod 771 $SDDIR/$i
-      
-      if [ -d /data/$i ] && [ ! -h /data/$i ];
-      then
-         busybox cp -a /data/$i/* $SDDIR/$i/;
-         busybox rm -f /data/$i/*;
-      fi;
-   done;
-   
-   # symlink app dirs - they must be on the same filesystem
-   for i in $APPDIRS;
-   do
-      if [ -d /data/$i ] && [ ! -h /data/$i ];
-      then
-         busybox rm -rf /data/$i;
-         busybox ln -s $SDDIR/$i /data/$i;
-      fi;
-   done;
-   
-   # bind mount dalvik-cache so we can still boot without the sdcard
-   # but only if we moved the cache to the sd card!
-   if [ -n "$CACHEDIR" ];
-   then
-      busybox mount -o bind $SDDIR/dalvik-cache /data/dalvik-cache;
-      busybox chown 1000:1000 /data/dalvik-cache;
-      busybox chmod 771 /data/dalvik-cache;
-   fi
-   
-   # clean up old whiteouts
-   for i in local misc property system tombstones data;
-   do
-      if [ -h $SDDIR/$i ]; then rm -f $SDDIR/$i; fi
-   done;
-   
-   # please don't put odex files in the app directory people!
-   # it causes dexopt to crash when switching builds!
-   busybox rm -f $SDDIR/app/*.odex
-   
-   setprop cm.a2sd.active 1;
-   
-   echo "+++ Apps-to-SD successfully enabled";
-else
-   echo "*** No filesystem mount for apps2sd detected!";
-fi
-
-A2SD_ACTIVE=`getprop cm.a2sd.active`
-
-if [ "$A2SD_ACTIVE" != 1 ];
-then
-   # replace symlinks with directories so we can boot without sd
-   for i in app app-private;
-   do
-      if [ -h /data/$i ];
-      then
-         rm -f /data/$i;
-         mkdir /data/$i;
-         busybox chown 1000:1000 /data/$i;
-         busybox chmod 771 /data/$i;
-      fi;
-   done;
+    # create directories if necessary.
+    for i in app app-private dalvik-cache;
+    do
+        if [ ! -d $SDEXT/$i ];
+        then
+            mkdir $SDEXT/$i;
+            busybox chown 1000:1000 $SDEXT/$i;
+            busybox chmod 771 $SDEXT/$i;
+            echo "+++ $SDEXT/$i created."
+        fi;
+    done
+    setprop cm.a2sd.active 1
 fi;

@@ -3,28 +3,42 @@
 # mount ext[234] partition from sd card
 
 # find first linux partition on SD card
+sleep 2;
 MMC=/dev/block/mmcblk0
-FDISK="busybox fdisk"
-PARTITION=`$FDISK -l $MMC | awk '/^\// && $5 == 83 {print $1;exit;}'`
-
-if [ -b "$PARTITION" ];
+if [ -b "$MMC" ];
 then
-   echo "--- Checking filesystems";
+    FDISK="busybox fdisk"
+    PARTITION=`$FDISK -l $MMC | awk '/^\// && $5 == 83 {print $1;exit;}'`
+
+    if [ -b "$PARTITION" ];
+    then
+        echo "--- Checking filesystems";
    
-   # fsck the sdcard filesystem first
-   e2fsck -y $PARTITION;
+        # fsck the sdcard filesystem first
+        e2fsck -y $PARTITION;
    
-   # set property with exit code in case an error occurs
-   setprop cm.e2fsck.errors $?;
+        # set property with exit code in case an error occurs
+        setprop cm.e2fsck.errors $?;
+        if [ "$?" = 0 ];
+        then
+            modprobe mbcache;
+            modprobe jbd2;
+            modprobe ext4;
    
-   # mount and set perms
-   busybox mount -o noatime,nodiratime -t auto $PARTITION /system/sd;
-   if [ "$?" = 0 ];
-   then
-      busybox chown 1000:1000 /system/sd;
-      busybox chmod 771 /system/sd;
-      echo "+++ /system/sd successfully mounted";
-   else
-      echo "*** Unable to mount filesystem for /system/sd!";
-   fi
+            # mount and set perms
+            busybox mount -o noatime,nodiratime -t auto $PARTITION /sd-ext;
+            if [ "$?" = 0 ];
+            then
+                busybox chown 1000:1000 /sd-ext;
+                busybox chmod 771 /sd-ext;
+                echo "+++ /sd-ext successfully mounted";
+            else
+                echo "*** Unable to mount filesystem for /sd-ext!";
+            fi
+        else
+            echo "*** Unable to repair filesystem, disabling apps2sd";
+        fi
+    fi
+else
+    echo "*** No ext filesystem found, disabling apps2sd";
 fi
