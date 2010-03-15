@@ -32,6 +32,6 @@ PRODUCT_PACKAGES += \
     Stk
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=CyanogenMod-5.0.4-N1-test2
+    ro.modversion=CyanogenMod-5.0.5-N1-test1
 
 include vendor/google/passion/device_passion.mk
