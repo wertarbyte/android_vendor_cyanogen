@@ -1,18 +1,22 @@
 #!/system/bin/sh
 # Make sure the Apps2SD structure exists.
 
-SDEXT="/sd-ext"
-if ! awk -vDIR="$SDEXT" '$2 == DIR { exit 1; }' /proc/mounts ;
+if [ "$SD_EXT_DIRECTORY" == ""];
+then
+    SD_EXT_DIRECTORY = "/sd-ext";
+fi;
+
+if ! awk -vDIR="$SD_EXT_DIRECTORY" '$2 == DIR { exit 1; }' /proc/mounts ;
 then
     # create directories if necessary.
     for i in app app-private dalvik-cache;
     do
-        if [ ! -d $SDEXT/$i ];
+        if [ ! -d $SD_EXT_DIRECTORY/$i ];
         then
-            mkdir $SDEXT/$i;
-            busybox chown 1000:1000 $SDEXT/$i;
-            busybox chmod 771 $SDEXT/$i;
-            echo "+++ $SDEXT/$i created."
+            mkdir $SD_EXT_DIRECTORY/$i;
+            busybox chown 1000:1000 $SD_EXT_DIRECTORY/$i;
+            busybox chmod 771 $SD_EXT_DIRECTORY/$i;
+            echo "+++ $SD_EXT_DIRECTORY/$i created."
         fi;
     done
     setprop cm.a2sd.active 1

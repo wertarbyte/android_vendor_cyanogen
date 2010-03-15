@@ -1,15 +1,21 @@
 #!/system/bin/sh
 # call a userinit.sh script if it's present on the sdcard
-if [ -e /sd-ext/userinit.sh ];
+
+if [ "$SD_EXT_DIRECTORY" == ""];
+then
+    SD_EXT_DIRECTORY = "/sd-ext";
+fi;
+
+if [ -e $SD_EXT_DIRECTORY/userinit.sh ];
 then
    echo "--- Executing userinit.sh";
-   busybox chmod +x /sd-ext/userinit.sh;
-   /system/bin/sh /sd-ext/userinit.sh;
+   busybox chmod +x $SD_EXT_DIRECTORY/userinit.sh;
+   /system/bin/sh $SD_EXT_DIRECTORY/userinit.sh;
    setprop cm.userinit.active 1;
 fi;
 
-if [ -d /sd-ext/userinit.d ];
+if [ -d $SD_EXT_DIRECTORY/userinit.d ];
 then
-   busybox run-parts /sd-ext/userinit.d;
+   busybox run-parts $SD_EXT_DIRECTORY/userinit.d;
    setprop cm.userinit.active 1;
 fi;

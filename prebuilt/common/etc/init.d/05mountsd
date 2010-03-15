@@ -2,6 +2,11 @@
 #
 # mount ext[234] partition from sd card
 
+if [ "$SD_EXT_DIRECTORY" == ""];
+then
+    SD_EXT_DIRECTORY = "/sd-ext";
+fi;
+
 # find first linux partition on SD card
 sleep 2;
 MMC=/dev/block/mmcblk0
@@ -23,14 +28,14 @@ then
         then
    
             # mount and set perms
-            busybox mount -o noatime,nodiratime -t auto $PARTITION /sd-ext;
+            busybox mount -o noatime,nodiratime -t auto $PARTITION $SD_EXT_DIRECTORY;
             if [ "$?" = 0 ];
             then
-                busybox chown 1000:1000 /sd-ext;
-                busybox chmod 771 /sd-ext;
-                echo "+++ /sd-ext successfully mounted";
+                busybox chown 1000:1000 $SD_EXT_DIRECTORY;
+                busybox chmod 771 $SD_EXT_DIRECTORY;
+                echo "+++ $SD_EXT_DIRECTORY successfully mounted";
             else
-                echo "*** Unable to mount filesystem for /sd-ext!";
+                echo "*** Unable to mount filesystem for $SD_EXT_DIRECTORY!";
             fi
         else
             echo "*** Unable to repair filesystem, disabling apps2sd";
