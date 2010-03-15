@@ -21,9 +21,6 @@ then
         setprop cm.e2fsck.errors $?;
         if [ "$?" = 0 ];
         then
-            modprobe mbcache;
-            modprobe jbd2;
-            modprobe ext4;
    
             # mount and set perms
             busybox mount -o noatime,nodiratime -t auto $PARTITION /sd-ext;
