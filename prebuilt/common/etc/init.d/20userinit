@@ -1,9 +1,9 @@
 #!/system/bin/sh
 # call a userinit.sh script if it's present on the sdcard
 
-if [ "$SD_EXT_DIRECTORY" == ""];
+if [ "$SD_EXT_DIRECTORY" = "" ];
 then
-    SD_EXT_DIRECTORY = "/sd-ext";
+    SD_EXT_DIRECTORY=/sd-ext;
 fi;
 
 if [ -e $SD_EXT_DIRECTORY/userinit.sh ];
