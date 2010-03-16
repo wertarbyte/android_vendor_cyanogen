@@ -8,8 +8,16 @@ then
 fi;
 
 # find first linux partition on SD card
-sleep 2;
 MMC=/dev/block/mmcblk0
+
+# wait for the device to settle
+COUNT=6;
+while [ ! -b "$MMC" ] || [ $COUNT -eq 0 ];
+do
+    sleep 1;
+    let COUNT=COUNT-1;
+done;
+
 if [ -b "$MMC" ];
 then
     FDISK="busybox fdisk"
