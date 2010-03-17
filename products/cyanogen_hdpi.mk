@@ -1,5 +1,8 @@
 #$(call inherit-product, build/target/product/generic.mk)
 
+# Use amend for otapackage creation for now.
+TARGET_OTA_SCRIPT_MODE=amend
+
 # Manually set the policy and PRODUCT_PACKAGES so we can tweak them 
 # depending on whether or not we build with Google. There is no way
 # to override PRODUCT_PACKAGES from an inheriting product yet.
