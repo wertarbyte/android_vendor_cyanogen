@@ -89,6 +89,9 @@ JS_ENGINE=v8
 # Used by BusyBox
 KERNEL_MODULES_DIR:=/system/lib/modules
 
+# Tiny toolbox
+TINY_TOOLBOX:=true
+
 # Pick up some sounds
 include frameworks/base/data/sounds/AudioPackage4.mk
 
