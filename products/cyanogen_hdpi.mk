@@ -96,7 +96,7 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/cyanogen/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     vendor/cyanogen/prebuilt/common/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
-	vendor/cyanogen/prebuilt/common/etc/init.d/04modules:system/etc/init.d/04modules \
+    vendor/cyanogen/prebuilt/common/etc/init.d/04modules:system/etc/init.d/04modules \
     vendor/cyanogen/prebuilt/common/etc/init.d/05mountsd:system/etc/init.d/05mountsd \
     vendor/cyanogen/prebuilt/common/etc/init.d/10apps2sd:system/etc/init.d/10apps2sd \
     vendor/cyanogen/prebuilt/common/etc/init.d/20userinit:system/etc/init.d/20userinit \
@@ -104,7 +104,8 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/fix_permissions:system/bin/fix_permissions \
     vendor/cyanogen/prebuilt/common/bin/usb-tether:system/bin/usb-tether \
     vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
-    vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache
+    vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache \
+    vendor/cyanogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh
 
 ifdef CYANOGEN_WITH_HTC_KEYBOARD
     PRODUCT_COPY_FILES += \

@@ -12,10 +12,10 @@ MMC=/dev/block/mmcblk0
 
 # wait for the device to settle
 COUNT=6;
-until [ -b "$MMC" ] || [ $COUNT -eq 0 ];
+until [ -b "$MMC" ] || [ $COUNT -lt 1 ];
 do
     sleep 1;
-    let COUNT-=1;
+    COUNT=$((COUNT-1));
 done;
 
 if [ -b "$MMC" ];
