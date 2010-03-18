@@ -1,7 +1,7 @@
 CHANGELOG
 
 ---- 5.0.5-N1 
-* New App2SD method built into the framework.  See the wiki for instructions!  HUGE HUGE thanks to Chris Soyars for coding the bulk of this, and Wysie for getting our asses moving on it.
+* New Apps2SD method built into the framework.  See the wiki for instructions!  HUGE HUGE thanks to Chris Soyars for coding the bulk of this, and Wysie for getting our asses moving on it.
 * Launcher2 tweaked to honor fling velocity - code by Faruq (http://github.com/ruqqq)
 * MMS enhancements originally by rgv151, ported to Eclair by Faruq, ChainsDD, Wes Garner, and myself
 * New V8 JavaScript engine - from Qualcomm/CodeAurora
@@ -20,6 +20,10 @@ CHANGELOG
 * Included rsync (thanks to Dylex for the Android port), iwconfig, and iwlist
 * Updated German translations from Matthias Büchner (http://github.com/thiasB)
 * Many patches and fixes from AOSP and contributors (http://r.android.com) 
+* RenderScript is somewhat faster - now built in ARM mode (the VFP is not used fully in thumb mode)
+* lights.mahimahi.so and sensors.mahimahi.so built from Google source
+* Latest e2fsprogs (1.41.10)
+* Added redirect-gateway option for OpenVPN
 
 ---- 5.0.4.1-N1
 * Revert gralloc changes (causes camera issues)
