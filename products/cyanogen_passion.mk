@@ -23,7 +23,7 @@ PRODUCT_BRAND := google
 PRODUCT_DEVICE := passion
 PRODUCT_MODEL := Nexus One
 PRODUCT_MANUFACTURER := HTC
-PRODUCT_BUILD_PROP_OVERRIDES := BUILD_ID=ERE27 PRODUCT_NAME=passion BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.1-update1/ERE27/24178:user/release-keys
+PRODUCT_BUILD_PROP_OVERRIDES := BUILD_ID=EPE54B PRODUCT_NAME=passion BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.1-update1/EPE54B/26040:user/ota-release-keys,release-keys
 
 PRODUCT_COPY_FILES +=  \
     vendor/cyanogen/prebuilt/passion/media/bootanimation.zip:system/media/bootanimation.zip
@@ -32,6 +32,6 @@ PRODUCT_PACKAGES += \
     Stk
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=CyanogenMod-5.0.5-N1-test1
+    ro.modversion=CyanogenMod-5.0.5-N1
 
 include vendor/google/passion/device_passion.mk

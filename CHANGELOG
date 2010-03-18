@@ -2,9 +2,9 @@ CHANGELOG
 
 ---- 5.0.5-N1 
 * New Apps2SD method built into the framework.  See the wiki for instructions!  HUGE HUGE thanks to Chris Soyars for coding the bulk of this, and Wysie for getting our asses moving on it.
-* Launcher2 tweaked to honor fling velocity - code by Faruq (http://github.com/ruqqq)
+* Launcher2 tweaked to honor fling velocity - code by Faruq (http://github.com/ruqqq) - check out more in HelixLauncher on the market
 * MMS enhancements originally by rgv151, ported to Eclair by Faruq, ChainsDD, Wes Garner, and myself
-* New V8 JavaScript engine - from Qualcomm/CodeAurora
+* New V8 JavaScript engine - patch from Qualcomm/CodeAurora
 * Added kernel network bridging and brctl
 * Updated N1 RIL to EPE54B's version, and included AT&T acdb file
 * Kernel updated to 2.6.33.1 plus many patches from Google
