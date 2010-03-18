@@ -24,6 +24,8 @@ CHANGELOG
 * lights.mahimahi.so and sensors.mahimahi.so built from Google source
 * Latest e2fsprogs (1.41.10)
 * Added redirect-gateway option for OpenVPN
+* Lock screen volume swipe selects vibrate mode if you have it enabled in settings
+* Tweaked animation speeds (Wes Garner)
 * Fixed issue with clicking links in certain webviews (HTML email in particular)
 
 ---- 5.0.4.1-N1
