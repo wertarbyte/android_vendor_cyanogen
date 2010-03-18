@@ -1,0 +1,111 @@
+CHANGELOG
+
+---- 5.0.5-N1 
+* New App2SD method built into the framework.  See the wiki for instructions!  HUGE HUGE thanks to Chris Soyars for coding the bulk of this, and Wysie for getting our asses moving on it.
+* Launcher2 tweaked to honor fling velocity - code by Faruq (http://github.com/ruqqq)
+* MMS enhancements originally by rgv151, ported to Eclair by Faruq, ChainsDD, Wes Garner, and myself
+* New V8 JavaScript engine - from Qualcomm/CodeAurora
+* Added kernel network bridging and brctl
+* Updated N1 RIL to EPE54B's version, and included AT&T acdb file
+* Many kernel updates, from Google
+* Orientation mode is fully controllable from the settings app now, and 360-degree rotation patch updated from Optedoblivion and Elanthis
+* Trackball wake & music skip + volume button long-press track changing from metalhead8816 (Jon Boekenoogen)
+* Lots of work on the build system by Koush and Chris Soyars
+* Browser enhancements from Wysie - hide zoom controls and fullscreen mode (http://github.com/Wysie)
+* Tweaked the light sensor
+* Kernel is slightly undervolted. The voltages match what are being used by Qualcomm.
+* Scripting fixes from Stefan Tomanek (http://github.com/wetarbyte)
+* Nexus Live Wallpaper includes dark background and new color schemes - "Dust" is the new default - work on this done mostly Chris Soyars and tweaked by me. Check out his "NexusMod" version on the Market too.
+* Battery percentage shown on the status bar - toggle the option in Spare Parts - patch from canadiancow (will take a battery status change for it to update after switching the toggle)
+* Included rsync (thanks to Dylex for the Android port), iwconfig, and iwlist
+* Updated German translations from Matthias Büchner (http://github.com/thiasB)
+* Many patches and fixes from AOSP and contributors (http://r.android.com) 
+
+---- 5.0.4.1-N1
+* Revert gralloc changes (causes camera issues)
+* Use Eclair-based OpenSSL instead of master
+* Use the normal RIL, the new one has problems
+* Make "normal" vibrate mode in MMS app actually use the normal pattern.
+
+---- 5.0.4-N1
+* Kernel 2.6.33
+* Resync with latest code drop from Google
+* New lights library from ChainsDD - full color trackball notifications
+* 360-degree auto-orientation from Optedoblivion (right/left enabled by default, check option in settings app for 180-degree orientation)
+* OpenVPN integration into native VPN settings
+* Fixed Dropbear server and SCP
+* Added Bash shell
+* Random media playback and FLAC issues fixed
+* Tweaked the auto-brightness sensor ranges to be smoother
+* Customizable MMS notification light/color/vibrate (originally from rgv151@XDA)
+* Using RIL from Desire with power-collapse setting
+* Enabled some additional iptables options
+* Switched to CFQ io scheduler
+* Compcache was removed and swap disabled in the kernel. We don't need this on the N1.
+* Soft-key touch area expanded and tweaked by Kmobs and Dwang
+* Lots of bugfixes from AOSP
+
+---- 5.0.3.1-N1
+* Slimmed down kernel by building IPv6 as a module- seems to be too large for some devices
+* Fixed USB tethering
+
+---- 5.0.3-N1
+* Kernel 2.6.32.8
+* New wallpapers from Prash and SatanR1.  Graphical tweaks from ChainsDD
+* Updated Wysie's contacts
+* NEON optimizations in Skia and Pixelflinger (from 0xdroid and Qualcomm)
+* Many bugfixes from AOSP, Koush, bcrook, myself, others
+* Fixed backup script to properly restore Goggles
+* Rebuilt the whole thing with potentially better CFLAGS
+* More stuff, it's late/early :eek:
+
+---- 5.0.2-N1
+* Fixed Launcher2 FC on start
+* Fixed usb-tether-over-wifi
+* Disabled menu-to-unlock to match the shipping version
+* Readded the wireless regulatory domain setting, not sure why this was removed by Google
+* Enabled support for PPTP while tethering
+
+---- 5.0.1-N1
+* Use ERE27 in build fingerprint so protected apps work.
+* Launcher fix from ChainsDD (thanks!)
+* Readded VisualizationWallpapers
+* Update your gapps to the ERE36B-2 version to fix NetworkLocation and VoiceSearch.
+
+---- 5.0-N1
+* Fixed wifi disable bug
+* New boot animation by Prash
+* Merged ERE36B changes
+* Updated fonts with additional glyphs (from CM-4.2)
+* Updated Phone mod from Cytown
+* Various minor bugfixes
+* "Stable" (no pony for you, though)
+
+---- 5.0-N1-beta5
+* Rebased with ERE27 from AOSP, includes all native MT support
+* Zipalign-on-install pre-check from OpenEclair
+* Updated Busybox which includes more applets
+* Compcache won't break your phone anymore, I still don't recommend using it though.
+* Lots of minor bugfixes
+* Should be the last beta
+* BUG: Disabling wifi fails, get [url=http://n0rp.chemlab.org/android/nexus/experimental/fixes/beta5/services.jar]this services.jar[/url] and push to /system/framework
+
+---- 5.0-N1-beta4
+* Highmem kernel is now the default.  2x RAM available.
+* MMS bugs fixed (message size, image resizing, etc)
+* Updated Wysie's Contacts to latest
+* Disabled the JIT entirely.  It's not even an option anymore.  Too buggy and breaks the debugger.
+* Built Webkit with V8.  Feedback needed on this!
+* Updated APN list, should fix AGPS issues
+* Added option to keep screen awake while charging for the Music app (car mode)
+* Other minor fixes
+
+---- 5.0-N1-beta3
+* Removed some kernel patches that caused instability
+* Added Wysie's Contacts enhancements
+* Fixed Superuser freeze
+* Fixed installer backup script to not copy odexed apps
+* Higher resolution wallpaper from Prash
+* Added German locale updates from thiasB
+* Added LZO support to BusyBox
+* Various minor fixes
