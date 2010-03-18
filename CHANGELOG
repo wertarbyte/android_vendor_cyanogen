@@ -7,7 +7,7 @@ CHANGELOG
 * New V8 JavaScript engine - from Qualcomm/CodeAurora
 * Added kernel network bridging and brctl
 * Updated N1 RIL to EPE54B's version, and included AT&T acdb file
-* Many kernel updates, from Google
+* Kernel updated to 2.6.33.1 plus many patches from Google
 * Orientation mode is fully controllable from the settings app now, and 360-degree rotation patch updated from Optedoblivion and Elanthis
 * Trackball wake & music skip + volume button long-press track changing from metalhead8816 (Jon Boekenoogen)
 * Lots of work on the build system by Koush and Chris Soyars
@@ -24,6 +24,7 @@ CHANGELOG
 * lights.mahimahi.so and sensors.mahimahi.so built from Google source
 * Latest e2fsprogs (1.41.10)
 * Added redirect-gateway option for OpenVPN
+* Fixed issue with clicking links in certain webviews (HTML email in particular)
 
 ---- 5.0.4.1-N1
 * Revert gralloc changes (causes camera issues)
