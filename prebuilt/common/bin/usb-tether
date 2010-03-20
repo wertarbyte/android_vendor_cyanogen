@@ -7,7 +7,7 @@
 # the device the notebook is connected to
 TETHER=usb0
 # a list of devices through which to get internet connectivity
-OUT="rmnet0 tun+ tap+ `getprop wifi.interface`"
+OUT="rmnet0 tun+ tap+ ppp0 `getprop wifi.interface`"
 ADDR=192.168.77.254
 MASK=255.255.255.0
 TOGGLE=/sys/devices/virtual/usb_composite/rndis/enable
