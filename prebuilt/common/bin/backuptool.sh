@@ -15,6 +15,14 @@ check_prereq() {
     fi
 }
 
+check_installscript() {
+  if [ -f "/tmp/.installscript" ];
+  then
+    echo "/tmp/.installscript found. Skipping backuptool."
+    exit 0
+  fi
+}
+
 get_files() {
     cat <<EOF
 app/BugReport.apk
@@ -101,15 +109,11 @@ restore_file() {
    fi
 }
 
-if [ -f "/tmp/.installscript" ];
-then
-  return
-fi
-  
 case "$1" in
    backup)
       mount $S
       check_prereq;
+      check_installscript;
       rm -rf $C
       mkdir -p $C
       get_files | while read FILE REPLACEMENT; do
@@ -119,6 +123,7 @@ case "$1" in
    ;;
    restore)
       check_prereq;
+      check_installscript;
       get_files | while read FILE REPLACEMENT; do
          R=""
          [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
