@@ -101,6 +101,11 @@ restore_file() {
    fi
 }
 
+if [ -f "/tmp/.installscript" ];
+then
+  return
+fi
+  
 case "$1" in
    backup)
       mount $S
