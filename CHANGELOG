@@ -1,5 +1,12 @@
 CHANGELOG
 
+---- 5.0.5.1-N1
+* Added script-security option to fix OpenVPN
+* Added Italian locales from Eugenio, nk02 and wsx from Androidiani.com
+* Patch for CM issue 1182, obtained from google issue 1597
+* Music appwidget now shows album art and previous button - from Eliot Stocker 
+* Fix issue with MMS user-agent being set incorrectly
+
 ---- 5.0.5-N1 
 * New Apps2SD method built into the framework.  See the wiki for instructions!  HUGE HUGE thanks to Chris Soyars for coding the bulk of this, and Wysie for getting our asses moving on it.
 * Launcher2 tweaked to honor fling velocity - code by Mohd Faruq (http://github.com/ruqqq) - check out more in HelixLauncher on the market
