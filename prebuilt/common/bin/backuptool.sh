@@ -3,7 +3,7 @@
 # Backup and restore proprietary Android system files
 #
 
-C=/cache
+C=/tmp/backupdir
 S=/system
 
 get_files() {
@@ -95,10 +95,12 @@ restore_file() {
 case "$1" in
    backup)
       mount $S
-      mount $C
+      rm -rf $C
+      mkdir -p $C
       get_files | while read FILE REPLACEMENT; do
          backup_file $S/$FILE
       done
+      umount $S
    ;;
    restore)
       get_files | while read FILE REPLACEMENT; do
@@ -106,6 +108,7 @@ case "$1" in
          [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
          restore_file $S/$FILE $R
       done
+      rm -rf $C
    ;;
    *)
       echo "Usage: $0 {backup|restore}"
