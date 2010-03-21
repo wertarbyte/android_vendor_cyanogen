@@ -5,6 +5,15 @@
 
 C=/tmp/backupdir
 S=/system
+V=CyanogenMod
+
+check_prereq() {
+    if ( ! grep -q "^ro.modversion=.*$V.*" /system/build.prop );
+    then
+        echo "Refusing to operate on incompatible version.";
+        exit 1;
+    fi
+}
 
 get_files() {
     cat <<EOF
@@ -95,6 +104,7 @@ restore_file() {
 case "$1" in
    backup)
       mount $S
+      check_prereq;
       rm -rf $C
       mkdir -p $C
       get_files | while read FILE REPLACEMENT; do
@@ -103,6 +113,7 @@ case "$1" in
       umount $S
    ;;
    restore)
+      check_prereq;
       get_files | while read FILE REPLACEMENT; do
          R=""
          [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
