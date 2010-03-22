@@ -116,7 +116,7 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
     vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache \
     vendor/cyanogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/cyanogen/prebuilt/common/bin/openvpn-up.sh:system/bin/openvpn-up.sh
+    vendor/cyanogen/prebuilt/common/xbin/openvpn-up.sh:system/xbin/openvpn-up.sh
 
 ifdef CYANOGEN_WITH_HTC_KEYBOARD
     PRODUCT_COPY_FILES += \
