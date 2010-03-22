@@ -1,48 +1,36 @@
 #!/system/xbin/bash
 #
-# /system/xbin/openvpn-up.sh
+# /system/xbin/openvpn-up.sh v0.2
 #
 # Philip Freeman <philip.freeman@gmail.com>
 #
-# This should be called as an up script from openvpn to be able to
-# set dns from push options..
+# TODO: add support for grabbing search domains ?
 #
-#
-#  $ adb push openvpn-up.sh /system/xbin/openvpn-up.sh
-#  $ adb shell chmod 755 /system/xbin/openvpn-up.sh
-#
-#  $ adb shell
-#  # foreign_option_0="dhcp-option DNS 10.0.0.2" foreign_option_1="dhcp-option DNS 10.0.0.2" foreign_option_2="dhcp-option DNS 10.0.0.2" openvpn-up.sh
-#  Got DNS1: 10.0.0.2
-#  /system/bin/setprop vpn.dns1 10.0.0.2
-#  Got DNS2: 10.0.0.2
-#  /system/bin/setprop vpn.dns2 10.0.0.2
-#  Got DNS3: 10.0.0.2
-#  # getprop vpn.dns2
-#  10.0.0.2
-#  # 
-#  
-#
-# TODO:
-#  - Modify the OpenVPN Service to call me!
-#  - add support for grabbing search domains ?
+# Changes:
+#-- v0.2
+# - Added system logging
+# - Fixed fome path issues
 #
 
-
+LOG="/system/bin/log -t openvpn-up"
 SETPROP=/system/bin/setprop
+EXPR=/system/xbin/expr
 stop=0
 dns_num=1
 i=0
+
+${LOG} "Starting..."
+
 eval opt=\$foreign_option_$i
 
 while [ ${stop} -eq 0 ]; do
-  if [ "`expr substr "$opt" 1 11`" = "dhcp-option" ]; then
-    if [ "`expr substr "$opt" 13 3`" = "DNS" ]; then
-      DNS="`expr substr "$opt" 17 1024`"
-      echo "Got DNS${dns_num}: ${DNS}"
+  if [ "`${EXPR} substr "$opt" 1 11`" = "dhcp-option" ]; then
+    if [ "`${EXPR} substr "$opt" 13 3`" = "DNS" ]; then
+      DNS="`${EXPR} substr "$opt" 17 1024`"
+      ${LOG} "Got DNS${dns_num}: ${DNS}"
       if [ ${dns_num} -le 2 ]; then
 	#Set it
-	echo ${SETPROP} vpn.dns${dns_num} ${DNS}
+	${LOG} ${SETPROP} vpn.dns${dns_num} ${DNS}
 	${SETPROP} vpn.dns${dns_num} ${DNS}
       fi
       dns_num=$(( ${dns_num}+1 ))
