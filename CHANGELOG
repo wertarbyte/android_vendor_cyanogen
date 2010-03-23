@@ -1,5 +1,16 @@
 CHANGELOG
 
+---- 5.0.5.2-N1
+* Actually fix the OpenVPN issues
+* Added additional Chinese translations from clockrun
+* A2SD fixes: prune dex cache and reset permissions on protected packages
+* Revert the MMS layout changes to fix the right-side icons
+* Kernel brought up to date with Google
+* Fix issue where the install fails on a clean or non CM /system
+* Fix a minor bug in Superuser app
+* Disable V8 in Webkit and switch back to JSC due to app incompatibilities
+* Default white "breathing light" is customizable (from ChainsDD)
+
 ---- 5.0.5.1-N1
 * Added script-security option to fix OpenVPN
 * Added Italian locales from Eugenio, nk02 and wsx from Androidiani.com
