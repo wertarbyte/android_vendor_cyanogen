@@ -7,20 +7,22 @@ C=/tmp/backupdir
 S=/system
 V=CyanogenMod
 
+PROCEED=1;
+
 check_prereq() {
-    if ( ! grep -q "^ro.modversion=.*$V.*" /system/build.prop );
-    then
-        echo "Not backing up files from incompatible version.";
-        exit 0;
-    fi
+   if ( ! grep -q "^ro.modversion=.*$V.*" /system/build.prop );
+   then
+      echo "Not backing up files from incompatible version.";
+      PROCEED=0;
+   fi
 }
 
 check_installscript() {
-  if [ -f "/tmp/.installscript" ];
-  then
-    echo "/tmp/.installscript found. Skipping backuptool."
-    exit 0
-  fi
+   if [ -f "/tmp/.installscript" ];
+   then
+      echo "/tmp/.installscript found. Skipping backuptool."
+      PROCEED=0;
+   fi
 }
 
 get_files() {
@@ -114,22 +116,28 @@ case "$1" in
       mount $S
       check_prereq;
       check_installscript;
-      rm -rf $C
-      mkdir -p $C
-      get_files | while read FILE REPLACEMENT; do
-         backup_file $S/$FILE
-      done
+      if [ $PROCEED -ne 0 ];
+      then
+         rm -rf $C
+         mkdir -p $C
+         get_files | while read FILE REPLACEMENT; do
+            backup_file $S/$FILE
+         done
+      fi
       umount $S
    ;;
    restore)
       check_prereq;
       check_installscript;
-      get_files | while read FILE REPLACEMENT; do
-         R=""
-         [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
-         restore_file $S/$FILE $R
-      done
-      rm -rf $C
+      if [ $PROCEED -ne 0 ];
+      then
+         get_files | while read FILE REPLACEMENT; do
+            R=""
+            [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
+            restore_file $S/$FILE $R
+         done
+         rm -rf $C
+      fi
    ;;
    *)
       echo "Usage: $0 {backup|restore}"
