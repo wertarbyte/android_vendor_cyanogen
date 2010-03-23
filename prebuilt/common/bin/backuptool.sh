@@ -10,8 +10,8 @@ V=CyanogenMod
 check_prereq() {
     if ( ! grep -q "^ro.modversion=.*$V.*" /system/build.prop );
     then
-        echo "Refusing to operate on incompatible version.";
-        exit 1;
+        echo "Not backing up files from incompatible version.";
+        exit 0;
     fi
 }
 
