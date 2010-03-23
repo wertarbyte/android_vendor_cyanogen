@@ -34,6 +34,4 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.modversion=CyanogenMod-5.0.5.2-N1
 
-TARGET_KERNEL_CONFIG := cyanogen_mahimahi_defconfig
-
 include vendor/google/passion/device_passion.mk
