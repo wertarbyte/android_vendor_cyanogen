@@ -317,11 +317,11 @@ fp_package()
          fp_chown_uid $OLD_UID 0 "$CODEPATH"
          fp_chown_gid $OLD_GID 0 "$CODEPATH"
          fp_chmod $OLD_PER "rw-r--r--" 644 "$CODEPATH"
-         elif $TEST "$APPDIR" = "/data/app"; then
+         elif $TEST "$APPDIR" = "/data/app" || $TEST "$APPDIR" = "/sd-ext/app"; then
          fp_chown_uid $OLD_UID 1000 "$CODEPATH"
          fp_chown_gid $OLD_GID 1000 "$CODEPATH"
          fp_chmod $OLD_PER "rw-r--r--" 644 "$CODEPATH"
-         elif $TEST "$APPDIR" = "/data/app-private"; then
+         elif $TEST "$APPDIR" = "/data/app-private" || $TEST "$APPDIR" = "/sd-ext/app-private"; then
          fp_chown_uid $OLD_UID 1000 "$CODEPATH"
          fp_chown_gid $OLD_GID $GID "$CODEPATH"
          fp_chmod $OLD_PER "rw-r-----" 640 "$CODEPATH"
