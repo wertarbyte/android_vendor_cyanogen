@@ -32,7 +32,7 @@ PRODUCT_PACKAGES += \
     Stk
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=CyanogenMod-5.0.5.2-N1
+    ro.modversion=CyanogenMod-5.0.5.3-N1
 
 TARGET_KERNEL_CONFIG := cyanogen_mahimahi_defconfig
 

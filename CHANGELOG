@@ -1,5 +1,9 @@
 CHANGELOG
 
+---- 5.0.5.3-N1
+* Fix issue with backuptool not formatting /system
+* Fix NPE crash in music app
+
 ---- 5.0.5.2-N1
 * Actually fix the OpenVPN issues
 * Added additional Chinese translations from clockrun
