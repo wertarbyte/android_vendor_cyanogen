@@ -111,11 +111,12 @@ restore_file() {
    fi
 }
 
+check_installscript;
+
 case "$1" in
    backup)
       mount $S
       check_prereq;
-      check_installscript;
       if [ $PROCEED -ne 0 ];
       then
          rm -rf $C
@@ -128,7 +129,6 @@ case "$1" in
    ;;
    restore)
       check_prereq;
-      check_installscript;
       if [ $PROCEED -ne 0 ];
       then
          get_files | while read FILE REPLACEMENT; do
