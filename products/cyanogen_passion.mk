@@ -31,8 +31,13 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_PACKAGES += \
     Stk
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=CyanogenMod-5.0.5.3-N1
+ifdef CYANOGEN_NIGHTLY
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CyanogenMod-NIGHTLY-$(shell date +%m%d%Y)-N1
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CyanogenMod-5.0.5.3-N1
+endif
 
 TARGET_KERNEL_CONFIG := cyanogen_mahimahi_defconfig
 
