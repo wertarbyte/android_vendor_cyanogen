@@ -8,9 +8,6 @@ TARGET_OTA_SCRIPT_MODE=edify
 
 # build/target/product.core.mk
 PRODUCT_POLICY := android.policy_phone
-PRODUCT_PROPERTY_OVERRIDES := \
-    ro.config.notification_sound=OnTheHunt.ogg \
-    ro.config.alarm_alert=Alarm_Classic.ogg
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.rommanager.developerid=cyanogenmod
