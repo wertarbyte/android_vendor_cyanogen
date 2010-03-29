@@ -118,6 +118,17 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
     vendor/cyanogen/prebuilt/common/xbin/openvpn-up.sh:system/xbin/openvpn-up.sh
 
+# Various prebuilt stuff that hasen't been android-ized yet
+PRODUCT_COPY_FILES += \
+    vendor/cyanogen/prebuilt/common/lib/libncurses.so:system/lib/libncurses.so \
+    vendor/cyanogen/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf \
+    vendor/cyanogen/prebuilt/common/xbin/bash:system/xbin/bash \
+    vendor/cyanogen/prebuilt/common/xbin/htop:system/xbin/htop \
+    vendor/cyanogen/prebuilt/common/xbin/irssi:system/xbin/irssi \
+    vendor/cyanogen/prebuilt/common/xbin/lsof:system/xbin/lsof \
+    vendor/cyanogen/prebuilt/common/xbin/nano:system/xbin/nano \
+    vendor/cyanogen/prebuilt/common/xbin/powertop:system/xbin/powertop
+
 ifdef CYANOGEN_WITH_HTC_KEYBOARD
     PRODUCT_COPY_FILES += \
         vendor/cyanogen/proprietary/HTC_IME.apk:system/app/HTC_IME.apk \
