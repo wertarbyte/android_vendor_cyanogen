@@ -83,7 +83,10 @@ PRODUCT_PACKAGES += Superuser
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
 # Build WebKit with V8
-#JS_ENGINE=v8
+#JS_ENGINE:=v8
+
+# Enable animated GIF in WebKit
+ENABLE_ANIMATED_GIF:=true
 
 # Used by BusyBox
 KERNEL_MODULES_DIR:=/system/lib/modules
