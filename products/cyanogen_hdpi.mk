@@ -122,6 +122,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/lib/libncurses.so:system/lib/libncurses.so \
     vendor/cyanogen/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf \
+    vendor/cyanogen/prebuilt/common/etc/terminfo/l/linux:system/etc/terminfo/l/linux \
+    vendor/cyanogen/prebuilt/common/etc/terminfo/u/unknown:system/etc/terminfo/u/unknown \
     vendor/cyanogen/prebuilt/common/xbin/bash:system/xbin/bash \
     vendor/cyanogen/prebuilt/common/xbin/htop:system/xbin/htop \
     vendor/cyanogen/prebuilt/common/xbin/irssi:system/xbin/irssi \
