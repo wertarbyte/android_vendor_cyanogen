@@ -1,5 +1,8 @@
 CHANGELOG
 
+---- 5.0.5.4-Droid
+* Add bash, irssi, nano, htop and other binaries that were missing from the previous release.
+
 ---- 5.0.5.3-N1
 * Fix issue with backuptool not formatting /system
 * Fix NPE crash in music app
