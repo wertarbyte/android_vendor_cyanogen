@@ -7,6 +7,13 @@ CHANGELOG
 * Ability to move installed applications between internal storage and SD (from ChrisSoyars)
 * Added libncurses, irssi, htop, bash, nano and powertop.
 * Added option to disable USB Debugging notification.
+* 5 column launcher drawer (from Kmobs and ChrisSoyars)
+* Animated GIF support in the browser
+* Updated translations
+* Yahoo mail can be used over wifi (from Invader@AllDroid)
+* Kernel is now built from source and installed properly (from Android-X86, tweaked by Wes Garner and Chris Soyars)
+* New camera features (antibanding, focus mode, jpeg quality) from CodeAurora
+* Battery percentage meter fix from ChainsDD
 
 ---- 5.0.5.3-N1
 * Fix issue with backuptool not formatting /system
