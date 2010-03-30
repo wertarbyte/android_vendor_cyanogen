@@ -14,7 +14,6 @@ CHANGELOG
 * Kernel is now built from source and installed properly (from Android-X86, tweaked by Wes Garner and Chris Soyars)
 * New camera features (antibanding, focus mode, jpeg quality) from CodeAurora
 * Battery percentage meter fix from ChainsDD
-* Added irssi
 * Fixed some bugs in Dropbear and added dropbear-keygen to generate host keys
 
 ---- 5.0.5.3-N1
