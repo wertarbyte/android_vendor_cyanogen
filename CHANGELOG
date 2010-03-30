@@ -1,5 +1,10 @@
 CHANGELOG
 
+---- 5.0.6-N1
+* Ability to move installed applications between internal storage and SD (from ChrisSoyars)
+* Added libncurses, irssi, htop, bash, nano and powertop.
+* Added option to disable USB Debugging notification.
+
 ---- 5.0.5.3-N1
 * Fix issue with backuptool not formatting /system
 * Fix NPE crash in music app
