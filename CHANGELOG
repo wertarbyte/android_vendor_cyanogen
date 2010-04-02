@@ -1,8 +1,5 @@
 CHANGELOG
 
----- 5.0.5.4-Droid
-* Add bash, irssi, nano, htop and other binaries that were missing from the previous release.
-
 ---- 5.0.6-N1
 * Latest code from AOSP from Google as of 3/31/2010
 * Ability to move installed applications between internal storage and SD (from ChrisSoyars)
@@ -18,6 +15,9 @@ CHANGELOG
 * Fixed some bugs in Dropbear and added dropbear-keygen to generate host keys
 * New ARM NEON optimizations from ARM and 0xlab (http://0xlab.org)
  
+---- 5.0.5.4-Droid
+* Add bash, irssi, nano, htop and other binaries that were missing from the previous release.
+
 ---- 5.0.5.3-N1
 * Fix issue with backuptool not formatting /system
 * Fix NPE crash in music app
