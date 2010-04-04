@@ -2,7 +2,7 @@ CHANGELOG
 
 ---- 5.0.6-N1
 * Merged AOSP from Google as of 3/31/2010
-* Ability to move installed applications between internal storage and SD (from ChrisSoyars)
+* Ability to move installed applications between internal storage and SD (from Chris Soyars)
 * Added libncurses, irssi, htop, bash, nano and powertop.
 * Added option to disable USB Debugging notification.
 * 5 column launcher drawer (from Kmobs and ChrisSoyars)
@@ -13,10 +13,11 @@ CHANGELOG
 * New camera features (antibanding, focus mode, jpeg quality) from CodeAurora
 * Battery percentage meter fix from ChainsDD
 * Fixed some bugs in Dropbear and added dropbear-keygen to generate host keys
-* New ARM NEON optimizations from ARM and 0xlab (http://0xlab.org)
+* New ARM NEON optimizations from ARM and 0xlab (http://0xlab.org - Jim Huang)
 * Audio gain tweaks from Pershoot
 * Kernel 2.6.33.2
- 
+* Launcher can auto-orientate now (enable in Spare Parts)
+
 ---- 5.0.5.4-Droid
 * Add bash, irssi, nano, htop and other binaries that were missing from the previous release.
 
