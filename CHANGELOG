@@ -22,6 +22,12 @@ CHANGELOG
 * Sexied up Nexus LWP from WootRoot with more colors, background, and trackball lighting
 * Added wireless-tools (iwconfig and friends) to the build
 
+---- 5.0.5.7-Droid
+* Fix Launcher2.
+
+---- 5.0.5.6-Droid
+* Minor release to include new ESE81 drivers and renderscript backport.
+
 ---- 5.0.5.4-Droid
 * Add bash, irssi, nano, htop and other binaries that were missing from the previous release.
 
