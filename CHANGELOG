@@ -17,6 +17,7 @@ CHANGELOG
 * Audio gain tweaks from Pershoot
 * Kernel 2.6.33.2
 * Launcher can auto-orientate now (enable in Spare Parts)
+* Fix the Google backup transport. If you are doing a no-wipe install, run "bmgr transport com.google.android.backup/.BackupTransportService" in a shell to get it enabled.
 
 ---- 5.0.5.4-Droid
 * Add bash, irssi, nano, htop and other binaries that were missing from the previous release.
