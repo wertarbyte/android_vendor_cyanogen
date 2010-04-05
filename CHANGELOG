@@ -6,8 +6,8 @@ CHANGELOG
 * Added libncurses, irssi, htop, bash, nano and powertop.
 * Added option to disable USB Debugging notification.
 * 5 column launcher drawer (from Kmobs and ChrisSoyars)
-* Animated GIF support in the browser
-* Updated translations
+* Animated GIF support in the browser (info from Google)
+* Updated translations from Eug89, RedVirus, and ThiasB
 * Yahoo mail can be used over wifi (from Invader@AllDroid)
 * Kernel is now built from source and installed properly by the Android build system (from Android-X86, tweaked by Wes Garner and Chris Soyars)
 * New camera features (antibanding, focus mode, jpeg quality) from CodeAurora
@@ -16,7 +16,7 @@ CHANGELOG
 * New ARM NEON optimizations from ARM and 0xlab (http://0xlab.org - Jim Huang)
 * Audio gain tweaks from Pershoot
 * Kernel 2.6.33.2
-* Launcher can auto-orientate now (enable in Spare Parts)
+* Launcher can auto-orientate now (enable in Spare Parts) - not really all that pretty but it works
 * Fix the Google backup transport. If you are doing a no-wipe install, run "bmgr transport com.google.android.backup/.BackupTransportService" in a shell to get it enabled.
 
 ---- 5.0.5.4-Droid
