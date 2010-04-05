@@ -26,6 +26,7 @@ CHANGELOG
 * Fix Launcher2.
 
 ---- 5.0.5.6-Droid
+* Removed Launcher2 until fixes can be made.
 * Minor release to include new ESE81 drivers and renderscript backport.
 
 ---- 5.0.5.4-Droid
