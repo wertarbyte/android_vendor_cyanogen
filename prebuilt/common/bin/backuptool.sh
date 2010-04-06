@@ -29,6 +29,7 @@ get_files() {
     cat <<EOF
 app/BugReport.apk
 app/CarDock.apk
+app/CorpCal.apk
 app/com.amazon.mp3.apk
 app/EnhancedGoogleSearchProvider.apk app/GoogleSearch.apk
 app/Facebook.apk
