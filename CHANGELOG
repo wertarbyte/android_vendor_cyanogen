@@ -3,9 +3,9 @@ CHANGELOG
 ---- 5.0.6-N1
 * Merged AOSP from Google as of 3/31/2010
 * Ability to move installed applications between internal storage and SD (from Chris Soyars)
-* Added libncurses, irssi, htop, bash, nano and powertop.
+* Added libncurses, lsof, irssi, htop, bash, nano and powertop.
 * Added option to disable USB Debugging notification.
-* 5 column launcher drawer (from Kmobs and ChrisSoyars)
+* 5 column launcher drawer (from Kmobs and ChrisSoyars) - can be switched back to 4 column in Spare Parts
 * Animated GIF support in the browser (info from Google)
 * Updated translations from Eug89, RedVirus, and ThiasB
 * Yahoo mail can be used over wifi (from Invader@AllDroid)

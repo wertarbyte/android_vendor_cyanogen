@@ -36,7 +36,7 @@ ifdef CYANOGEN_NIGHTLY
         ro.modversion=CyanogenMod-$(shell date +%m%d%Y)-NIGHTLY-N1
 else
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-5.0.6-N1-test1
+        ro.modversion=CyanogenMod-5.0.6-N1-test2
 endif
 
 TARGET_KERNEL_CONFIG := cyanogen_mahimahi_defconfig
