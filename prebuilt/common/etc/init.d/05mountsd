@@ -2,6 +2,8 @@
 #
 # mount ext[234] partition from sd card
 
+BB="logwrapper busybox";
+
 if [ "$SD_EXT_DIRECTORY" = "" ];
 then
     SD_EXT_DIRECTORY=/sd-ext;
@@ -25,10 +27,10 @@ then
 
     if [ -b "$PARTITION" ];
     then
-        echo "--- Checking filesystems";
+        log -p i -t mountsd "Checking filesystems..";
    
         # fsck the sdcard filesystem first
-        e2fsck -y $PARTITION;
+        logwrapper e2fsck -y $PARTITION;
    
         # set property with exit code in case an error occurs
         setprop cm.e2fsck.errors $?;
@@ -36,19 +38,17 @@ then
         then
    
             # mount and set perms
-            busybox mount -o noatime,nodiratime -t auto $PARTITION $SD_EXT_DIRECTORY;
+            $BB mount -o noatime,nodiratime -t auto $PARTITION $SD_EXT_DIRECTORY;
             if [ "$?" = 0 ];
             then
-                busybox chown 1000:1000 $SD_EXT_DIRECTORY;
-                busybox chmod 771 $SD_EXT_DIRECTORY;
-                echo "+++ $SD_EXT_DIRECTORY successfully mounted";
+                $BB chown 1000:1000 $SD_EXT_DIRECTORY;
+                $BB chmod 771 $SD_EXT_DIRECTORY;
+                log -p i -t mountsd "$SD_EXT_DIRECTORY successfully mounted";
             else
-                echo "*** Unable to mount filesystem for $SD_EXT_DIRECTORY!";
+                log -p e -t mountsd "Unable to mount filesystem for $SD_EXT_DIRECTORY!";
             fi
         else
-            echo "*** Unable to repair filesystem, disabling apps2sd";
+            log -p e -t mountsd "Unable to repair filesystem, disabling apps2sd";
         fi
     fi
-else
-    echo "*** No ext filesystem found, disabling apps2sd";
 fi

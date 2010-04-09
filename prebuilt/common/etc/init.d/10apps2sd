@@ -16,9 +16,9 @@ then
             mkdir $SD_EXT_DIRECTORY/$i;
             busybox chown 1000:1000 $SD_EXT_DIRECTORY/$i;
             busybox chmod 771 $SD_EXT_DIRECTORY/$i;
-            echo "+++ $SD_EXT_DIRECTORY/$i created."
+            log -p i -t a2sd "$SD_EXT_DIRECTORY/$i created"
         fi;
     done
     setprop cm.a2sd.active 1
-    echo "+++ apps2sd successfully activated";
+    log -p i -t a2sd "Apps2SD successfully activated";
 fi;
