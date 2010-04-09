@@ -22,6 +22,7 @@ CHANGELOG
 * Sexied up Nexus LWP from WootRoot and jeagoss with more colors, background, and trackball lighting
 * Added wireless-tools (iwconfig and friends) to the build
 * Reverted bcm4329 wifi driver to older version
+* Added option to set a system-wide http proxy server (this should really be a per-ssid setting though)
  
 ---- 5.0.5.7-Droid
 * Fix Launcher2.
