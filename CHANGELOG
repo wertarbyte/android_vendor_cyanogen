@@ -13,15 +13,16 @@ CHANGELOG
 * New camera features (antibanding, focus mode, jpeg quality) from CodeAurora
 * Battery percentage meter fix from ChainsDD
 * Fixed some bugs in Dropbear and added dropbear-keygen to generate host keys
-* New ARM NEON optimizations from ARM and 0xlab (http://0xlab.org - Jim Huang)
+* New ARM NEON optimizations for Bionic from ARM and 0xlab (http://0xlab.org - Jim Huang)
 * Audio gain tweaks from Pershoot
 * Kernel 2.6.33.2
 * Launcher can auto-orientate now (enable in Spare Parts) - not really all that pretty but it works
 * Fix the Google backup transport. If you are doing a no-wipe install, run "bmgr transport com.google.android.backup/.BackupTransportService" in a shell to get it enabled.
 * More bugfixes from AOSP contributers (http://r.android.com)
-* Sexied up Nexus LWP from WootRoot with more colors, background, and trackball lighting
+* Sexied up Nexus LWP from WootRoot and jeagoss with more colors, background, and trackball lighting
 * Added wireless-tools (iwconfig and friends) to the build
-
+* Reverted bcm4329 wifi driver to older version
+ 
 ---- 5.0.5.7-Droid
 * Fix Launcher2.
 
