@@ -25,7 +25,6 @@ CHANGELOG
 * Added option to set a system-wide http proxy server (this should really be a per-ssid setting though)
 * Allow Bluetooth in airplane mode (needs settings db update if installing w/o wipe)
 * Added some sounds back
-* Updated locales from RedVirus, thiasB, and Eug89
  
 ---- 5.0.5.7-Droid
 * Fix Launcher2.
