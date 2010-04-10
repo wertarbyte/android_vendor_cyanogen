@@ -95,6 +95,7 @@ KERNEL_MODULES_DIR:=/system/lib/modules
 TINY_TOOLBOX:=true
 
 # Pick up some sounds
+include frameworks/base/data/sounds/OriginalAudio.mk
 include frameworks/base/data/sounds/AudioPackage4.mk
 
 TARGET_OTA_BACKUPTOOL=True
