@@ -25,6 +25,7 @@ CHANGELOG
 * Added option to set a system-wide http proxy server (this should really be a per-ssid setting though)
 * Allow Bluetooth in airplane mode (needs settings db update if installing w/o wipe)
 * Added some sounds back
+* Added trackball-unlock option from Kmobs (this conflicts with the music skip option)
  
 ---- 5.0.5.7-Droid
 * Fix Launcher2.
