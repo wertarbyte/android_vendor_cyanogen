@@ -26,6 +26,8 @@ CHANGELOG
 * Allow Bluetooth in airplane mode (needs settings db update if installing w/o wipe)
 * Added some sounds back
 * Added trackball-unlock option from Kmobs (this conflicts with the music skip option)
+* Fix for the red/pink camera tint bug!! (from HTC/Google)
+* Number keys work on the vk in the Terminal app again (from Jack Palevich's Google Code project)
  
 ---- 5.0.5.7-Droid
 * Fix Launcher2.
