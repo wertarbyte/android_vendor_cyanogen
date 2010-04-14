@@ -1,7 +1,7 @@
 CHANGELOG
 
 ---- 5.0.6-Droid
-* Fixed MMS Videos
+* Fixed MMS Videos (PDR447, slayher, DroidMod all had a hand in this)
 * Fixups to 4/5 column launcher
 * Fixed ##program menu
 
