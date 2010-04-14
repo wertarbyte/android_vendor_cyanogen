@@ -1,5 +1,10 @@
 CHANGELOG
 
+---- 5.0.6-Droid
+* Fixed MMS Videos
+* Fixups to 4/5 column launcher
+* Fixed ##program menu
+
 ---- 5.0.6-N1
 * Merged AOSP from Google as of 3/31/2010
 * Ability to move installed applications between internal storage and SD (from Chris Soyars)
