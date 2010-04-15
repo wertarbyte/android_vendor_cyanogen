@@ -151,7 +151,7 @@ CHANGELOG
 * Fixed wifi disable bug
 * New boot animation by Prash
 * Merged ERE36B changes
-* Updated fonts with additional glyphs (from CM-4.2)
+* Updated fonts with additional glyphs (from CM-4.2, from Noah Friedman)
 * Updated Phone mod from Cytown
 * Various minor bugfixes
 * "Stable" (no pony for you, though)
