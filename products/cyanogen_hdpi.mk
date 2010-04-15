@@ -135,6 +135,10 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/xbin/nano:system/xbin/nano \
     vendor/cyanogen/prebuilt/common/xbin/powertop:system/xbin/powertop
 
+# Copy over the CM CHANGELOG
+PRODUCT_COPY_FILES += \
+    vendor/cyanogen/CHANGELOG:system/etc/CHANGELOG-CM.txt
+
 ifdef CYANOGEN_WITH_HTC_KEYBOARD
     PRODUCT_COPY_FILES += \
         vendor/cyanogen/proprietary/HTC_IME.apk:system/app/HTC_IME.apk \
