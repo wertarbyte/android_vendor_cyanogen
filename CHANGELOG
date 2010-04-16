@@ -4,6 +4,7 @@ CHANGELOG
 * Fixed MMS Videos (PDR447, slayher, DroidMod all had a hand in this)
 * Fixups to 4/5 column launcher
 * Fixed ##program menu
+* Fix fstab bug (DroidMod)
 
 ---- 5.0.6-N1
 * Merged AOSP from Google as of 3/31/2010
