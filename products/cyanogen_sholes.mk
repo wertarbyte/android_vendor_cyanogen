@@ -30,7 +30,12 @@ PRODUCT_COPY_FILES +=  \
     
 PRODUCT_COPY_FILES += out/target/product/sholes-open/obj/APPS/Launcher_intermediates/package.apk:/system/app/Launcher.apk
 
-PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-5.0.5.7-Droid
-        
+ifdef CYANOGEN_NIGHTLY
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CyanogenMod-$(shell date +%m%d%Y)-NIGHTLY-Droid
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CyanogenMod-5.0.6-Droid
+endif
+
 include vendor/motorola/sholes-open/device_sholes.mk
