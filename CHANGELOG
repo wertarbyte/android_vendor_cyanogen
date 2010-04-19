@@ -1,5 +1,8 @@
 CHANGELOG
 
+---- 5.0.6.1-Droid
+* Fix wifi for those using the default kernel
+
 ---- 5.0.6-Droid
 * Fixed MMS Videos (PDR447, slayher, DroidMod all had a hand in this)
 * Fixups to 4/5 column launcher
