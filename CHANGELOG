@@ -1,5 +1,10 @@
 CHANGELOG
 
+---- 5.0.7 (pre)
+* New ARM optimizations in Bionic from Jim Huang @ 0xlab
+* Superuser 2.0 from ChainsDD
+* DeskClock style tweaks from Nathan Zachary
+
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
 * Remove Google Apps which accidentally ended up in the build.
