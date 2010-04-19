@@ -62,6 +62,9 @@ PRODUCT_DEVICE := generic
 
 USE_CAMERA_STUB := false
 
+# Allow Bionic to use NEON memcpy implementation
+ALLOW_LGPL := true
+
 # Let's grab the hdpi versions of apps and some extras
 PRODUCT_PACKAGES += \
     DeskClock \
