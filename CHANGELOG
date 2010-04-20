@@ -6,6 +6,7 @@ CHANGELOG
 * DeskClock style tweaks from Nathan Zachary
 * Email signature support from Jarrett Vance
 * Pin-lock and alternate lockscreen framework from avatar5d
+* Updated Japanese locales from Takuo Kitame
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
