@@ -4,6 +4,8 @@ CHANGELOG
 * New ARM optimizations in Bionic from Jim Huang @ 0xlab
 * Superuser 2.0 from ChainsDD
 * DeskClock style tweaks from Nathan Zachary
+* Email signature support from Jarrett Vance
+* Pin-lock and alternate lockscreen framework from avatar5d
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
