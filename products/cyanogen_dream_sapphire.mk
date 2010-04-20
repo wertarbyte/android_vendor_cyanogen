@@ -37,5 +37,7 @@ else
         ro.modversion=CyanogenMod-5.0.7-test0
 endif
 
+TARGET_KERNEL_CONFIG := cyanogen_msm_defconfig
+
 include vendor/htc/dream_sapphire/device_dream_sapphire.mk
 
