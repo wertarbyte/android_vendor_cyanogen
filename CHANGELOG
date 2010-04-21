@@ -7,6 +7,7 @@ CHANGELOG
 * Email signature support from Jarrett Vance
 * Pin-lock and alternate lockscreen framework from avatar5d
 * Updated Japanese locales from Takuo Kitame
+* Droid: Fix for 50% signal loss reporting bug on Motorola Droid. (Boyd Bischke)
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
