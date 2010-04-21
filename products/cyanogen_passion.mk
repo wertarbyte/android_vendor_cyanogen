@@ -39,6 +39,4 @@ else
         ro.modversion=CyanogenMod-5.0.7-test0
 endif
 
-TARGET_KERNEL_CONFIG := cyanogen_mahimahi_defconfig
-
 include vendor/google/passion/device_passion.mk
