@@ -8,6 +8,7 @@ CHANGELOG
 * Pin-lock and alternate lockscreen framework from avatar5d
 * Updated Japanese locales from Takuo Kitame
 * Droid: Fix for 50% signal loss reporting bug on Motorola Droid. (Boyd Bischke)
+* Droid: Disable V8. It was breaking Epocrates and other applications.
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
