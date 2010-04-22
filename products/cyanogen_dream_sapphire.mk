@@ -38,5 +38,6 @@ else
         ro.modversion=CyanogenMod-5.0.7-test0
 endif
 
+include frameworks/base/data/sounds/AudioPackage4.mk 
 include vendor/htc/dream_sapphire/device_dream_sapphire.mk
 
