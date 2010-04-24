@@ -1,7 +1,6 @@
 CHANGELOG
 
 ---- 5.0.7 (pre)
-* New ARM optimizations in Bionic from Jim Huang @ 0xlab
 * Superuser 2.0 from ChainsDD
 * DeskClock style tweaks from Nathan Zachary
 * Email signature support from Jarrett Vance
