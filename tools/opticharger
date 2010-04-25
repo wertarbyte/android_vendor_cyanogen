@@ -1,0 +1,50 @@
+#!/bin/sh
+#
+# Super-mega opticharger of doom
+# Shrinks apks by running optipng on png images
+#
+# cyanogen - shade@chemlab.org
+
+set -e
+
+BASE=`pwd`
+if [ "$APKCERTS" = "" ];
+then
+    if [ -f ~/apkcerts.txt ];
+    then
+        APKCERTS=~/apkcerts.txt
+    else
+        echo "Set APKCERTS to the path to your apkcerts.txt file"
+        exit 1;
+    fi
+fi
+
+if [ -e "$1" ];
+then
+    NAME=`basename $1`;
+    echo "Optimizing $NAME...";
+    rm -rf /tmp/$NAME
+    mkdir /tmp/$NAME
+    cd /tmp/$NAME
+    unzip $BASE/$1
+    optipng -o7 `find . -name "*.png" | grep -v "\.9\.png$" | tr "\n" " "`
+    mv $BASE/$1 $BASE/$1.old
+
+    echo "Repacking apk.."
+    aapt p -0 res/raw -0 res/raw-en -F $NAME .
+    
+    CERT=`grep $NAME $APKCERTS | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
+    KEY=`grep $NAME $APKCERTS | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
+
+    echo "Resigning with cert: `echo $CERT`"
+    java -jar $DROID/out/host/linux-x86/framework/signapk.jar $DROID/$CERT $DROID/$KEY $NAME signed_$NAME
+
+    echo "Zipalign.."
+    zipalign -f 4 signed_$NAME $BASE/$1
+    ls -l $BASE/$1.old
+    ls -l $BASE/$1
+    rm $BASE/$1.old
+else
+    echo "Usage: $0 [apk file]"
+fi
+
