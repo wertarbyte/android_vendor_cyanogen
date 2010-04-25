@@ -9,6 +9,7 @@ ALLOW_LGPL := true
 
 # Let's grab the hdpi versions of apps and some extras
 PRODUCT_PACKAGES += \
+    Gallery3D \
     Launcher2 \
     LiveWallpapers \
     LiveWallpapersPicker \

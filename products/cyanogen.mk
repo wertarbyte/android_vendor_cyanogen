@@ -49,7 +49,7 @@ PRODUCT_PACKAGES += \
     DeskClock \
     DrmProvider \
     Email \
-    Gallery3D \
+    Gallery \
     GlobalSearch \
     Mms \
     Music \
