@@ -23,6 +23,15 @@ if [ -e "$1" ];
 then
     NAME=`basename $1`;
     echo "Optimizing $NAME...";
+
+    CERT=`grep $NAME $APKCERTS | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
+    KEY=`grep $NAME $APKCERTS | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
+    if [ "$CERT" = "" ];
+    then
+        echo "Unable to find certificate for $NAME"
+        exit 1;
+    fi
+
     rm -rf /tmp/$NAME
     mkdir /tmp/$NAME
     cd /tmp/$NAME
@@ -33,10 +42,7 @@ then
     echo "Repacking apk.."
     aapt p -0 res/raw -0 res/raw-en -F $NAME .
     
-    CERT=`grep $NAME $APKCERTS | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
-    KEY=`grep $NAME $APKCERTS | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
-
-    echo "Resigning with cert: `echo $CERT`"
+        echo "Resigning with cert: `echo $CERT`"
     java -jar $DROID/out/host/linux-x86/framework/signapk.jar $DROID/$CERT $DROID/$KEY $NAME signed_$NAME
 
     echo "Zipalign.."
