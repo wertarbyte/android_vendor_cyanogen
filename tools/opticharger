@@ -1,24 +1,21 @@
 #!/bin/sh
 #
 # Super-mega opticharger of doom
-# Shrinks apks by running optipng on png images
+# Shrinks apks by running pngcrush on png images
 #
 # Point APKCERTS at the full path to a generated apkcerts.txt file, such as:
 # /home/shade/dev/sources/android-cm-eclair/out/target/product/dream_sapphire/obj/PACKAGING/target_files_intermediates/cyanogen_dream_sapphire-target_files-eng.shade/META/apkcerts.txt
 #
-# Also set $DROID to the root of your Android repo
-#
 # cyanogen - shade@chemlab.org
-
+# ChrisSoyars - me@ctso.me
 set -e
 
 BASE=`pwd`
 if [ "$APKCERTS" = "" ];
 then
-    if [ -f ~/apkcerts.txt ];
+    APKCERTS=$OUT/obj/PACKAGING/target_files_intermediates/$TARGET_PRODUCT-target_files-$TARGET_BUILD_VARIANT.$LOGNAME/META/apkcerts.txt
+    if [ ! -f "$APKCERTS" ];
     then
-        APKCERTS=~/apkcerts.txt
-    else
         echo "Set APKCERTS to the path to your apkcerts.txt file"
         exit 1;
     fi
@@ -27,6 +24,24 @@ fi
 if [ ! -f "$APKCERTS" ];
 then
     echo "Invalid path to apkcerts.txt, set APKCERTS to the correct path."
+fi
+
+if [ "`which pngcrush`" = "" ];
+then
+    echo "Please install pngcrush"
+    exit 1;
+fi
+
+if [ "`which aapt`" = "" ];
+then
+    echo "Please ensure aapt is in your \$PATH"
+    exit 1;
+fi
+
+if [ "`which zipalign`" = "" ];
+then
+    echo "Please ensure zipalign is in your \$PATH"
+    exit 1;
 fi
 
 if [ -e "$1" ];
@@ -46,14 +61,22 @@ then
     mkdir /tmp/$NAME
     cd /tmp/$NAME
     unzip $BASE/$1
-    optipng -o7 `find . -name "*.png" | grep -v "\.9\.png$" | tr "\n" " "`
+    for x in `find . -name "*.png" | grep -v "\.9.png$" | tr "\n" " "`
+    do
+        echo "Crushing $x"
+        pngcrush $x $x.crushed 1>/dev/null
+        if [ -e "$x.crushed" ];
+        then
+            mv $x.crushed $x
+        fi
+    done
     mv $BASE/$1 $BASE/$1.old
 
     echo "Repacking apk.."
     aapt p -0 res/raw -0 res/raw-en -F $NAME .
     
         echo "Resigning with cert: `echo $CERT`"
-    java -jar $DROID/out/host/linux-x86/framework/signapk.jar $DROID/$CERT $DROID/$KEY $NAME signed_$NAME
+    java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
 
     echo "Zipalign.."
     zipalign -f 4 signed_$NAME $BASE/$1
