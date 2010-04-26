@@ -3,6 +3,9 @@
 # Super-mega opticharger of doom
 # Shrinks apks by running optipng on png images
 #
+# Point APKCERTS at the full path to a generated apkcerts.txt file, such as:
+# /home/shade/dev/sources/android-cm-eclair/out/target/product/dream_sapphire/obj/PACKAGING/target_files_intermediates/cyanogen_dream_sapphire-target_files-eng.shade/META/apkcerts.txt
+#
 # cyanogen - shade@chemlab.org
 
 set -e
@@ -17,6 +20,11 @@ then
         echo "Set APKCERTS to the path to your apkcerts.txt file"
         exit 1;
     fi
+fi
+
+if [ ! -f "$APKCERTS" ];
+then
+    echo "Invalid path to apkcerts.txt, set APKCERTS to the correct path."
 fi
 
 if [ -e "$1" ];
