@@ -6,6 +6,8 @@
 # Point APKCERTS at the full path to a generated apkcerts.txt file, such as:
 # /home/shade/dev/sources/android-cm-eclair/out/target/product/dream_sapphire/obj/PACKAGING/target_files_intermediates/cyanogen_dream_sapphire-target_files-eng.shade/META/apkcerts.txt
 #
+# Also set $DROID to the root of your Android repo
+#
 # cyanogen - shade@chemlab.org
 
 set -e
