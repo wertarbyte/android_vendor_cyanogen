@@ -72,7 +72,7 @@
   <apn carrier="Gee! MMS" numeric="52505" mcc="525" mnc="05" apn="shmms" user="" server="" password="" proxy="" port="" mmsproxy="10.12.1.80" mmsport="80" mmsprotocol="null" mmsc="http://mms.starhubgee.com.sg:8002/" type="mms"/>
   <apn carrier="Globul" apn="globul" user="globul" mmsc="http://mmsc1.mms.globul.bg:8002" mmsproxy="192.168.087.011:8002" mmsport="8004" mcc="284" mnc="05"/>
   <apn carrier="ICE Celular" apn="icecelular" type="" user="" pass="" mcc="712"/>
-  <apn carrier="Idea Cellular India" apn="internet" user="" password="" server="" mmsc="" mmsproxy="" mmsport="" mcc="404" mnc="22" type=""/> 
+  <apn carrier="Idea Cellular India" apn="internet" user="" password="" server="10.4.42.15" mmsc="" mmsproxy="" mmsport="" mcc="404" mnc="22" type=""/>
   <apn carrier="IDEAS" apn="e-ideas" user="*" password="*" server="*" mmsc="" mcc="525" mnc="01" type=""/>
   <apn carrier="IDEAS MMS" apn="e-ideas" user="65IDEAS" server="" password="65" proxy="" port="" mmsproxy="165.21.42.84" mmsport="8080" mmsprotocol="" mmsc="http://mms.singtel.com:10021/mmsc" mcc="525" mnc="01" type="mms"/>
   <apn carrier="iWireless" mcc="310" mnc="770" apn="i2.iwireless.com" user="" password="" server="" mmsc="" type="default" />
@@ -100,6 +100,7 @@
   <apn carrier="MiWorld MMS" numeric="52503" mcc="525" mnc="03" apn="miworld" user="65" server="" password="user123" proxy="" port="" mmsproxy="172.16.14.10" mmsport="8080" mmsprotocol="null" mmsc="http://mmsgw:8002/" type="mms"/>
   <apn carrier="Mobilkom" mcc="232" mnc="01" apn="a1.net" user="ppp@a1plus.at" password="ppp" server="" mmsc="" type="default,supl"/>
   <apn carrier="Mobilkom-MMS" apn="free.a1.net" proxy="" port="" user="ppp@a1plus.at" password="ppp" server="" mmsc="http://mmsc.a1.net" mmsproxy="194.48.124.71" mmsport="8001" mcc="232" mnc="01" type="mms"/>
+  <apn carrier="Mobily" apn="web1" proxy="" port="" user="" password="" server="" mmsc="" mmsproxy="" mmsport="" mcc="420" mnc="03" type=""/>
   <apn carrier="Mobily SA" apn="web2" user="" password="" server="" mcc="655" mnc="10" type=""/> 
   <apn carrier="Mobitalk Internet" mcc="242" mnc="01" apn="telenor" user="dj" server="" password="dj" mmsproxy="" mmsport="" mmsc="" type="default,supl" proxy="10.10.10.10" port="8080"/>
   <apn carrier="Mobitalk MMS" mcc="242" mnc="01" apn="telenor" user="dj" server="" password="dj" mmsproxy="10.10.10.11" mmsport="8080" mmsc="http://mmsc/" type="mms" proxy="" port=""/>
