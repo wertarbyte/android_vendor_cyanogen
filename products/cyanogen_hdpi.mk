@@ -13,9 +13,7 @@ PRODUCT_PACKAGES += \
     LiveWallpapers \
     LiveWallpapersPicker \
     MagicSmokeWallpapers \
-    VisualizationWallpapers \
-    libRS \
-    librs_jni
+    VisualizationWallpapers
 
 # Build WebKit with V8
 #JS_ENGINE:=v8

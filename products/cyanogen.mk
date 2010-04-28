@@ -61,7 +61,10 @@ PRODUCT_PACKAGES += \
 
 USE_CAMERA_STUB := false
 
-PRODUCT_PACKAGES += Superuser 
+PRODUCT_PACKAGES += \
+    Superuser \
+    libRS \
+    librs_jni
 
 PRODUCT_PACKAGE_OVERLAYS := vendor/cyanogen/overlay
 
