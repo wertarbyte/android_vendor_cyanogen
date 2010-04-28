@@ -11,7 +11,6 @@ ALLOW_LGPL := true
 PRODUCT_PACKAGES += \
     Launcher2 \
     LiveWallpapers \
-    LiveWallpapersPicker \
     MagicSmokeWallpapers \
     VisualizationWallpapers
 

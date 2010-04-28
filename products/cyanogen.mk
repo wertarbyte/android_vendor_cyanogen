@@ -63,6 +63,8 @@ USE_CAMERA_STUB := false
 
 PRODUCT_PACKAGES += \
     Superuser \
+    android.software.live_wallpaper.xml \
+    LiveWallpapersPicker \
     libRS \
     librs_jni
 
