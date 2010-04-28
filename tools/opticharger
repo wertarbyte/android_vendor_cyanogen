@@ -49,8 +49,14 @@ then
     NAME=`basename $1`;
     echo "Optimizing $NAME...";
 
-    CERT=`grep $NAME $APKCERTS | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
-    KEY=`grep $NAME $APKCERTS | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
+    APKINFO=`grep "name=\"$NAME\"" $APKCERTS`
+    if [ "$APKINFO" = "" ];
+    then
+        echo "No apk info for $NAME";
+        exit 1;
+    fi
+    CERT=`echo $APKINFO | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
+    KEY=`echo $APKINFO | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
     if [ "$CERT" = "" ];
     then
         echo "Unable to find certificate for $NAME"
@@ -70,14 +76,15 @@ then
             mv $x.crushed $x
         fi
     done
-    mv $BASE/$1 $BASE/$1.old
+    cp $BASE/$1 $BASE/$1.old
 
     echo "Repacking apk.."
     aapt p -0 res/raw -0 res/raw-en -F $NAME .
     
         echo "Resigning with cert: `echo $CERT`"
-    java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
 
+   echo java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
+    java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
     echo "Zipalign.."
     zipalign -f 4 signed_$NAME $BASE/$1
     ls -l $BASE/$1.old
