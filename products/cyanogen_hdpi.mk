@@ -34,7 +34,6 @@ ifdef CYANOGEN_WITH_GOOGLE
         vendor/cyanogen/proprietary/googlevoice.apk:system/app/googlevoice.apk \
         vendor/cyanogen/proprietary/HtcCopyright.apk:system/app/HtcCopyright.apk \
         vendor/cyanogen/proprietary/PassionQuickOffice.apk:system/app/PassionQuickOffice.apk \
-        vendor/cyanogen/proprietary/VoiceSearchWithKeyboard.apk:system/app/VoiceSearchWithKeyboard.apk \
         vendor/cyanogen/proprietary/libinterstitial.so:system/lib/libinterstitial.so
 endif
 

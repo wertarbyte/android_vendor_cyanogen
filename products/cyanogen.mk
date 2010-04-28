@@ -149,6 +149,7 @@ ifdef CYANOGEN_WITH_GOOGLE
         vendor/cyanogen/proprietary/Talk.apk:system/app/Talk.apk \
         vendor/cyanogen/proprietary/TalkProvider.apk:system/app/TalkProvider.apk \
         vendor/cyanogen/proprietary/Vending.apk:system/app/Vending.apk \
+        vendor/cyanogen/proprietary/VoiceSearchWithKeyboard.apk:system/app/VoiceSearchWithKeyboard.apk \
         vendor/cyanogen/proprietary/YouTube.apk:system/app/YouTube.apk \
         vendor/cyanogen/proprietary/com.google.android.datamessaging.xml:system/etc/permissions/com.google.android.datamessaging.xml \
         vendor/cyanogen/proprietary/com.google.android.gtalkservice.xml:system/etc/permissions/com.google.android.gtalkservice.xml \
