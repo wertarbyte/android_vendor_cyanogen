@@ -9,6 +9,12 @@ CHANGELOG
 * Updated Japanese locales from Takuo Kitame
 * Droid: Fix for 50% signal loss reporting bug on Motorola Droid. (Boyd Bischke)
 * Droid: Disable V8. It was breaking Epocrates and other applications.
+* D/S: Full support for Dream and Sapphire devices (eclair-ds branch)
+* D/S: Gallery3D fixed for MDPI by dferreira@XDA
+* D/S: Updated wallpapers and Launcher for MDPI
+* D/S: Build various OMX components from source (via CodeAurora)
+* Added Compcache and rzscontrol to the build
+* D/S: libcamera originally reverse engineered by NCommander
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
