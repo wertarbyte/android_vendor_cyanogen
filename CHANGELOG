@@ -18,6 +18,7 @@ CHANGELOG
 * APN list updated by Paul Weiss, blunden, and PsychoI3oy.
 * Downloader allows any file to download - thanks Eddie Ringle
 * Kernel updated to 2.6.33.3
+* Fix bug with where wrong organization is shown in-call (Boyd Bischke)
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
