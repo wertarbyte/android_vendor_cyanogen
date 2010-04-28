@@ -15,8 +15,9 @@ CHANGELOG
 * D/S: Build various OMX components from source (via CodeAurora)
 * Added Compcache and rzscontrol to the build
 * D/S: libcamera originally reverse engineered by NCommander
-* APN list updated by Paul Weiss
+* APN list updated by Paul Weiss, blunden, and PsychoI3oy.
 * Downloader allows any file to download - thanks Eddie Ringle
+* Kernel updated to 2.6.33.3
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
