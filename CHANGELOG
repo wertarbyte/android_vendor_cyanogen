@@ -19,7 +19,7 @@ CHANGELOG
 * Downloader allows any file to download - thanks Eddie Ringle
 * Kernel updated to 2.6.33.3
 * Fix bug with where wrong organization is shown in-call (Boyd Bischke)
-* Droid: Tweak the soft key vibration to better match stock (Adrynalyne)
+* Droid: Tweak the haptic feedback to better match stock (Adrynalyne)
 * Droid: Enable Dialpad for OTA Activation (nuclear305)
 
 ---- 5.0.6.2-Droid
