@@ -49,19 +49,33 @@ then
     NAME=`basename $1`;
     echo "Optimizing $NAME...";
 
-    APKINFO=`grep "name=\"$NAME\"" $APKCERTS`
-    if [ "$APKINFO" = "" ];
+    if [ "$2" != "" ];
     then
-        echo "No apk info for $NAME";
-        exit 1;
+        CERT=build/target/product/security/$2.x509.pem
+        KEY=build/target/product/security/$2.pk8
+        if [ ! -f "$ANDROID_BUILD_TOP/$CERT" ];
+        then
+            echo "$CERT does not exist!";
+            exit 1;
+        fi
+    else
+        APKINFO=`grep "name=\"$NAME\"" $APKCERTS`;
+        echo "APKINFO: $APKINFO";
+        if [ "$APKINFO" = "" ];
+        then
+            echo "No apk info for $NAME";
+            exit 1;
+        fi
+        CERT=`echo $APKINFO | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
+        KEY=`echo $APKINFO | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
+        if [ "$CERT" = "" ];
+        then
+            echo "Unable to find certificate for $NAME"
+            exit 1;
+        fi
     fi
-    CERT=`echo $APKINFO | awk {'print $2'} | cut -f 2 -d "=" | tr -d "\""`;
-    KEY=`echo $APKINFO | awk {'print $3'} | cut -f 2 -d "=" | tr -d "\""`;
-    if [ "$CERT" = "" ];
-    then
-        echo "Unable to find certificate for $NAME"
-        exit 1;
-    fi
+
+    echo "Certificate: $CERT";
 
     rm -rf /tmp/$NAME
     mkdir /tmp/$NAME
