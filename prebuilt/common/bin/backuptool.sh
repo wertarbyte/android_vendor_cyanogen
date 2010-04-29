@@ -58,6 +58,7 @@ app/Street.apk
 app/Talk.apk
 app/TalkProvider.apk
 app/Vending.apk
+app/VoiceSearch.apk
 app/VoiceSearchWithKeyboard.apk app/LatinIME.apk
 app/YouTube.apk
 etc/permissions/com.google.android.datamessaging.xml
