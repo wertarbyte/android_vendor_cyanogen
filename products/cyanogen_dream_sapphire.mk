@@ -32,7 +32,7 @@ PRODUCT_PACKAGES += \
 
 ifdef CYANOGEN_NIGHTLY
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-$(shell date +%m%d%Y)-NIGHTLY-DS
+        ro.modversion=CyanogenMod-5-$(shell date +%m%d%Y)-NIGHTLY-DS
 else
     PRODUCT_PROPERTY_OVERRIDES += \
         ro.modversion=CyanogenMod-5.0.7-DS-test1
