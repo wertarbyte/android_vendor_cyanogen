@@ -35,7 +35,7 @@ ifdef CYANOGEN_NIGHTLY
         ro.modversion=CyanogenMod-$(shell date +%m%d%Y)-NIGHTLY-DS
 else
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-5.0.7-test0
+        ro.modversion=CyanogenMod-5.0.7-DS-test1
 endif
 
 include frameworks/base/data/sounds/AudioPackage4.mk 
