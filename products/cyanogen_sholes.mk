@@ -30,7 +30,7 @@ PRODUCT_COPY_FILES +=  \
 
 ifdef CYANOGEN_NIGHTLY
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-$(shell date +%m%d%Y)-NIGHTLY-Droid
+        ro.modversion=CyanogenMod-5-$(shell date +%m%d%Y)-NIGHTLY-Droid
 else
     PRODUCT_PROPERTY_OVERRIDES += \
         ro.modversion=CyanogenMod-5.0.6.2-Droid

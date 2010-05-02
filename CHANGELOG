@@ -26,6 +26,7 @@ CHANGELOG
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
 * Remove Google Apps which accidentally ended up in the build.
+* Removed the usage of blur effects on some screens (like power off). It is too slow on the Droid.
 
 ---- 5.0.6.1-Droid
 * Fix wifi for those using the default kernel
