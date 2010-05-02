@@ -21,6 +21,7 @@ CHANGELOG
 * Fix bug with where wrong organization is shown in-call (Boyd Bischke)
 * Droid: Tweak the haptic feedback to better match stock (Adrynalyne)
 * Droid: Enable Dialpad for OTA Activation (nuclear305)
+* Several kernel patches from Christopher Lais (Zinx) to improve stability and support MT3G Fender/1.2
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
