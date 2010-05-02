@@ -5,7 +5,7 @@ CHANGELOG
 * Superuser 2.0 from ChainsDD
 * DeskClock style tweaks from Nathan Zachary
 * Email signature support from Jarrett Vance
-* Pin-lock and alternate lockscreen framework from avatar5d
+* Pin-lock and alternate lockscreen framework from _avatar
 * Updated Japanese locales from Takuo Kitame
 * Droid: Fix for 50% signal loss reporting bug on Motorola Droid (Boyd Bischke)
 * Droid: Disable V8. It was breaking Epocrates and other applications
