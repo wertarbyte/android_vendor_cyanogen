@@ -22,6 +22,9 @@ CHANGELOG
 * Droid: Tweak the haptic feedback to better match stock (Adrynalyne)
 * Droid: Enable Dialpad for OTA Activation (nuclear305)
 * Several kernel patches from Christopher Lais (Zinx) to improve stability and support MT3G Fender/1.2
+* Battery drain issue in DS-test1 was fixed by Zinx
+* D/S: disable menu in lockscreen, fix incall mute, speed up the boot
+* D/S: add Prash's bootanimation
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
