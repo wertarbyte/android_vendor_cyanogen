@@ -41,3 +41,6 @@ endif
 include frameworks/base/data/sounds/AudioPackage4.mk 
 include vendor/htc/dream_sapphire/device_dream_sapphire.mk
 
+PRODUCT_COPY_FILES +=  \
+    vendor/cyanogen/prebuilt/dream_sapphire/media/bootanimation.zip:system/media/bootanimation.zip
+
