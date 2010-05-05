@@ -355,7 +355,6 @@
   <apn carrier="Vodafone IE" mcc="272" mnc="01" apn="live.vodafone.com" user="" password="" server="" mmsc="" type="default,supl"/>
   <apn carrier="Vodafone IE-ISP" mcc="272" mnc="01" apn="isp.vodafone.ie" user="vodafone" password="vodafone" type="default,supl"/>
   <apn carrier="Vodafone IE-MMS" apn="mms.vodafone.net" proxy="" port="" user="" password="" server="" mmsc="http://www.vodafone.ie/mms" mmsproxy="10.24.59.200" mmsport="80" mcc="272" mnc="01" type="mms"/>
-  <apn carrier="Vodafone IT Web" mcc="222" mnc="10" apn="web.omnitel.it" user="" password="" server="" mmsc="" type="default" />
   <apn carrier="Vodafone IT Mobile" mcc="222" mnc="10" apn="mobile.vodafone.it" user="" password="" server="" mmsc="" type="default" />
   <apn carrier="Vodafone IT iPhone" mcc="222" mnc="10" apn="iphone.vodafone.it" user="" password="" server="" mmsc="" type="default" />
   <apn carrier="Vodafone IT MMS" apn="mms.vodafone.it" proxy="" port="" user="" password="" server="" mmsc="http://mms.vodafone.it/servlets/mms" mmsproxy="10.128.224.10" mmsport="80" mcc="222" mnc="10" type="mms"/>
