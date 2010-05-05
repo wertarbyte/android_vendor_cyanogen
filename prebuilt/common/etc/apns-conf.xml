@@ -73,7 +73,7 @@
   <apn carrier="cmnet" apn="cmnet" mcc="460" mnc="00" type="default,supl"/>
   <apn carrier="cmwap" apn="cmwap" mmsc="http://mmsc.monternet.com" mmsproxy="010.000.000.172" mmsport="80" mcc="460" mnc="00" type="default,supl"/>
   <apn carrier="Cosmote Wireless Internet" mcc="202" mnc="01" apn="Internet" type="default,supl"/>
-  <apn carrier="Cosmote MMS" mcc="262" mnc="01" apn="Mms" mmsproxy="10.10.10.20" mmsport="8080" mmsc="195.167.65.220:8002" type="mms"/>
+  <apn carrier="Cosmote MMS" mcc="202" mnc="01" apn="Mms" mmsproxy="10.10.10.20" mmsport="8080" mmsc="195.167.65.220:8002" type="mms"/>
   <apn carrier="Djezzy Internet" apn="djezzy.internet" proxy="" port="" user="" password="" server="" mmsc="" mmsproxy="" mmsport="" mcc="603" mnc="02" />
   <apn carrier="Djuice EDGE" apn="www.djuice.com.ua" user="" password="" server="" mmsc="" mcc="255" mnc="03" type="default"/>
   <apn carrier="Djuice MMS" apn="mms.kyivstar.net" user="djuice" password="mms" server="" mmsc="http://http://mms.kyivstar.net" mmsproxy="010.010.010.010" mmsport="8080" mcc="255" mnc="03" type="mms"/>
