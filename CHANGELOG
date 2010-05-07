@@ -1,6 +1,7 @@
 CHANGELOG
 
 ---- 5.0.7 (pre)
+* Resync with Google as of 05/05/2010
 * New ARM optimizations in Bionic from Jim Huang @ 0xlab
 * Superuser 2.0 from ChainsDD
 * DeskClock style tweaks from Nathan Zachary
@@ -22,9 +23,15 @@ CHANGELOG
 * Droid: Tweak the haptic feedback to better match stock (Adrynalyne)
 * Droid: Enable Dialpad for OTA Activation (nuclear305)
 * Several kernel patches from Christopher Lais (Zinx) to improve stability and support MT3G Fender/1.2
-* Battery drain issue in DS-test1 was fixed by Zinx
+* D/S: Various driver issues causing battery drain were fixed by Zinx
 * D/S: disable menu in lockscreen, fix incall mute, speed up the boot
+* D/S: raise min cpufreq to 245MHz (Wes Garner)
 * D/S: add Prash's bootanimation
+* Low memory killer was pimped out by San Mehat @ Google.  Big interactivity boost especially on D/S
+* Updated Phone patches from Cytown
+* Dim the deskclock screensaver colors
+* Fixed race conditions and notification bugs in MMS
+* D/S: Using HTC "Turbo Mode" clock settings
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
