@@ -4,9 +4,6 @@ PRODUCT_NAME := cyanogen_hdpi
 PRODUCT_BRAND := cyanogen
 PRODUCT_DEVICE := generic
 
-# Allow Bionic to use NEON memcpy implementation
-ALLOW_LGPL := true
-
 # Let's grab the hdpi versions of apps and some extras
 PRODUCT_PACKAGES += \
     Launcher2 \
@@ -16,9 +13,6 @@ PRODUCT_PACKAGES += \
 
 # Build WebKit with V8
 #JS_ENGINE:=v8
-
-# Enable animated GIF in WebKit
-ENABLE_ANIMATED_GIF:=true
 
 # Pick up some sounds
 include frameworks/base/data/sounds/OriginalAudio.mk
@@ -35,6 +29,5 @@ ifdef CYANOGEN_WITH_GOOGLE
         vendor/cyanogen/proprietary/PassionQuickOffice.apk:system/app/PassionQuickOffice.apk \
         vendor/cyanogen/proprietary/libinterstitial.so:system/lib/libinterstitial.so
 endif
-
 
 PRODUCT_LOCALES += hdpi
