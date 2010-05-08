@@ -8,7 +8,6 @@
 #
 # cyanogen - shade@chemlab.org
 # ChrisSoyars - me@ctso.me
-set -e
 
 OUT_TARGET_HOST=$(uname -a | grep Darwin)
 if [ -z "$OUT_TARGET_HOST" ]
@@ -17,6 +16,8 @@ then
 else
     OUT_TARGET_HOST=darwin-x86
 fi
+
+set -e
 
 BASE=`pwd`
 if [ "$APKCERTS" = "" ];
