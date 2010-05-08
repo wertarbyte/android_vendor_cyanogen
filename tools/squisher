@@ -6,6 +6,16 @@
 # TODO: make squashfs optional
 #
 
+OUT_TARGET_HOST=$(uname -a | grep Darwin)
+if [ -z "$OUT_TARGET_HOST" ]
+then
+        OUT_TARGET_HOST=linux-x86
+        MD5=md5sum
+else
+        OUT_TARGET_HOST=darwin-x86
+        MD5=md5
+fi
+
 OTAPACKAGE=$OUT/$TARGET_PRODUCT-ota-$TARGET_BUILD_VARIANT.$LOGNAME.zip
 if [ ! -f "$OTAPACKAGE" ]; then
         echo "$OTAPACKAGE doesn't exist!";
@@ -13,22 +23,25 @@ if [ ! -f "$OTAPACKAGE" ]; then
 fi
 
 XBIN=$OUT/system/xbin
-OPTICHARGER=$ANDROID_BUILD_TOP/vendor/cyanogen/tools/opticharger
+OPTICHARGER=$ANDROID_BUILD_TOP/vendor/cyanogen/tools/opticharger    
 
 DELETE_BINS="applypatch applypatch_static check_prereq recovery updater"
 
 WORK=/tmp/repack
 rm -rf $WORK
-
-# Create the xbin squashfs
 mkdir -p $WORK
-cp -a $XBIN $WORK/xbin/
-cd $WORK/xbin
-chown -R 1000:1000 *
-chmod -R 755 *
-rm su
-ln -s ../bin/su su
-mksquashfs . $WORK/xbin.sqf
+
+if [ -z "$NO_SQUASHFS" ]
+then
+        # Create the xbin squashfs
+        cp -a $XBIN $WORK/xbin/
+        cd $WORK/xbin
+        chown -R 1000:1000 *
+        chmod -R 755 *
+        rm su
+        ln -s ../bin/su su
+        mksquashfs . $WORK/xbin.sqf
+fi
 
 # Unpack the otapackage and opticharge all apks
 mkdir $WORK/ota
@@ -41,12 +54,16 @@ for i in *.apk; do
         $OPTICHARGER $i;
 done
 
-# Relocate su and put xbin.sqf where it belongs
 cd $WORK/ota/system
-rm -f bin/su
-mv xbin/su bin/su
-rm -rf xbin/*
-mv $WORK/xbin.sqf xbin/
+
+if [ -z "$NO_SQUASHFS" ]
+then
+        # Relocate su and put xbin.sqf where it belongs
+        rm -f bin/su
+        mv xbin/su bin/su
+        rm -rf xbin/*
+        mv $WORK/xbin.sqf xbin/
+fi
 
 # Fix build.prop
 grep -v ro.kernel.android.checkjni build.prop | sed -e "s/^ro\.build\.type=eng$/ro\.build\.type=user/g" > build.prop.new
@@ -74,10 +91,10 @@ rm updater-script.new
 zip -r update.zip .
 echo "Signing package.."
 SECURITYDIR=$ANDROID_BUILD_TOP/build/target/product/security
-java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 update.zip update_signed.zip
+java -jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 update.zip update_signed.zip
 
 mv update_signed.zip $OUT/update-cm-$MODVERSION-signed.zip
-md5sum $OUT/update-cm-$MODVERSION-signed.zip > $OUT/update-cm-$MODVERSION-signed.zip.md5sum
+$MD5 $OUT/update-cm-$MODVERSION-signed.zip > $OUT/update-cm-$MODVERSION-signed.zip.md5sum
 
 echo "Package complete: $OUT/update-cm-$MODVERSION-signed.zip";
 cat $OUT/update-cm-$MODVERSION-signed.zip.md5sum

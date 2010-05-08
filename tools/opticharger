@@ -10,6 +10,14 @@
 # ChrisSoyars - me@ctso.me
 set -e
 
+OUT_TARGET_HOST=$(uname -a | grep Darwin)
+if [ -z "$OUT_TARGET_HOST" ]
+then
+    OUT_TARGET_HOST=linux-x86
+else
+    OUT_TARGET_HOST=darwin-x86
+fi
+
 BASE=`pwd`
 if [ "$APKCERTS" = "" ];
 then
@@ -97,8 +105,8 @@ then
     
         echo "Resigning with cert: `echo $CERT`"
 
-   echo java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
-    java -jar $ANDROID_BUILD_TOP/out/host/linux-x86/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
+    echo java -jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
+    java -jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar $ANDROID_BUILD_TOP/$CERT $ANDROID_BUILD_TOP/$KEY $NAME signed_$NAME
     echo "Zipalign.."
     zipalign -f 4 signed_$NAME $BASE/$1
     ls -l $BASE/$1.old
