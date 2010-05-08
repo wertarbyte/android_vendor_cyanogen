@@ -27,6 +27,7 @@ check_installscript() {
 
 get_files() {
     cat <<EOF
+app/amazonmp3.apk
 app/BugReport.apk
 app/CarDock.apk
 app/CorpCal.apk
