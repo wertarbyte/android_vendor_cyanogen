@@ -37,6 +37,8 @@ CHANGELOG
 * Allow widgets in the Launcher default workspace (ported from Launcher2 by Lox)
 * Fix race conditions and bugs in MMS app
 * D/S: Enabled phone touch UI
+* Compact drawer can be toggled for Launcher as well as Launcher2 now
+* Added squisher script for release builds
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
