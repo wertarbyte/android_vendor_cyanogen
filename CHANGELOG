@@ -32,6 +32,11 @@ CHANGELOG
 * Dim the deskclock screensaver colors
 * Fixed race conditions and notification bugs in MMS
 * D/S: Using HTC "Turbo Mode" clock settings
+* Fix issues with notification LED on D/S
+* Added quick uninstall "Delete Zone" to Launcher and Launcher2 (Ander Webbs)
+* Allow widgets in the Launcher default workspace (ported from Launcher2 by Lox)
+* Fix race conditions and bugs in MMS app
+* D/S: Enabled phone touch UI
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
