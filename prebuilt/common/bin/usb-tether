@@ -42,7 +42,7 @@ case "$1" in
       sysctl -w ${SYSCTL_FWD}=1
       
       # bring up bluetooth networking (if available)
-      [ "$ENABLE_BT" -eq 1 ] && $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -s
+      [ "$ENABLE_BT" -eq 1 ] && $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -S -s
       
       # create (or at least empty) chain for forwarded packets
       iptables -N tether
