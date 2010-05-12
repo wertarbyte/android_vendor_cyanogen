@@ -39,6 +39,14 @@ CHANGELOG
 * D/S: Enabled phone touch UI
 * Compact drawer can be toggled for Launcher as well as Launcher2 now
 * Added squisher script for release builds
+* D/S: Don't use msmsdcc_sdioirq, this leaves IRQs on all the time which can cause battery drain
+* D/S: Fix RIL settings to improve performance
+* N1: Trackball notification color blending option (from Ehud Shabtai http://github.com/eshabtai)
+* Fix OpenVPN- manifest was using the wrong mtpd
+* D/S: Kill logspam from OMX
+* Another lowmemorykiller tweak from Zinx to take cache into account
+* Turned off battery percentage display by default
+* Added "omni-tether" from Wetarbyte for BT tether- needs pand which will be added in next rev
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
@@ -84,7 +92,7 @@ CHANGELOG
 * Number keys work on the vk in the Terminal app again (from Jack Palevich's Google Code project)
 * Added 5-minute screen timeout option
 * Potential fixes in build.prop to improve 3G speed on N1 - YMMV.
- 
+
 ---- 5.0.5.7-Droid
 * Fix Launcher2.
 
@@ -114,10 +122,10 @@ CHANGELOG
 * Added script-security option to fix OpenVPN
 * Added Italian locales from Eugenio, nk02 and wsx from Androidiani.com
 * Patch for CM issue 1182, obtained from google issue 1597
-* Music appwidget now shows album art and previous button - from Eliot Stocker 
+* Music appwidget now shows album art and previous button - from Eliot Stocker
 * Fix issue with MMS user-agent being set incorrectly
 
----- 5.0.5-N1 
+---- 5.0.5-N1
 * New Apps2SD method built into the framework.  See the wiki for instructions!  HUGE HUGE thanks to Chris Soyars for coding the bulk of this, and Wysie for getting our asses moving on it.
 * Launcher2 tweaked to honor fling velocity - code by Mohd Faruq (http://github.com/ruqqq) - check out more in HelixLauncher on the market
 * MMS enhancements originally by rgv151, ported to Eclair by Mohd Faruq, ChainsDD, Wes Garner, and myself
@@ -136,7 +144,7 @@ CHANGELOG
 * Battery percentage shown on the status bar - toggle the option in Spare Parts - patch from canadiancow (will take a battery status change for it to update after switching the toggle)
 * Included rsync (thanks to Dylex for the Android port), iwconfig, and iwlist
 * Updated German translations from Matthias Büchner (http://github.com/thiasB)
-* Many patches and fixes from AOSP and contributors (http://r.android.com) 
+* Many patches and fixes from AOSP and contributors (http://r.android.com)
 * RenderScript is somewhat faster - now built in ARM mode (the VFP is not used fully in thumb mode) and supports reuse of allocations (from CodeAurora)
 * lights.mahimahi.so and sensors.mahimahi.so built from Google source
 * Latest e2fsprogs (1.41.10)
