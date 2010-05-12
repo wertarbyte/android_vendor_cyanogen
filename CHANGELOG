@@ -47,6 +47,7 @@ CHANGELOG
 * Another lowmemorykiller tweak from Zinx to take cache into account
 * Turned off battery percentage display by default
 * Added "omni-tether" from Wetarbyte for BT tether- needs pand which will be added in next rev
+* System built using Zinx's resource-sorter patch for aapt- may provide perf boost
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
