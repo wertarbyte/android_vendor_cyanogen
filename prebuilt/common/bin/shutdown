@@ -5,10 +5,10 @@ stop dhcpcd;
 
 sleep 1;
 
-for i in `cat /proc/mounts | cut -f 2 -d " "`;
+while read DEV DIR FS OPTS X Y;
 do
-   busybox mount -o remount,ro $i 2>&1 > /dev/null;
-done
+   busybox mount -o remount,ro $DIR 2>&1 > /dev/null;
+done < /proc/mounts
 
 sync;
 
