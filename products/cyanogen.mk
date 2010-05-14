@@ -82,7 +82,6 @@ TARGET_OTA_BACKUPTOOL=True
 PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml \
     vendor/cyanogen/prebuilt/common/etc/dnsmasq.conf:system/etc/dnsmasq.conf \
-    vendor/cyanogen/prebuilt/common/etc/pand.up:system/etc/pand.up \
     vendor/cyanogen/prebuilt/common/etc/e2fsck.conf:system/etc/e2fsck.conf \
     vendor/cyanogen/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
     vendor/cyanogen/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
@@ -99,7 +98,8 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache \
     vendor/cyanogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
     vendor/cyanogen/prebuilt/common/xbin/openvpn-up.sh:system/xbin/openvpn-up.sh \
-	vendor/cyanogen/prebuilt/common/xbin/dropbear-keygen:system/xbin/dropbear-keygen
+    vendor/cyanogen/prebuilt/common/xbin/pand-up.sh:system/xbin/pand-up.sh \
+    vendor/cyanogen/prebuilt/common/xbin/dropbear-keygen:system/xbin/dropbear-keygen
 
 # Various prebuilt stuff that hasen't been android-ized yet
 PRODUCT_COPY_FILES += \

@@ -18,7 +18,7 @@ USB_DEV=usb0
 
 # pand is required for bluetooth connectivity
 PAND=pand
-PAND_UP=/etc/pand.up
+PAND_UP=/system/xbin/pand-up.sh
 PAND_PID=/data/misc/pand.pid
 
 ENABLE_BT=0
