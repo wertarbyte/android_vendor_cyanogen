@@ -1,10 +1,10 @@
 #!/system/bin/sh
-DEV=${1:-bnep0}
-MAC=${2:-}
+PAN_DEV=${1:-bnep0}
+PAN_MAC=${2:-}
 
-BRIDGE=tether
+TETHER=tether
 
-ifconfig $DEV up
-brctl addif $BRIDGE $DEV
+[ -e "/etc/tether.conf" ] && . /etc/tether.conf
 
-# echo 1 > /proc/sys/net/ipv4/conf/$DEV/forwarding
+ifconfig $PAN_DEV up
+brctl addif $TETHER $PAN_DEV
