@@ -5,6 +5,9 @@
 #
 # extended by Stefan Tomanek (stefan@pico.ruhr.de)
 
+# values specified here may be overridden by the config file
+CONF="/etc/tether.conf"
+
 # the bridge device
 TETHER=tether
 
@@ -26,8 +29,12 @@ ENABLE_BT=0
 # is pand installed?
 which $PAND && ENABLE_BT=1
 
-
 SYSCTL_FWD=net.ipv4.ip_forward
+
+# load configuration file if present
+if [ -e "$CONF" ]; then
+    . "$CONF"
+fi
 
 case "$1" in
    start)
