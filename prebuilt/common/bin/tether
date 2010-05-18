@@ -16,6 +16,10 @@ OUT="rmnet0 tun+ tap+ ppp0 `getprop wifi.interface`"
 ADDR=192.168.77.254
 MASK=255.255.255.0
 
+# configure the DHCP range
+RANGE_START=192.168.77.100
+RANGE_END=192.168.77.105
+
 USB_TOGGLE=/sys/devices/virtual/usb_composite/rndis/enable
 USB_DEV=usb0
 
@@ -31,10 +35,34 @@ which $PAND && ENABLE_BT=1
 
 SYSCTL_FWD=net.ipv4.ip_forward
 
+DNSMASQ=dnsmasq
+
 # load configuration file if present
 if [ -e "$CONF" ]; then
     . "$CONF"
 fi
+
+start_dnsmasq() {
+    $DNSMASQ \
+        --interface "$TETHER" \
+        --no-resolv \
+        --no-poll \
+        --no-negcache \
+        --server 4.2.2.2 \
+        --server 4.2.2.3 \
+        --dhcp-authoritative \
+        --dhcp-range=${RANGE_START},${RANGE_END},12h \
+        --dhcp-leasefile=/data/misc/dnsmasq.leases \
+        --pid-file=/data/misc/dnsmasq.pid \
+        --user=dhcp
+}
+
+stop_dnsmasq() {
+    if [ -e /data/misc/dnsmasq.pid ]; then
+        kill $(cat /data/misc/dnsmasq.pid)
+        rm /data/misc/dnsmasq.pid
+    fi
+}
 
 case "$1" in
    start)
@@ -71,12 +99,12 @@ case "$1" in
          iptables -t nat -A POSTROUTING -o $DEV -j MASQUERADE
       done
       
-      start dnsmasq
+      start_dnsmasq
       setprop tethering.enabled 1
    ;;
    
    stop)
-      stop dnsmasq
+      stop_dnsmasq
       
       # stop bluetooth networking
       if [ "$ENABLE_BT" -eq 1 ]; then
