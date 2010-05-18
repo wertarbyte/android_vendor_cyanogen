@@ -93,6 +93,7 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/init.d/20userinit:system/etc/init.d/20userinit \
     vendor/cyanogen/prebuilt/common/etc/init.d/99complete:system/etc/init.d/99complete \
     vendor/cyanogen/prebuilt/common/bin/fix_permissions:system/bin/fix_permissions \
+    vendor/cyanogen/prebuilt/common/bin/tether:system/bin/tether \
     vendor/cyanogen/prebuilt/common/bin/usb-tether:system/bin/usb-tether \
     vendor/cyanogen/prebuilt/common/bin/shutdown:system/bin/shutdown \
     vendor/cyanogen/prebuilt/common/bin/compcache:system/bin/compcache \
