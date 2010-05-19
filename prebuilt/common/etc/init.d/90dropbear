@@ -20,5 +20,5 @@ if [ -d $DBDIR ]; then
         fi
     done
 
-    $DROPBEAR -v -s -g
+    $DROPBEAR -s -g -d -r $DBDIR/dropbear_rsa_hostkey -d $DBDIR/dropbear_dss_hostkey
 fi;
