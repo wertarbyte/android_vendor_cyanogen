@@ -76,6 +76,9 @@ KERNEL_MODULES_DIR:=/system/lib/modules
 # Tiny toolbox
 TINY_TOOLBOX:=true
 
+# Enable Windows Media if supported by the board
+WITH_WINDOWS_MEDIA:=true
+
 # Include backuptool
 TARGET_OTA_BACKUPTOOL=True
 
