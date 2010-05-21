@@ -1,0 +1,147 @@
+#!/system/bin/sh
+#
+# USB RNDIS tether setup
+# shade@chemlab.org (cyanogen)
+#
+# extended by Stefan Tomanek (stefan@pico.ruhr.de)
+
+# values specified here may be overridden by the config file
+CONF="/etc/tether.conf"
+
+# the bridge device
+TETHER=tether
+
+# a list of devices through which to get internet connectivity
+OUT="rmnet0 tun+ tap+ ppp0 `getprop wifi.interface`"
+ADDR=192.168.77.254
+MASK=255.255.255.0
+
+# configure the DHCP range
+RANGE_START=192.168.77.100
+RANGE_END=192.168.77.105
+
+USB_TOGGLE=/sys/devices/virtual/usb_composite/rndis/enable
+USB_DEV=usb0
+
+# pand is required for bluetooth connectivity
+PAND=pand
+# this script is started by pand after a connection is established
+PAND_UP=/system/xbin/pand-up.sh
+PAND_PID=/data/misc/pand.pid
+
+ENABLE_BT=0
+# is pand installed?
+which $PAND && ENABLE_BT=1
+
+SYSCTL_FWD=net.ipv4.ip_forward
+
+DNSMASQ=dnsmasq
+
+# load configuration file if present
+if [ -e "$CONF" ]; then
+    . "$CONF"
+fi
+
+start_dnsmasq() {
+    $DNSMASQ \
+        --interface "$TETHER" \
+        --no-resolv \
+        --no-poll \
+        --no-negcache \
+        --server 4.2.2.2 \
+        --server 4.2.2.3 \
+        --dhcp-authoritative \
+        --dhcp-range=${RANGE_START},${RANGE_END},12h \
+        --dhcp-leasefile=/data/misc/dnsmasq.leases \
+        --pid-file=/data/misc/dnsmasq.pid \
+        --user=dhcp
+}
+
+stop_dnsmasq() {
+    if [ -e /data/misc/dnsmasq.pid ]; then
+        kill $(cat /data/misc/dnsmasq.pid)
+        rm /data/misc/dnsmasq.pid
+    fi
+}
+
+case "$1" in
+   start)
+      # create bridge for tethering
+      brctl addbr $TETHER
+      
+      # add USB interface to it
+      ifconfig $USB_DEV up
+      brctl addif $TETHER $USB_DEV
+      
+      ifconfig $TETHER up $ADDR netmask $MASK
+      echo 1 > $USB_TOGGLE
+      sysctl -w ${SYSCTL_FWD}=1
+      
+      # bring up bluetooth networking (if available)
+      [ "$ENABLE_BT" -eq 1 ] && $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -S -s
+      
+      # create (or at least empty) chain for forwarded packets
+      iptables -N tether
+      iptables -F tether
+      # we let packets pass belonging to connections that are already established
+      iptables -A tether -m state --state RELATED,ESTABLISHED -j ACCEPT
+      # other packets originating from the inner device are also allowed to pass
+      iptables -A tether -i $TETHER -j ACCEPT
+      
+      # hook the tether rules into the FORWARDING chain
+      # send all packets that are send or received by the tethered network
+      # through the filter chain
+      iptables -A FORWARD -i $TETHER -j tether
+      iptables -A FORWARD -o $TETHER -j tether
+      
+      # enable masquerading for all outgoing devices
+      for DEV in $OUT; do
+         iptables -t nat -A POSTROUTING -o $DEV -j MASQUERADE
+      done
+      
+      start_dnsmasq
+      setprop tethering.enabled 1
+   ;;
+   
+   stop)
+      stop_dnsmasq
+      
+      # stop bluetooth networking
+      if [ "$ENABLE_BT" -eq 1 ]; then
+        $PAND -K
+        kill $(cat "$PAND_PID")
+      fi
+      
+      # bring down USB networking
+      brctl delif $TETHER $USB_DEV
+      ifconfig $USB_DEV down
+      echo 0 > $USB_TOGGLE
+      
+      # shut down the bridge device
+      ifconfig $TETHER down
+      brctl delbr $TETHER
+      
+      sysctl -w ${SYSCTL_FWD}=0
+      
+      # disable masquerading
+      for DEV in $OUT; do
+         iptables -t nat -D POSTROUTING -o $DEV -j MASQUERADE
+      done
+      
+      # remove references to the tether chain
+      iptables -D FORWARD -i $TETHER -j tether
+      iptables -D FORWARD -o $TETHER -j tether
+      
+      # destroy the tether chain
+      iptables -F tether
+      iptables -X tether
+      
+      setprop tethering.enabled 0
+   ;;
+   *)
+      echo "Usage: $0 {start|stop}"
+      exit 1
+esac
+
+exit 0
+
