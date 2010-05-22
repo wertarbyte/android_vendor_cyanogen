@@ -59,6 +59,7 @@ CHANGELOG
 * DeskClock: Add alarm timeout setting (Michael Webster)
 * OpenVPN: Select between TAP and TUN interface (Takuo Kitame)
 * Various UI element colors are selectable via Spare Parts (Wysie)
+* NEON-optimized libjpeg (CodeAurora/Qualcomm)
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
