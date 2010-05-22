@@ -1,9 +1,9 @@
 CHANGELOG
 
 ---- 5.0.7 (pre)
-* Resync with Google as of 05/16/2010
+* Resync with Google as of 05/20/2010
 * New ARM optimizations in Bionic from Jim Huang @ 0xlab
-* Superuser 2.0 from ChainsDD
+* Superuser 2.1 from ChainsDD
 * DeskClock style tweaks from Nathan Zachary
 * Email signature support from Jarrett Vance
 * Pin-lock and alternate lockscreen framework from _avatar
@@ -47,12 +47,18 @@ CHANGELOG
 * Added "omni-tether" from Wertarbyte for BT tether
 * System built using Zinx's resource-sorter patch for aapt- may provide perf boost
 * Patch from Zinx to have background processes holding wakelocks set to a higher OOM kill adjustment (push notify, mms are good examples)
-* Swipe browser in fullscreen mode to show notifications - from Wysie
 * Number of recent apps is configurable - Bcrook & Wysie
 * Ability to disable icons and paths on the lockscreen - Wysie
 * Add pand and hidd to the build
 * D/S: Fixed 3MP camera preview and memory leaks
 * D/S: Ship old Gallery app as Gallery3D has too many issues right now
+* D/S: Fixed slidelock layout
+* D/S: Fixed issue with picking contact for map directions
+* D/S: Change oom-killer behavior to be more "swap friendly" if you want to go against everyones advice and use swap anyway
+* D/S: Launcher tray images fixed by Prash
+* DeskClock: Add alarm timeout setting (Michael Webster)
+* OpenVPN: Select between TAP and TUN interface (Takuo Kitame)
+* Various UI element colors are selectable via Spare Parts (Wysie)
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
