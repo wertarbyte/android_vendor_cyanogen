@@ -1,65 +1,65 @@
 CHANGELOG
 
 ---- 5.0.7 (pre)
-* Resync with Google as of 05/20/2010
-* New ARM optimizations in Bionic from Jim Huang @ 0xlab
-* Superuser 2.1 from ChainsDD
-* DeskClock style tweaks from Nathan Zachary
-* Email signature support from Jarrett Vance
-* Pin-lock and alternate lockscreen framework from _avatar
-* Updated Japanese locales from Takuo Kitame
+* Common: Resync with Google as of 05/20/2010
+* Common: New ARM optimizations in Bionic from Jim Huang @ 0xlab
+* Common: Superuser 2.1 from ChainsDD
+* Common: DeskClock style tweaks from Nathan Zachary
+* Common: Email signature support from Jarrett Vance
+* Common: Pin-lock and alternate lockscreen framework from _avatar
+* Common: Updated Japanese locales from Takuo Kitame
+* Common: Added Compcache and rzscontrol to the build
+* Common: APN list updated by Paul Weiss, blunden, and PsychoI3oy.
+* Common: Downloader allows any file to download - thanks Eddie Ringle
+* Common: Kernel updated to 2.6.33.4
+* Common: Fix bug with where wrong organization is shown in-call (Boyd Bischke)
+* Common: Several kernel patches from Christopher Lais (Zinx) to improve stability and support MT3G Fender/1.2
+* Common: Low memory killer was pimped out by San Mehat @ Google.  Big interactivity boost especially on D/S
+* Common: Updated Phone patches from Cytown (v29)
+* Common: Dim the deskclock screensaver colors
+* Common: Fixed race conditions and notification bugs in MMS
+* Common: Added quick uninstall "Delete Zone" to Launcher and Launcher2 (Ander Webbs)
+* Common: Allow widgets in the Launcher default workspace (ported from Launcher2 by Lox)
+* Common: Fix race conditions and bugs in MMS app
+* Compact drawer can be toggled for Launcher as well as Launcher2 now
+* Common: Added squisher script for release builds
+* Common: Another lowmemorykiller tweak from Zinx to take cache into account
+* Common: Turned off battery percentage display by default
+* Common: Added "omni-tether" from Wertarbyte for BT tether
+* Common: System built using Zinx's resource-sorter patch for aapt- may provide perf boost
+* Common: Patch from Zinx to have background processes holding wakelocks set to a higher OOM kill adjustment (push notify, mms are good examples)
+* Common: Number of recent apps is configurable - Bcrook & Wysie
+* Common: Ability to disable icons and paths on the lockscreen - Wysie
+* Common: Add pand and hidd to the build
+* Common: Fix OpenVPN- manifest was using the wrong mtpd
+* Common: DeskClock: Add alarm timeout setting (Michael Webster)
+* Common: OpenVPN: Select between TAP and TUN interface (Takuo Kitame)
+* Common: Various UI element colors are selectable via Spare Parts (Wysie)
+* Common: NEON-optimized libjpeg (CodeAurora/Qualcomm)
 * Droid: Fix for 50% signal loss reporting bug on Motorola Droid (Boyd Bischke)
 * Droid: Disable V8. It was breaking Epocrates and other applications
+* Droid: Tweak the haptic feedback to better match stock (Adrynalyne)
+* Droid: Enable Dialpad for OTA Activation (nuclear305)
 * D/S: Full support for Dream and Sapphire devices (eclair-ds branch)
 * D/S: Updated wallpapers and Launcher for MDPI
 * D/S: Build various OMX components from source (via CodeAurora)
-* Added Compcache and rzscontrol to the build
 * D/S: libcamera originally reverse engineered by NCommander
-* APN list updated by Paul Weiss, blunden, and PsychoI3oy.
-* Downloader allows any file to download - thanks Eddie Ringle
-* Kernel updated to 2.6.33.4
-* Fix bug with where wrong organization is shown in-call (Boyd Bischke)
-* Droid: Tweak the haptic feedback to better match stock (Adrynalyne)
-* Droid: Enable Dialpad for OTA Activation (nuclear305)
-* Several kernel patches from Christopher Lais (Zinx) to improve stability and support MT3G Fender/1.2
 * D/S: Various driver issues causing battery drain were fixed by Zinx
 * D/S: disable menu in lockscreen, fix incall mute, speed up the boot
 * D/S: raise min cpufreq to 245MHz (Wes Garner)
 * D/S: add Prash's bootanimation
-* Low memory killer was pimped out by San Mehat @ Google.  Big interactivity boost especially on D/S
-* Updated Phone patches from Cytown (v29)
-* Dim the deskclock screensaver colors
-* Fixed race conditions and notification bugs in MMS
 * D/S: Using HTC "Turbo Mode" clock settings
-* Fix issues with notification LED on D/S
-* Added quick uninstall "Delete Zone" to Launcher and Launcher2 (Ander Webbs)
-* Allow widgets in the Launcher default workspace (ported from Launcher2 by Lox)
-* Fix race conditions and bugs in MMS app
-* Compact drawer can be toggled for Launcher as well as Launcher2 now
-* Added squisher script for release builds
+* D/S: Fix issues with notification LED on D/S
 * D/S: Don't use msmsdcc_sdioirq, this leaves IRQs on all the time which can cause battery drain
 * D/S: Fix RIL settings to improve performance
-* N1: Trackball notification color blending option (from Ehud Shabtai http://github.com/eshabtai)
-* Fix OpenVPN- manifest was using the wrong mtpd
 * D/S: Kill logspam from OMX
-* Another lowmemorykiller tweak from Zinx to take cache into account
-* Turned off battery percentage display by default
-* Added "omni-tether" from Wertarbyte for BT tether
-* System built using Zinx's resource-sorter patch for aapt- may provide perf boost
-* Patch from Zinx to have background processes holding wakelocks set to a higher OOM kill adjustment (push notify, mms are good examples)
-* Number of recent apps is configurable - Bcrook & Wysie
-* Ability to disable icons and paths on the lockscreen - Wysie
-* Add pand and hidd to the build
 * D/S: Fixed 3MP camera preview and memory leaks
 * D/S: Ship old Gallery app as Gallery3D has too many issues right now
 * D/S: Fixed slidelock layout
 * D/S: Fixed issue with picking contact for map directions
 * D/S: Change oom-killer behavior to be more "swap friendly" if you want to go against everyones advice and use swap anyway
 * D/S: Launcher tray images fixed by Prash
-* DeskClock: Add alarm timeout setting (Michael Webster)
-* OpenVPN: Select between TAP and TUN interface (Takuo Kitame)
-* Various UI element colors are selectable via Spare Parts (Wysie)
-* NEON-optimized libjpeg (CodeAurora/Qualcomm)
+* N1: Trackball notification color blending option (from Ehud Shabtai http://github.com/eshabtai)
 
 ---- 5.0.6.2-Droid
 * Add fstab to /system/etc
