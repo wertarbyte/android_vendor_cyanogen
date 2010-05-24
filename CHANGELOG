@@ -21,7 +21,7 @@ CHANGELOG
 * Common: Added quick uninstall "Delete Zone" to Launcher and Launcher2 (Ander Webbs)
 * Common: Allow widgets in the Launcher default workspace (ported from Launcher2 by Lox)
 * Common: Fix race conditions and bugs in MMS app
-* Compact drawer can be toggled for Launcher as well as Launcher2 now
+* Common: Compact drawer can be toggled for Launcher as well as Launcher2 now
 * Common: Added squisher script for release builds
 * Common: Another lowmemorykiller tweak from Zinx to take cache into account
 * Common: Turned off battery percentage display by default
