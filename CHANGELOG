@@ -59,6 +59,8 @@ CHANGELOG
 * D/S: Fixed issue with picking contact for map directions
 * D/S: Change oom-killer behavior to be more "swap friendly" if you want to go against everyones advice and use swap anyway
 * D/S: Launcher tray images fixed by Prash
+* D/S: CPU clock tweaks from Pershoot 
+* N1: CPU clock and memory tweaks from Pershoot (http://github.com/pershoot)
 * N1: Trackball notification color blending option (from Ehud Shabtai http://github.com/eshabtai)
 
 ---- 5.0.6.2-Droid
