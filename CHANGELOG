@@ -1,6 +1,6 @@
 CHANGELOG
 
----- 5.0.7 (pre)
+---- 5.0.7 
 * Common: Resync with Google as of 05/20/2010
 * Common: New ARM optimizations in Bionic from Jim Huang @ 0xlab
 * Common: Superuser 2.1 from ChainsDD
