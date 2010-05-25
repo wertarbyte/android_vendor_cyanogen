@@ -88,68 +88,76 @@ stop_bt() {
     kill $(cat "$PAND_PID")
 }
 
+start_iptables() {
+    # create (or at least empty) chain for forwarded packets
+    iptables -N tether
+    iptables -F tether
+    # we let packets pass belonging to connections that are already established
+    iptables -A tether -m state --state RELATED,ESTABLISHED -j ACCEPT
+    # other packets originating from the inner device are also allowed to pass
+    iptables -A tether -i $TETHER -j ACCEPT
+
+    # hook the tether rules into the FORWARDING chain
+    # send all packets that are send or received by the tethered network
+    # through the filter chain
+    iptables -A FORWARD -i $TETHER -j tether
+    iptables -A FORWARD -o $TETHER -j tether
+
+    # enable masquerading for all outgoing devices
+    for DEV in $OUT; do
+        iptables -t nat -A POSTROUTING -o $DEV -j MASQUERADE
+    done
+}
+
+stop_iptables() {
+    # disable masquerading
+    for DEV in $OUT; do
+        iptables -t nat -D POSTROUTING -o $DEV -j MASQUERADE
+    done
+
+    # remove references to the tether chain
+    iptables -D FORWARD -i $TETHER -j tether
+    iptables -D FORWARD -o $TETHER -j tether
+
+    # destroy the tether chain
+    iptables -F tether
+    iptables -X tether
+}
+
 case "$1" in
    start)
       # create bridge for tethering
       brctl addbr $TETHER
-      
       ifconfig $TETHER up $ADDR netmask $MASK
+
+      start_iptables
+      
       sysctl -w ${SYSCTL_FWD}=1
       
-      # bring up usb networking
+      # enable tethering subsystems
       [ "$ENABLE_USB" -eq 1 ] && start_usb
-      # bring up bluetooth networking
       [ "$ENABLE_BT" -eq 1 ] && start_bt
-
-      # create (or at least empty) chain for forwarded packets
-      iptables -N tether
-      iptables -F tether
-      # we let packets pass belonging to connections that are already established
-      iptables -A tether -m state --state RELATED,ESTABLISHED -j ACCEPT
-      # other packets originating from the inner device are also allowed to pass
-      iptables -A tether -i $TETHER -j ACCEPT
-      
-      # hook the tether rules into the FORWARDING chain
-      # send all packets that are send or received by the tethered network
-      # through the filter chain
-      iptables -A FORWARD -i $TETHER -j tether
-      iptables -A FORWARD -o $TETHER -j tether
-      
-      # enable masquerading for all outgoing devices
-      for DEV in $OUT; do
-         iptables -t nat -A POSTROUTING -o $DEV -j MASQUERADE
-      done
       
       start_dnsmasq
+
       setprop tethering.enabled 1
    ;;
    
    stop)
       stop_dnsmasq
       
-       # shut down usb networking
+      # shut down usb networking
       [ "$ENABLE_USB" -eq 1 ] && stop_usb
       # shut down bluetooth networking
       [ "$ENABLE_BT" -eq 1 ] && stop_bt
      
+      sysctl -w ${SYSCTL_FWD}=0
+
+      stop_iptables
+
       # shut down the bridge device
       ifconfig $TETHER down
       brctl delbr $TETHER
-      
-      sysctl -w ${SYSCTL_FWD}=0
-      
-      # disable masquerading
-      for DEV in $OUT; do
-         iptables -t nat -D POSTROUTING -o $DEV -j MASQUERADE
-      done
-      
-      # remove references to the tether chain
-      iptables -D FORWARD -i $TETHER -j tether
-      iptables -D FORWARD -o $TETHER -j tether
-      
-      # destroy the tether chain
-      iptables -F tether
-      iptables -X tether
       
       setprop tethering.enabled 0
    ;;
