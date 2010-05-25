@@ -29,9 +29,8 @@ PAND=pand
 PAND_UP=/system/xbin/pand-up.sh
 PAND_PID=/data/misc/pand.pid
 
-ENABLE_BT=0
-# is pand installed?
-which $PAND && ENABLE_BT=1
+ENABLE_USB=1
+ENABLE_BT=1
 
 SYSCTL_FWD=net.ipv4.ip_forward
 
@@ -64,22 +63,44 @@ stop_dnsmasq() {
     fi
 }
 
+start_usb() {
+    # add USB interface to it
+    ifconfig $USB_DEV up
+    brctl addif $TETHER $USB_DEV
+    echo 1 > $USB_TOGGLE
+}
+
+stop_usb() {
+    # bring down USB networking
+    brctl delif $TETHER $USB_DEV
+    ifconfig $USB_DEV down
+    echo 0 > $USB_TOGGLE
+}
+
+start_bt() {
+    # launch PAND
+    $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -S -s
+}
+
+stop_bt() {
+    # kill PAN connections
+    $PAND -K
+    kill $(cat "$PAND_PID")
+}
+
 case "$1" in
    start)
       # create bridge for tethering
       brctl addbr $TETHER
       
-      # add USB interface to it
-      ifconfig $USB_DEV up
-      brctl addif $TETHER $USB_DEV
-      
       ifconfig $TETHER up $ADDR netmask $MASK
-      echo 1 > $USB_TOGGLE
       sysctl -w ${SYSCTL_FWD}=1
       
-      # bring up bluetooth networking (if available)
-      [ "$ENABLE_BT" -eq 1 ] && $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -S -s
-      
+      # bring up usb networking
+      [ "$ENABLE_USB" -eq 1 ] && start_usb
+      # bring up bluetooth networking
+      [ "$ENABLE_BT" -eq 1 ] && start_bt
+
       # create (or at least empty) chain for forwarded packets
       iptables -N tether
       iptables -F tether
@@ -106,17 +127,11 @@ case "$1" in
    stop)
       stop_dnsmasq
       
-      # stop bluetooth networking
-      if [ "$ENABLE_BT" -eq 1 ]; then
-        $PAND -K
-        kill $(cat "$PAND_PID")
-      fi
-      
-      # bring down USB networking
-      brctl delif $TETHER $USB_DEV
-      ifconfig $USB_DEV down
-      echo 0 > $USB_TOGGLE
-      
+       # shut down usb networking
+      [ "$ENABLE_USB" -eq 1 ] && stop_usb
+      # shut down bluetooth networking
+      [ "$ENABLE_BT" -eq 1 ] && stop_bt
+     
       # shut down the bridge device
       ifconfig $TETHER down
       brctl delbr $TETHER
