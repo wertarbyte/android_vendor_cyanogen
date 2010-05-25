@@ -36,7 +36,7 @@ ifdef CYANOGEN_NIGHTLY
         ro.modversion=CyanogenMod-5-$(shell date +%m%d%Y)-NIGHTLY-N1
 else
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CyanogenMod-5.0.7-N1-test3
+        ro.modversion=CyanogenMod-5.0.7-N1
 endif
 
 include vendor/google/passion/device_passion.mk
