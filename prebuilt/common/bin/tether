@@ -49,6 +49,7 @@ logmsg() {
 }
 
 start_dnsmasq() {
+    logmsg "Starting dnsmasq"
     $DNSMASQ \
         --interface "$TETHER" \
         --no-resolv \
@@ -71,6 +72,7 @@ stop_dnsmasq() {
 }
 
 start_usb() {
+    logmsg "Activating USB tether"
     # add USB interface to it
     ifconfig $USB_DEV up
     brctl addif $TETHER $USB_DEV
@@ -85,6 +87,7 @@ stop_usb() {
 }
 
 start_bt() {
+    logmsg "Activating Bluetooth PAN tether"
     # launch PAND
     $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -S -s
 }
@@ -133,6 +136,7 @@ stop_iptables() {
 
 case "$1" in
    start)
+      logmsg "Setting up tethering bridge"
       # create bridge for tethering
       brctl addbr $TETHER
       ifconfig $TETHER up $ADDR netmask $MASK
@@ -165,6 +169,8 @@ case "$1" in
       # shut down the bridge device
       ifconfig $TETHER down
       brctl delbr $TETHER
+      
+      logmsg "Tethering bridge shut down"
       
       setprop tethering.enabled 0
    ;;
