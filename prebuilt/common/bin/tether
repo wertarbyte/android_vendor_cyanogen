@@ -41,6 +41,13 @@ if [ -e "$CONF" ]; then
     . "$CONF"
 fi
 
+logmsg() {
+    local MSG="$*"
+    # print message to STDOUT and logcat
+    echo "$MSG"
+    log -t tether "$MSG"
+}
+
 start_dnsmasq() {
     $DNSMASQ \
         --interface "$TETHER" \
