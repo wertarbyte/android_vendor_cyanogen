@@ -1,6 +1,10 @@
 CHANGELOG
 
----- 5.0.7 (pre)
+---- 5.0.7.1-N1
+* N1: Fix blurry images in Gallery3D
+* Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
+
+---- 5.0.7 
 * Common: Resync with Google as of 05/20/2010
 * Common: New ARM optimizations in Bionic from Jim Huang @ 0xlab
 * Common: Superuser 2.1 from ChainsDD
@@ -28,7 +32,7 @@ CHANGELOG
 * Common: Added "omni-tether" from Wertarbyte for BT tether
 * Common: System built using Zinx's resource-sorter patch for aapt- may provide perf boost
 * Common: Patch from Zinx to have background processes holding wakelocks set to a higher OOM kill adjustment (push notify, mms are good examples)
-* Common: Number of recent apps is configurable - Bcrook & Wysie
+* Common: Number of recent apps is configurable - Bcrook, Pershoot & Wysie
 * Common: Ability to disable icons and paths on the lockscreen - Wysie
 * Common: Add pand and hidd to the build
 * Common: Fix OpenVPN- manifest was using the wrong mtpd
