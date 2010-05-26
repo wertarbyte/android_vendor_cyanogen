@@ -96,6 +96,7 @@ stop_bt() {
     # kill PAN connections
     $PAND -K
     kill $(cat "$PAND_PID")
+    rm "$PAND_PID"
 }
 
 start_iptables() {
@@ -157,10 +158,10 @@ case "$1" in
    stop)
       stop_dnsmasq
       
-      # shut down usb networking
-      [ "$ENABLE_USB" -eq 1 ] && stop_usb
+      # shut down usb tethering if it is active
+      [ -e "/sys/class/net/${TETHER}/brif/${USB_DEV}" ] && stop_usb
       # shut down bluetooth networking
-      [ "$ENABLE_BT" -eq 1 ] && stop_bt
+      [ -e "$PAND_PID" ] && stop_bt
      
       sysctl -w ${SYSCTL_FWD}=0
 
