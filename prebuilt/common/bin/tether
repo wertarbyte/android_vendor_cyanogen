@@ -35,6 +35,7 @@ ENABLE_BT=1
 SYSCTL_FWD=net.ipv4.ip_forward
 
 DNSMASQ=dnsmasq
+DNSMASQ_PID=/data/misc/dnsmasq.pid
 
 # load configuration file if present
 if [ -e "$CONF" ]; then
@@ -60,14 +61,16 @@ start_dnsmasq() {
         --dhcp-authoritative \
         --dhcp-range=${RANGE_START},${RANGE_END},12h \
         --dhcp-leasefile=/data/misc/dnsmasq.leases \
-        --pid-file=/data/misc/dnsmasq.pid \
+        --pid-file="${DNSMASQ_PID}" \
         --user=dhcp
 }
 
 stop_dnsmasq() {
-    if [ -e /data/misc/dnsmasq.pid ]; then
-        kill $(cat /data/misc/dnsmasq.pid)
-        rm /data/misc/dnsmasq.pid
+    if [ -e "${DNSMASQ_PID}" ]; then
+        logmsg "Killing dnsmasq"
+        # for some reason, dnsmasq doesn't terminate on SIGTERM
+        kill -9 $(cat "${DNSMASQ_PID}")
+        rm "${DNSMASQ_PID}"
     fi
 }
 
@@ -95,7 +98,8 @@ start_bt() {
 stop_bt() {
     # kill PAN connections
     $PAND -K
-    kill $(cat "$PAND_PID")
+    # sometimes SIGTERM is not enough
+    kill -9 $(cat "$PAND_PID")
     rm "$PAND_PID"
 }
 
