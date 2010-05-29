@@ -1,8 +1,10 @@
 CHANGELOG
 
+---- 5.0.8
+* Common: Lots of translations by Eug89, thiasB, and takuo.
+
 ---- 5.0.7.1-N1
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
-* Common: Lots of translations by Eug89, thiasB, and takuo.
 * N1: Fix blurry images in Gallery3D
 
 ---- 5.0.7 
