@@ -1,8 +1,9 @@
 CHANGELOG
 
 ---- 5.0.7.1-N1
-* N1: Fix blurry images in Gallery3D
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
+* Common: Lots of translations by Eug89, thiasB, and takuo.
+* N1: Fix blurry images in Gallery3D
 
 ---- 5.0.7 
 * Common: Resync with Google as of 05/20/2010
