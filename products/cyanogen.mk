@@ -206,7 +206,6 @@ PRODUCT_LOCALES := \
     id_ID \
     it_CH \
     it_IT \
-    iw_IL \
     ja_JP \
     ko_KR \
     lt_LT \
