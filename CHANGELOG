@@ -1,8 +1,18 @@
 CHANGELOG
 
----- 5.0.8
+---- 5.0.8 (pre)
+* Common: Complete music app overhaul by Eliot Stocker (http://github.com/eliotstocker)
 * Common: Lots of translations by Eug89, thiasB, and takuo.
-
+* Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
+* Common: More customizable colors for various parts of the system (in Spare Parts) - Wysie & Bcrook
+* Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
+* COmmon: Wired headset hangup/mute control - Krazy Krivda
+* D/S: Multitouch and swipe added to legacy gallery app (cyanogen)
+* D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
+* D/S: Fix acore crash when pressing hard call button - Glenn Maynard
+* D/S: Fix issue where camera use kills all system audio
+* D/S: Fix bug where some wall chargers could disable the USB port
+ 
 ---- 5.0.7.1-N1
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
 * N1: Fix blurry images in Gallery3D
