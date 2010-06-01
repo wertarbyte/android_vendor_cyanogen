@@ -12,6 +12,7 @@ CHANGELOG
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
 * D/S: Fix issue where camera use kills all system audio
 * D/S: Fix bug where some wall chargers could disable the USB port
+* D/S: Launcher wallpaper speedup and overshoot - kanged from ADW Launcher by Ander Webbs
  
 ---- 5.0.7.1-N1
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
