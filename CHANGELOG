@@ -6,7 +6,8 @@ CHANGELOG
 * Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
 * Common: More customizable colors for various parts of the system (in Spare Parts) - Wysie & Bcrook
 * Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
-* COmmon: Wired headset hangup/mute control - Krazy Krivda
+* Common: Wired headset hangup/mute control - Krazy Krivda
+* Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
 * D/S: Multitouch and swipe added to legacy gallery app (cyanogen)
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
@@ -172,7 +173,7 @@ CHANGELOG
 * Browser enhancements from Wysie - hide zoom controls and fullscreen mode (http://github.com/Wysie)
 * Tweaked the light sensor
 * Kernel is slightly undervolted. The voltages match what are being used by Qualcomm.
-* Scripting fixes from Stefan Tomanek (http://github.com/wetarbyte)
+* Scripting fixes from Stefan Tomanek (http://github.com/wertarbyte)
 * Nexus Live Wallpaper includes dark background and new color schemes - "Dust" is the new default - work on this done mostly Chris Soyars and tweaked by me. Check out his "NexusMod" version on the Market too.
 * Battery percentage shown on the status bar - toggle the option in Spare Parts - patch from canadiancow (will take a battery status change for it to update after switching the toggle)
 * Included rsync (thanks to Dylex for the Android port), iwconfig, and iwlist
