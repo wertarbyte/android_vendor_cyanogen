@@ -8,12 +8,15 @@ CHANGELOG
 * Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
 * Common: Wired headset hangup/mute control - Krazy Krivda
 * Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
-* D/S: Multitouch and swipe added to legacy gallery app (cyanogen)
+* Common: Launcher wallpaper speedup and overshoot - kanged from ADW Launcher by Ander Webbs
+* Common: Various minor bugfixes 
+* D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
 * D/S: Fix issue where camera use kills all system audio
+* D/S: Added antibanding to camera driver
 * D/S: Fix bug where some wall chargers could disable the USB port
-* D/S: Launcher wallpaper speedup and overshoot - kanged from ADW Launcher by Ander Webbs
+* D/S: Load the correct audio profile for the device to fix glitchy audio on Dream
  
 ---- 5.0.7.1-N1
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
