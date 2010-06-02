@@ -79,6 +79,9 @@ TINY_TOOLBOX:=true
 # Enable Windows Media if supported by the board
 WITH_WINDOWS_MEDIA:=true
 
+# Use special libhtc_acoustic and board-specific audio profiles
+WITH_HTCACOUSTIC_HACK:=true
+
 # Include backuptool
 TARGET_OTA_BACKUPTOOL=True
 
