@@ -1,6 +1,7 @@
 CHANGELOG
 
 ---- 5.0.8 (pre)
+* Common: Resync with Google as of 06/03/2010
 * Common: Complete music app overhaul by Eliot Stocker (http://github.com/eliotstocker)
 * Common: Lots of translations by Eug89, thiasB, and takuo.
 * Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
@@ -10,6 +11,7 @@ CHANGELOG
 * Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
 * Common: Launcher wallpaper speedup and overshoot - kanged from ADW Launcher by Ander Webbs
 * Common: Various minor bugfixes 
+* Common: Ability to load custom color theme xml - Wysie
 * D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
