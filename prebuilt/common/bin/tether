@@ -30,7 +30,7 @@ PAND_UP=/system/xbin/pand-up.sh
 PAND_PID=/data/misc/pand.pid
 
 ENABLE_USB=1
-ENABLE_BT=1
+ENABLE_BT_PAN=1
 
 SYSCTL_FWD=net.ipv4.ip_forward
 
@@ -89,13 +89,13 @@ stop_usb() {
     echo 0 > $USB_TOGGLE
 }
 
-start_bt() {
+start_bt_pan() {
     logmsg "Activating Bluetooth PAN tether"
     # launch PAND
     $PAND -P "$PAND_PID" --devup "$PAND_UP" -M -rNAP -S -s
 }
 
-stop_bt() {
+stop_bt_pan() {
     # kill PAN connections
     $PAND -K
     # sometimes SIGTERM is not enough
@@ -152,7 +152,7 @@ case "$1" in
       
       # enable tethering subsystems
       [ "$ENABLE_USB" -eq 1 ] && start_usb
-      [ "$ENABLE_BT" -eq 1 ] && start_bt
+      [ "$ENABLE_BT_PAN" -eq 1 ] && start_bt_pan
       
       start_dnsmasq
 
@@ -165,7 +165,7 @@ case "$1" in
       # shut down usb tethering if it is active
       [ -e "/sys/class/net/${TETHER}/brif/${USB_DEV}" ] && stop_usb
       # shut down bluetooth networking
-      [ -e "$PAND_PID" ] && stop_bt
+      [ -e "$PAND_PID" ] && stop_bt_pan
      
       sysctl -w ${SYSCTL_FWD}=0
 
