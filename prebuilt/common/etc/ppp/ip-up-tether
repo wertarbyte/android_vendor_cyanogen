@@ -1,0 +1,9 @@
+#!/system/bin/sh
+# this script is called by pppd after a DUN connection
+# with another bluetooth device is established
+
+# the used iptables chain is supplied as 6th argument (ipparam)
+CHAIN=$6
+
+iptables -A FORWARD -i $IFNAME -j $CHAIN
+iptables -A FORWARD -o $IFNAME -j $CHAIN
