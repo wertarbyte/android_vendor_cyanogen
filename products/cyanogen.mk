@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
     framework-res \
     Browser \
     Contacts \
-    Launcher \
+    ADWLauncher \
     HTMLViewer \
     Phone \
     ApplicationsProvider \
