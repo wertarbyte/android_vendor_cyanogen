@@ -4,7 +4,6 @@ CHANGELOG
 * Common: Resync with Google as of 06/03/2010
 * Common: ADWLauncher by Ander Webbs is now the default launcher (http://github.com/anderweb)
 * Common: Complete music app overhaul by Eliot Stocker (http://github.com/eliotstocker)
-* Common: Lots of translations by Eug89, thiasB, and takuo.
 * Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
 * Common: More customizable colors for various parts of the system (in Spare Parts) - Wysie & Bcrook
 * Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
