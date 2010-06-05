@@ -13,6 +13,7 @@ CHANGELOG
 * Common: Launcher wallpaper speedup and overshoot - kanged from ADW Launcher by Ander Webbs
 * Common: Various minor bugfixes 
 * Common: Ability to load custom color theme xml - Wysie
+* Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
 * D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
