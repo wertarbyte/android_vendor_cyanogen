@@ -2,6 +2,7 @@ CHANGELOG
 
 ---- 5.0.8 (pre)
 * Common: Resync with Google as of 06/03/2010
+* Common: Kernel 2.6.34 for DS & N1
 * Common: ADWLauncher by Ander Webbs is now the default launcher (http://github.com/anderweb)
 * Common: Complete music app overhaul by Eliot Stocker (http://github.com/eliotstocker)
 * Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
@@ -9,9 +10,9 @@ CHANGELOG
 * Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
 * Common: Wired headset hangup/mute control - Krazy Krivda
 * Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
+* Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
 * Common: Various minor bugfixes 
 * Common: Ability to load custom color theme xml - Wysie
-* Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
 * D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
@@ -19,6 +20,8 @@ CHANGELOG
 * D/S: Added antibanding to camera driver
 * D/S: Fix bug where some wall chargers could disable the USB port
 * D/S: Load the correct audio profile for the device to fix glitchy audio on Dream
+* N1: Debounce power button (Google)
+* N1: Target new radio version (FRF50)
  
 ---- 5.0.7.1-N1
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
