@@ -10,7 +10,6 @@ CHANGELOG
 * Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
 * Common: Wired headset hangup/mute control - Krazy Krivda
 * Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
-* Common: Launcher wallpaper speedup and overshoot - kanged from ADW Launcher by Ander Webbs
 * Common: Various minor bugfixes 
 * Common: Ability to load custom color theme xml - Wysie
 * Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
