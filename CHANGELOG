@@ -13,6 +13,10 @@ CHANGELOG
 * Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
 * Common: Various minor bugfixes 
 * Common: Ability to load custom color theme xml - Wysie
+* Common: Support AlbumArtist in media scanner
+* Common: Various code cleanups all throughout the source - Christian Mehlmauer
+* Common: Fix issue where notifications would play thru the HW speaker even if a headset was connected - Gelnn Maynard
+* Common: Only load IPV6 if persist.net.ipv6 is set - Glenn Maynard
 * D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
@@ -20,7 +24,9 @@ CHANGELOG
 * D/S: Added antibanding to camera driver
 * D/S: Fix bug where some wall chargers could disable the USB port
 * D/S: Load the correct audio profile for the device to fix glitchy audio on Dream
-* N1: Debounce power button (Google)
+* D/S: Default compcache size set to 12MB
+* D/S: Offset the lowmemorykiller to allow for use of a fraction of swap (Dumfuq & Farmatito @XDA)
+* N1: Debounce power button (Arve @ Google)
 * N1: Target new radio version (FRF50)
  
 ---- 5.0.7.1-N1
