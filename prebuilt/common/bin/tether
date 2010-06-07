@@ -31,6 +31,7 @@ PAND_PID=/data/misc/pand.pid
 
 # dund is used for virtual dial up networking
 DUND=dund
+PPPD=/system/bin/pppd
 DUND_PID=/data/misc/dund.pid
 DUN_ADDRESS=192.168.77.106
 
@@ -106,7 +107,7 @@ start_bt_pan() {
 start_bt_dun() {
     logmsg "Activating Bluetooth DUN tether"
     # launch DUND
-    $DUND --persist -u -M -S -D \
+    $DUND --persist -u -M -S -D --pppd "$PPPD" \
         linkname tether \
         ipparam $IPTABLES_CHAIN \
         ${ADDR}:${DUN_ADDRESS} \
