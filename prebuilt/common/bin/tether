@@ -34,6 +34,7 @@ DUND=dund
 PPPD=/system/bin/pppd
 DUND_PID=/data/misc/dund.pid
 DUN_ADDRESS=192.168.77.106
+DUN_CHATSCRIPT=/system/xbin/dun-chat.awk
 
 ENABLE_USB=1
 ENABLE_BT_PAN=1
@@ -108,6 +109,7 @@ start_bt_dun() {
     logmsg "Activating Bluetooth DUN tether"
     # launch DUND
     $DUND --persist -u -M -S --pppd "$PPPD" \
+        connect ${DUN_CHATSCRIPT} \
         linkname tether \
         ipparam $IPTABLES_CHAIN \
         ${ADDR}:${DUN_ADDRESS} \

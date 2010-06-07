@@ -106,6 +106,7 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
     vendor/cyanogen/prebuilt/common/xbin/openvpn-up.sh:system/xbin/openvpn-up.sh \
     vendor/cyanogen/prebuilt/common/xbin/pand-up.sh:system/xbin/pand-up.sh \
+    vendor/cyanogen/prebuilt/common/xbin/dun-chat.awk:system/xbin/dun-chat.awk \
     vendor/cyanogen/prebuilt/common/xbin/dropbear-keygen:system/xbin/dropbear-keygen
 
 # Various prebuilt stuff that hasen't been android-ized yet
