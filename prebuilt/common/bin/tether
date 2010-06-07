@@ -107,7 +107,7 @@ start_bt_pan() {
 start_bt_dun() {
     logmsg "Activating Bluetooth DUN tether"
     # launch DUND
-    $DUND --persist -u -M -S -D --pppd "$PPPD" \
+    $DUND --persist -u -M -S --pppd "$PPPD" \
         linkname tether \
         ipparam $IPTABLES_CHAIN \
         ${ADDR}:${DUN_ADDRESS} \
