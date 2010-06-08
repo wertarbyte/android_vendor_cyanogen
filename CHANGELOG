@@ -1,8 +1,37 @@
 CHANGELOG
 
+---- 5.0.8 (pre)
+* Common: Resync with Google as of 06/03/2010
+* Common: Kernel 2.6.34 for DS & N1
+* Common: ADWLauncher by Ander Webbs is now the default launcher (http://github.com/anderweb)
+* Common: Complete music app overhaul by Eliot Stocker (http://github.com/eliotstocker)
+* Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
+* Common: More customizable colors for various parts of the system (in Spare Parts) - Wysie & Bcrook
+* Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
+* Common: Wired headset hangup/mute control - Krazy Krivda
+* Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
+* Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
+* Common: Various minor bugfixes 
+* Common: Ability to load custom color theme xml - Wysie
+* Common: Support AlbumArtist in media scanner
+* Common: Various code cleanups all throughout the source - Christian Mehlmauer
+* Common: Fix issue where notifications would play thru the HW speaker even if a headset was connected - Gelnn Maynard
+* Common: Only load IPV6 if persist.net.ipv6 is set - Glenn Maynard
+* D/S: Multitouch and swipe added to legacy gallery app
+* D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
+* D/S: Fix acore crash when pressing hard call button - Glenn Maynard
+* D/S: Fix issue where camera use kills all system audio
+* D/S: Added antibanding to camera driver
+* D/S: Fix bug where some wall chargers could disable the USB port
+* D/S: Load the correct audio profile for the device to fix glitchy audio on Dream
+* D/S: Default compcache size set to 12MB
+* D/S: Offset the lowmemorykiller to allow for use of a fraction of swap (Dumfuq & Farmatito @XDA)
+* N1: Debounce power button (Arve @ Google)
+* N1: Target new radio version (FRF50)
+ 
 ---- 5.0.7.1-N1
-* N1: Fix blurry images in Gallery3D
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
+* N1: Fix blurry images in Gallery3D
 
 ---- 5.0.7 
 * Common: Resync with Google as of 05/20/2010
@@ -158,7 +187,7 @@ CHANGELOG
 * Browser enhancements from Wysie - hide zoom controls and fullscreen mode (http://github.com/Wysie)
 * Tweaked the light sensor
 * Kernel is slightly undervolted. The voltages match what are being used by Qualcomm.
-* Scripting fixes from Stefan Tomanek (http://github.com/wetarbyte)
+* Scripting fixes from Stefan Tomanek (http://github.com/wertarbyte)
 * Nexus Live Wallpaper includes dark background and new color schemes - "Dust" is the new default - work on this done mostly Chris Soyars and tweaked by me. Check out his "NexusMod" version on the Market too.
 * Battery percentage shown on the status bar - toggle the option in Spare Parts - patch from canadiancow (will take a battery status change for it to update after switching the toggle)
 * Included rsync (thanks to Dylex for the Android port), iwconfig, and iwlist

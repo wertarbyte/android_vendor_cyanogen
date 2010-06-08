@@ -7,7 +7,6 @@ PRODUCT_DEVICE := generic
 # Let's grab the hdpi versions of apps and some extras
 PRODUCT_PACKAGES += \
     Gallery3D \
-    Launcher2 \
     LiveWallpapers \
     MagicSmokeWallpapers \
     VisualizationWallpapers

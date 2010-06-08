@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
     framework-res \
     Browser \
     Contacts \
-    Launcher \
+    ADWLauncher \
     HTMLViewer \
     Phone \
     ApplicationsProvider \
@@ -79,6 +79,9 @@ TINY_TOOLBOX:=true
 # Enable Windows Media if supported by the board
 WITH_WINDOWS_MEDIA:=true
 
+# Use special libhtc_acoustic and board-specific audio profiles
+WITH_HTCACOUSTIC_HACK:=true
+
 # Include backuptool
 TARGET_OTA_BACKUPTOOL=True
 
@@ -87,6 +90,7 @@ PRODUCT_COPY_FILES += \
     vendor/cyanogen/prebuilt/common/etc/e2fsck.conf:system/etc/e2fsck.conf \
     vendor/cyanogen/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
     vendor/cyanogen/prebuilt/common/etc/tether.conf:system/etc/tether.conf \
+    vendor/cyanogen/prebuilt/common/etc/ppp/ip-up-tether:system/etc/ppp/ip-up-tether \
     vendor/cyanogen/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/cyanogen/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
     vendor/cyanogen/prebuilt/common/etc/init.d/03firstboot:system/etc/init.d/03firstboot \
@@ -206,7 +210,6 @@ PRODUCT_LOCALES := \
     id_ID \
     it_CH \
     it_IT \
-    iw_IL \
     ja_JP \
     ko_KR \
     lt_LT \

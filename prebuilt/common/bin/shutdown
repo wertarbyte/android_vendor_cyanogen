@@ -1,5 +1,7 @@
 #!/system/bin/sh
 
+echo "shutdown" > /sys/power/wake_lock
+
 stop;
 stop dhcpcd;
 
