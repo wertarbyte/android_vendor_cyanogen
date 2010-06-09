@@ -7,3 +7,7 @@ CHAIN=$6
 
 iptables -A FORWARD -i $IFNAME -j $CHAIN
 iptables -A FORWARD -o $IFNAME -j $CHAIN
+
+# make sure the interface is not masqueraded
+#(which might be the case with ppp0)
+iptables -t nat -D POSTROUTING -o $IFNAME -j MASQUERADE
