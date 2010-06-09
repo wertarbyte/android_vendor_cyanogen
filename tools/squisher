@@ -95,7 +95,7 @@ rm updater-script.new
 zip -r update.zip .
 echo "Signing package.."
 SECURITYDIR=$ANDROID_BUILD_TOP/build/target/product/security
-java -jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 update.zip update_signed.zip
+java -jar $ANDROID_BUILD_TOP/out/host/$OUT_TARGET_HOST/framework/signapk.jar -w $SECURITYDIR/testkey.x509.pem $SECURITYDIR/testkey.pk8 update.zip update_signed.zip
 
 mv update_signed.zip $OUT/update-cm-$MODVERSION-signed.zip
 $MD5 $OUT/update-cm-$MODVERSION-signed.zip > $OUT/update-cm-$MODVERSION-signed.zip.md5sum
