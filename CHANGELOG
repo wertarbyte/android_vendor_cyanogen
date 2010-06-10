@@ -3,26 +3,29 @@ CHANGELOG
 ---- 5.0.8 (pre)
 * Common: Resync with Google as of 06/08/2010
 * Common: Kernel 2.6.34 for DS & N1
-* Common: ADWLauncher by Ander Webbs is now the default launcher (http://github.com/anderweb)
+* Common: ADWLauncher 0.7.8 by Ander Webbs is now the default launcher (http://github.com/anderweb)
 * Common: Complete music app overhaul (with gestures support) by Eliot Stocker (http://github.com/eliotstocker)
 * Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
 * Common: More customizable colors for various parts of the system (in Spare Parts) - Wysie & Bcrook
 * Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
-* Common: Wired headset hangup/mute control - Krazy Krivda
+* Common: Wired headset hangup/mute control - Krazy Krivda (http://github.com/krazykrivda)
 * Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
-* Common: Bluetooth DUN tether support - Stefan Tomanek (http://github.com/wertarbyte)
+* Common: Bluetooth DUN tether support (Omni-Tether) - Stefan Tomanek (http://github.com/wertarbyte)
 * Common: Various minor bugfixes 
 * Common: Ability to load custom color theme xml - Wysie
 * Common: Support AlbumArtist in media scanner
 * Common: Various code cleanups all throughout the source - Christian Mehlmauer
-* Common: Fix issue where notifications would play thru the HW speaker even if a headset was connected - Gelnn Maynard
+* Common: Fix issue where notifications would play thru the HW speaker even if a headset was connected - Glenn Maynard
 * Common: Only load IPV6 if persist.net.ipv6 is set - Glenn Maynard
 * Common: Enabled experimental Bluetooth voice dialing - copolii
 * Common: Fix an NPE in AccountManagerService
 * Common: Fix FLAC decoder lock contention - Glenn Maynard
 * Common: Fix BlueZ logging - Glenn Maynard
 * Common: Fix A2DP not connecting while asleep - Glenn Maynard
-* D/S: Kernel tweaks to hopefully improve memory usage- disable LBADF, enable TINY_RCU and deadline iosched (I can no longer reproduce the flash_image failures with this configuration, nor the panic that sometimes happens when enabling compcache)
+* Common: Fix BT control connection race condition (caused A2DP connection failures) - Glenn Maynard
+* Common: Fix the "magic music" or "party-in-your-pocket" problem for good - Glenn Maynard
+* Common: ADW Launcher settings and Spare Parts are now under the main Settings app - Mehdi ABAAKOUK (http://github.com/sileht)
+* D/S: Kernel tweaks to hopefully improve memory usage- enable TINY_RCU and deadline iosched (I can no longer reproduce the flash_image failures with this configuration)
 * D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
 * D/S: Fix acore crash when pressing hard call button - Glenn Maynard
