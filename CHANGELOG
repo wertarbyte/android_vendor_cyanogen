@@ -7,11 +7,11 @@ CHANGELOG
 * Common: Complete music app overhaul (with gestures support) by Eliot Stocker (http://github.com/eliotstocker)
 * Common: Customizable silent mode - Glenn Maynard (http://github.com/zewt)
 * Common: More customizable colors for various parts of the system (in Spare Parts) - Wysie & Bcrook
-* Common: Updated translations from Eug89, ThiasB, and Takuo Kitame 
+* Common: Updated translations from Eug89, ThiasB, and Takuo Kitame
 * Common: Wired headset hangup/mute control - Krazy Krivda (http://github.com/krazykrivda)
-* Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)  
+* Common: Updated USB tether and Bluetooth PAN tethering - Stefan Tomanek (http://github.com/wertarbyte)
 * Common: Bluetooth DUN tether support (Omni-Tether) - Stefan Tomanek (http://github.com/wertarbyte)
-* Common: Various minor bugfixes 
+* Common: Various minor bugfixes
 * Common: Ability to load custom color theme xml - Wysie
 * Common: Support AlbumArtist in media scanner
 * Common: Various code cleanups all throughout the source - Christian Mehlmauer
@@ -25,6 +25,8 @@ CHANGELOG
 * Common: Fix BT control connection race condition (caused A2DP connection failures) - Glenn Maynard
 * Common: Fix the "magic music" or "party-in-your-pocket" problem for good - Glenn Maynard
 * Common: ADW Launcher settings and Spare Parts are now under the main Settings app - Mehdi ABAAKOUK (http://github.com/sileht)
+* Common: Fix brightness going out of range - Glenn Maynard
+* Common: Fix parsing of SMS messages from short numbers - Glenn Maynard
 * D/S: Kernel tweaks to hopefully improve memory usage- enable TINY_RCU and deadline iosched (I can no longer reproduce the flash_image failures with this configuration)
 * D/S: Multitouch and swipe added to legacy gallery app
 * D/S: Long standing "disappearing icons" Launcher bug fixed - Glenn Maynard
@@ -39,12 +41,13 @@ CHANGELOG
 * N1: Target new radio version (FRF50)
 * N1: Wireless driver update from Broadcom
 * N1: Use Froyo RIL and dormancy settings
- 
+* N1: 720p video recording support from Charansingh & Wysie
+
 ---- 5.0.7.1-N1
 * Common: Color picker and reset-to-defaults option for new UI customizations (Wysie)
 * N1: Fix blurry images in Gallery3D
 
----- 5.0.7 
+---- 5.0.7
 * Common: Resync with Google as of 05/20/2010
 * Common: New ARM optimizations in Bionic from Jim Huang @ 0xlab
 * Common: Superuser 2.1 from ChainsDD
@@ -103,7 +106,7 @@ CHANGELOG
 * D/S: Fixed issue with picking contact for map directions
 * D/S: Change oom-killer behavior to be more "swap friendly" if you want to go against everyones advice and use swap anyway
 * D/S: Launcher tray images fixed by Prash
-* D/S: CPU clock tweaks from Pershoot 
+* D/S: CPU clock tweaks from Pershoot
 * N1: CPU clock and memory tweaks from Pershoot (http://github.com/pershoot)
 * N1: Trackball notification color blending option (from Ehud Shabtai http://github.com/eshabtai)
 
